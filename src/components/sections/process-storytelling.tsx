@@ -1,391 +1,197 @@
 "use client";
 
 import Image from "next/image";
+import { useCallback, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLenis } from "lenis/react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { ArrowDown, Check, ChevronDown, DraftingCompass, Factory, FileText, MessagesSquare, Ruler, Truck } from "lucide-react";
 
 import { cn } from "@/lib/cn";
 import { duration, easeOutEditorial } from "@/components/motion/tokens";
 import type { ProcessStep, ProjectImage } from "@/types";
+import styles from "./process-storytelling.module.css";
+
+if (typeof window !== "undefined") gsap.registerPlugin(ScrollTrigger);
 
 type ProcessStorytellingProps = {
   steps: ProcessStep[];
   images: ProjectImage[];
 };
 
-/**
- * Sticky storytelling for the order process (pasal 15).
- *
- * Desktop: the eight steps scroll past a media panel that stays pinned; the
- * step nearest the middle of the viewport becomes active, turns brand yellow,
- * and crossfades the panel to a matching photograph.
- *
- * Below `lg` the sticky panel is dropped entirely and the same markup reads as
- * a plain vertical stepper - no pinning, no scroll hijacking on touch.
- */
-/**
- * Gap between the intermediate steps when the panel is catching up.
- *
- * The step under the rail is committed the instant the rail reaches it - there
- * is no waiting period. This interval only applies when a single flick of the
- * wheel crossed several steps at once: the panel still refuses to skip a photo,
- * so it walks the ones in between. Short enough to read as a fast flip rather
- * than a queue.
- */
-const STEP_INTERVAL_MS = 120;
-
-/** Where the pinned block comes to rest. Mirrors `lg:top-24` on that wrapper. */
-const STICKY_TOP = 96;
+const stepIcons = [MessagesSquare, Ruler, DraftingCompass, FileText, Factory, Truck];
 
 export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps) {
   const [active, setActive] = useState(0);
   const activeRef = useRef(0);
-  const stepRefs = useRef<Array<HTMLLIElement | null>>([]);
-  /** The tall element whose scroll the pinned section spends. */
-  const trackRef = useRef<HTMLDivElement | null>(null);
-  /** The block that stays put inside it. */
-  const pinnedRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const sceneRef = useRef<HTMLDivElement>(null);
+  const summaryRefs = useRef<Array<HTMLElement | null>>([]);
+  const triggerRef = useRef<ScrollTrigger | null>(null);
   const prefersReduced = useReducedMotion();
-
-  /**
-   * Whether the pinned, photo-driven layout is on screen at all.
-   *
-   * Starts false so the server and the first client render agree; the effect
-   * below settles it immediately after mount.
-   */
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    // Mirrors the `lg:` breakpoint that reveals the media panel.
-    const query = window.matchMedia("(min-width: 1024px)");
-    const update = () => setIsDesktop(query.matches);
-
-    update();
-    query.addEventListener("change", update);
-    return () => query.removeEventListener("change", update);
-  }, []);
+  const lenis = useLenis();
+  const current = steps[active];
+  const image = images[active];
+  const imageRatio = { "--process-image-ratio": image ? image.width / image.height : 0.8 } as CSSProperties;
 
   const commit = useCallback((index: number) => {
+    if (activeRef.current === index) return;
     activeRef.current = index;
     setActive(index);
   }, []);
 
-  /** Drops any catch-up walk the scroll handler still has queued. */
-  const cancelDwell = useRef<() => void>(() => {});
+  useGSAP(() => {
+    const track = trackRef.current;
+    const scene = sceneRef.current;
+    if (!track || !scene || !steps.length || prefersReduced !== false) return;
 
-  /**
-   * A step can also just be clicked. That answers a reader who has spotted the
-   * stage they care about and wants its photo now rather than scrolling to it,
-   * so any queued walk is dropped and the panel switches straight away. The
-   * next scroll takes the panel back over, as usual.
-   */
-  const selectStep = useCallback(
-    (index: number) => {
-      cancelDwell.current();
-      commit(index);
-    },
-    [commit]
-  );
-
-  useEffect(() => {
-    /*
-      Phones get none of this.
-
-      There is no media panel below `lg`, so every scroll frame spent measuring
-      six cards, every re-render it triggered, and every catch-up timer behind
-      it bought nothing - and the one thing it did produce was
-      wrong there: the highlight crawled a step at a time, seconds behind a
-      thumb that had already stopped. Without the panel the list is a plain
-      stepper, exactly as documented above, and the active step changes only
-      when someone taps one.
-    */
-    if (!isDesktop) return;
-
-    const nodes = stepRefs.current.filter(
-      (node): node is HTMLLIElement => node !== null
-    );
-    if (nodes.length === 0) return;
-
-    let frame = 0;
-    let walk = 0;
-    let progress = 0;
-
-    const list = nodes[0].parentElement;
-
-    /**
-     * The step the progress rail is currently standing in.
-     *
-     * The rail is `scaleY(--progress)` over the full height of the list, so its
-     * tip sits at `progress * listHeight`. Reading the step off the real row
-     * boxes at that exact point is what keeps the photo and the rail in step:
-     * the moment the rail crosses into row 02, row 02 is what the panel shows.
-     *
-     * Splitting the travel into six equal slices instead - the obvious shortcut -
-     * drifts, because a slice is `listHeight / 6` while a row pitch is
-     * `cardHeight + gap`. The two only agree when the gap is zero; here they
-     * came apart by several pixels a row, so the swap landed just before or
-     * just after the rail visibly reached the number.
-     */
-    const measure = () => {
-      const track = trackRef.current;
-      const pinned = pinnedRef.current;
-
-      if (track && pinned && list) {
-        const travel = track.offsetHeight - pinned.offsetHeight;
-
-        if (travel > 0) {
-          const raw = (STICKY_TOP - track.getBoundingClientRect().top) / travel;
-          progress = Math.min(Math.max(raw, 0), 1);
-
-          const listTop = list.getBoundingClientRect().top;
-          const tip = progress * list.offsetHeight;
-
-          // The last row whose top edge the rail has reached.
-          let index = 0;
-          nodes.forEach((node, i) => {
-            if (node.getBoundingClientRect().top - listTop <= tip) index = i;
-          });
-
-          return index;
-        }
-      }
-
-      // Nothing is pinned - phones, or a layout where the track has no extra
-      // height to spend. Fall back to whichever card is nearest the middle.
-      const middle = window.innerHeight / 2;
-
-      let nearest = 0;
-      let nearestDistance = Infinity;
-
-      nodes.forEach((node, index) => {
-        const rect = node.getBoundingClientRect();
-        const distance = Math.abs(rect.top + rect.height / 2 - middle);
-        if (distance < nearestDistance) {
-          nearestDistance = distance;
-          nearest = index;
-        }
+    const media = gsap.matchMedia();
+    media.add("(min-width: 1024px) and (min-height: 800px) and (prefers-reduced-motion: no-preference)", () => {
+      // Only hydrated, roomy desktop layouts reserve scroll space.
+      track.dataset.scrollStory = "true";
+      const sync = (trigger: ScrollTrigger) => {
+        commit(Math.min(steps.length - 1, Math.floor(trigger.progress * steps.length)));
+      };
+      const trigger = ScrollTrigger.create({
+        trigger: track,
+        start: "top 112px",
+        end: () => "+=" + Math.max(1, track.offsetHeight - scene.offsetHeight),
+        invalidateOnRefresh: true,
+        onUpdate: sync,
+        onRefresh: sync,
+        onEnter: sync,
+        onEnterBack: sync,
       });
+      triggerRef.current = trigger;
 
-      progress = nodes.length > 1 ? nearest / (nodes.length - 1) : 0;
-      return nearest;
-    };
+      const observer = new ResizeObserver(() => trigger.refresh());
+      observer.observe(scene);
 
-    /**
-     * Move one step towards `target`, then keep going until we arrive.
-     *
-     * The guard the whole thing rests on is `Math.sign`: the committed index
-     * only ever changes by one, so the panel cannot skip a photo no matter how
-     * far a flick of the wheel carried the page. Each hop re-measures, so if
-     * the reader is still moving the walk follows them to wherever they end up
-     * instead of marching to a target that has gone stale.
-     */
-    const stepToward = (target: number) => {
-      const current = activeRef.current;
-      if (target === current) return;
+      return () => {
+        observer.disconnect();
+        triggerRef.current = null;
+        delete track.dataset.scrollStory;
+      };
+    });
+    return () => media.revert();
+  }, { scope: trackRef, dependencies: [steps.length, prefersReduced], revertOnUpdate: true });
 
-      commit(current + Math.sign(target - current));
+  const selectStep = (index: number) => {
+    const trigger = triggerRef.current;
+    if (trigger) {
+      const destination = trigger.start + (trigger.end - trigger.start) * ((index + 0.5) / steps.length);
+      if (lenis) lenis.scrollTo(destination, { immediate: true });
+      else window.scrollTo({ top: destination, behavior: "instant" });
+    }
+    commit(index);
+  };
 
-      window.clearTimeout(walk);
-      walk = window.setTimeout(() => {
-        walk = 0;
-        stepToward(measure());
-      }, STEP_INTERVAL_MS);
-    };
+  const navigateStep = (event: KeyboardEvent<HTMLElement>, index: number) => {
+    let next = index;
+    if (event.key === "ArrowDown") next = Math.min(steps.length - 1, index + 1);
+    else if (event.key === "ArrowUp") next = Math.max(0, index - 1);
+    else if (event.key === "Home") next = 0;
+    else if (event.key === "End") next = steps.length - 1;
+    else return;
+    event.preventDefault();
+    selectStep(next);
+    summaryRefs.current[next]?.focus({ preventScroll: true });
+  };
 
-    /**
-     * Commit on the same frame the rail crosses the row. No waiting period.
-     *
-     * The dwell this used to run existed for the un-pinned layout, where all six
-     * cards shared one screen and a single flick crossed the lot. The pinned
-     * track spends roughly half a screen of scroll per step now, so there is
-     * nothing left to debounce, and the wait only read as lag.
-     */
-    const sync = () => {
-      frame = 0;
-
-      const target = measure();
-
-      // The rail and the backdrop read this straight from CSS, so the effect
-      // stays smooth at scroll resolution instead of stepping once per commit -
-      // and it costs no React render.
-      pinnedRef.current?.style.setProperty("--progress", progress.toFixed(4));
-
-      stepToward(target);
-    };
-
-    const schedule = () => {
-      if (frame) return;
-      frame = requestAnimationFrame(sync);
-    };
-
-    cancelDwell.current = () => {
-      window.clearTimeout(walk);
-      walk = 0;
-    };
-
-    commit(measure());
-    pinnedRef.current?.style.setProperty("--progress", progress.toFixed(4));
-    window.addEventListener("scroll", schedule, { passive: true });
-    window.addEventListener("resize", schedule);
-
-    return () => {
-      cancelDwell.current = () => {};
-      if (frame) cancelAnimationFrame(frame);
-      window.clearTimeout(walk);
-      window.removeEventListener("scroll", schedule);
-      window.removeEventListener("resize", schedule);
-    };
-  }, [commit, isDesktop]);
-
-  // Indexed straight across, never wrapped: frame N belongs to step N. Wrapping
-  // was a leftover from the days this panel cycled unrelated portfolio photos,
-  // and it silently paired every later step with the wrong picture whenever a
-  // frame was missing - while the caption below still named the right step.
-  const activeImage = images[active];
+  if (!current) return null;
 
   return (
-    /*
-      On desktop the whole section is pinned and the page holds still while the
-      six steps play out; only once step 06 has had its turn does the page carry
-      on. The tall outer track is the scroll that gets spent doing it - roughly
-      half a screen per step - and the inner wrapper is what stays put.
-
-      Below `lg` none of this applies: no track height, no pinning, and the
-      panel is not rendered at all, so the same markup reads as an ordinary
-      vertical stepper.
-    */
-    <div
-      ref={trackRef}
-      className="lg:[@media(min-height:700px)]:h-[400vh]"
-    >
-      <div ref={pinnedRef} className="relative lg:sticky lg:top-24">
-        {/*
-          A single soft glow that drifts down the block as the six steps go by,
-          so the pinned view registers as moving through something rather than
-          standing still. It reads the same `--progress` the rail does, which is
-          written straight to the DOM by the scroll handler.
-        */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 hidden overflow-hidden [mask-image:linear-gradient(to_bottom,transparent,#000_22%,#000_78%,transparent)] lg:block"
-        >
-          <div className="absolute left-1/2 top-[calc(var(--progress,0)*(100%_-_55vh))] aspect-square w-[55vh] -translate-x-1/2 rounded-full bg-primary-container/[0.07] blur-[100px]" />
-        </div>
-
-        <div className="relative grid gap-space-2xl lg:grid-cols-12 lg:gap-gutter-desktop">
-          {/*
-            The tail padding only exists when the section is NOT pinned. A
-            sticky child is pinned for as long as its column has height left
-            underneath it, and without this the column ran out while step 04 was
-            centred - steps 05 and 06 reached the middle of the screen only
-            after the panel had slid away. Widening the gaps between cards
-            cannot fix that: the card pitch cancels out of the arithmetic on
-            both sides, so the runway has to sit below the last card.
-          */}
-          <ol className="grid grid-cols-2 gap-space-sm sm:gap-gutter-desktop lg:block lg:relative lg:col-span-7 lg:space-y-[clamp(0.375rem,0.9vh,0.75rem)] lg:pl-space-lg lg:before:absolute lg:before:inset-y-0 lg:before:left-0 lg:before:w-px lg:before:bg-pure-white/12 lg:before:content-[''] lg:after:absolute lg:after:inset-y-0 lg:after:left-0 lg:after:w-px lg:after:origin-top lg:after:scale-y-[var(--progress,0)] lg:after:bg-primary-container lg:after:content-[''] lg:before:[-webkit-mask-image:linear-gradient(to_bottom,transparent,#000_10%,#000_90%,transparent)] lg:before:[mask-image:linear-gradient(to_bottom,transparent,#000_10%,#000_90%,transparent)] lg:after:[-webkit-mask-image:linear-gradient(to_bottom,transparent,#000_10%,#000_90%,transparent)] lg:after:[mask-image:linear-gradient(to_bottom,transparent,#000_10%,#000_90%,transparent)] lg:[@media(max-height:699px)]:pb-[45vh]">
-        {steps.map((step, index) => {
-          const isActive = index === active;
-          return (
-            <li
-              key={step.index}
-              ref={(node) => {
-                stepRefs.current[index] = node;
-              }}
-              aria-current={isActive ? "step" : undefined}
-              className={cn(
-                "relative rounded-md border p-space-sm transition-colors duration-300 sm:p-space-md lg:p-[clamp(0.5rem,1.3vh,1rem)]",
-                isActive
-                  ? "border-primary-container/40 bg-inverse-surface/70"
-                  : "border-transparent bg-inverse-surface/30 hover:bg-inverse-surface/50"
-              )}
-            >
-              <div className="flex flex-col items-start gap-space-xs sm:flex-row sm:gap-space-sm">
-                <span
-                  aria-hidden
-                  className={cn(
-                    "flex size-6 shrink-0 items-center justify-center rounded-full text-xs font-bold transition-colors duration-300 sm:size-8 sm:text-label-md lg:size-7",
-                    isActive
-                      ? "bg-primary-container text-deep-black"
-                      : "bg-inverse-surface text-tertiary-fixed-dim"
-                  )}
-                >
-                  {step.index}
-                </span>
-                <div className="space-y-1 sm:space-y-space-2xs">
-                  <h3
-                    className={cn(
-                      "text-xs sm:text-body-lg font-semibold transition-colors duration-300 lg:text-body-md leading-snug",
-                      isActive ? "text-primary-container" : "text-pure-white"
-                    )}
-                  >
-                    {/* Only the title is the control, but its ::after covers the
-                        whole card - so the click target is the card while the
-                        button still holds nothing but phrasing content. */}
-                    <button
-                      type="button"
-                      onClick={() => selectStep(index)}
-                      className="text-left after:absolute after:inset-0 after:rounded-md after:content-[''] focus-visible:outline-none focus-visible:after:outline-2 focus-visible:after:outline-offset-2 focus-visible:after:outline-primary-container"
-                    >
-                      {step.title}
-                    </button>
-                  </h3>
-                  <p className="text-[11px] sm:text-body-sm leading-relaxed text-tertiary-fixed-dim lg:leading-normal">
-                    {step.body}
-                  </p>
-                </div>
-              </div>
-            </li>
-          );
-        })}
-      </ol>
-
-      <div className="hidden lg:col-span-5 lg:block">
-        <div>
-          {/*
-            The frame is 4:5, but on a wide-and-short laptop that made the
-            pinned panel taller than the space under `top-28`, pushing its own
-            bottom edge and the step caption off-screen for the whole scroll.
-            Capping the height lets the photo crop instead of the panel.
-          */}
-          <div className="relative aspect-[4/5] max-h-[calc(100dvh-10rem)] overflow-hidden rounded-md bg-inverse-surface">
-            {prefersReduced ? (
-              activeImage ? (
-                <Image
-                  src={activeImage.src}
-                  alt={activeImage.alt}
-                  fill
-                  sizes="38vw"
-                  className="object-cover"
-                />
-              ) : null
-            ) : (
-              <AnimatePresence initial={false}>
-                {activeImage ? (
-                  <motion.div
-                    key={activeImage.src}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: duration.standard, ease: easeOutEditorial }}
-                    className="absolute inset-0"
-                  >
-                    <Image
-                      src={activeImage.src}
-                      alt={activeImage.alt}
-                      fill
-                      sizes="38vw"
-                      className="object-cover"
-                    />
-                  </motion.div>
-                ) : null}
-              </AnimatePresence>
-            )}
+    <div ref={trackRef} className={styles.track}>
+      <div ref={sceneRef} className={cn(styles.scene, "grid items-start gap-space-xl lg:grid-cols-12 lg:gap-space-2xl")}>
+        <div className="hidden min-w-0 lg:col-span-6 lg:block">
+          <div className={styles.mediaStack} style={imageRatio}>
+          <div className="mb-space-md flex items-center justify-between text-label-md text-pure-white/70 [letter-spacing:0]">
+            <span>SAVOY / Proses pengerjaan</span>
+            <span className="tabular-nums">{current.index} / {steps.at(-1)?.index}</span>
           </div>
-          <p className="mt-space-sm text-label-eyebrow uppercase text-tertiary-fixed-dim">
-            Tahap {steps[active]?.index} — {steps[active]?.title}
-          </p>
+          <div className={cn(styles.mediaFrame, "relative w-full overflow-hidden rounded-md bg-pure-white/5")}>
+            <AnimatePresence initial={false}>
+              {image && (
+                <motion.div
+                  key={image.src}
+                  initial={prefersReduced ? false : { opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: prefersReduced ? 0 : 0.6, ease: easeOutEditorial }}
+                  className="absolute inset-0"
+                >
+                  <Image src={image.src} alt={image.alt} fill loading="eager" sizes="(min-width: 1024px) 520px, 100vw" className="object-contain" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <span className="absolute left-space-lg top-space-lg inline-flex items-center gap-space-xs rounded-sm bg-surface px-space-sm py-space-xs text-label-md text-primary [letter-spacing:0]">
+              <span aria-hidden className="size-1.5 rounded-full bg-primary-container" />
+              Tahap {current.index}
+            </span>
+          </div>
+          <div className="mt-space-lg flex items-start gap-space-lg">
+            <span aria-hidden className="shrink-0 text-[56px] font-semibold leading-none tabular-nums text-primary-container">{current.index}</span>
+            <div className="min-w-0 flex-1 pt-space-2xs">
+              <p className="text-[22px] font-medium leading-snug text-pure-white">{current.title}</p>
+              <div aria-hidden className="mt-space-md grid grid-cols-6 gap-space-xs">
+                {steps.map((step, index) => (
+                  <span key={step.index} className={cn(styles.rule, index <= active ? "text-primary-container" : "text-pure-white/15")} />
+                ))}
+              </div>
+            </div>
+          </div>
+          </div>
         </div>
-      </div>
+
+        <div className="min-w-0 lg:col-span-6">
+          <div className="mb-space-sm flex items-center justify-between gap-space-md pb-space-sm">
+            <span className="text-label-md text-primary-container [letter-spacing:0]">Tahapan pengerjaan</span>
+            <ArrowDown aria-hidden className="size-4 text-primary-container" />
+          </div>
+          <ol>
+            {steps.map((step, index) => {
+              const isActive = active === index;
+              const Icon = stepIcons[index] ?? Check;
+              const stepImage = images[index];
+              return (
+                <li key={step.index} aria-current={isActive ? "step" : undefined}>
+                  <details open={isActive} className={cn(styles.step, "group relative border-b border-pure-white/15")}>
+                    {isActive && <span aria-hidden className={cn(styles.rule, "absolute inset-x-0 top-0 text-primary-container")} />}
+                    <motion.summary
+                      ref={node => { summaryRefs.current[index] = node; }}
+                      className={cn(styles.summary, "flex min-h-16 cursor-pointer items-center gap-space-sm py-space-md focus-visible:outline-primary-container sm:gap-space-md", isActive ? "text-primary-container" : "text-pure-white/90")}
+                      onClick={event => { event.preventDefault(); selectStep(index); }}
+                      onKeyDown={event => navigateStep(event, index)}
+                      whileHover={prefersReduced ? undefined : { x: 3 }}
+                      transition={{ duration: duration.micro }}
+                    >
+                      <span aria-hidden className={cn("flex size-9 shrink-0 items-center justify-center rounded-full border text-label-md tabular-nums [letter-spacing:0]", isActive ? "border-primary-container bg-primary-container text-primary" : "border-pure-white/20 text-pure-white/65")}>
+                        {index < active ? <Check className="size-4" /> : step.index}
+                      </span>
+                      <h3 className="min-w-0 flex-1 text-body-md font-semibold leading-snug">
+                        {step.title}
+                      </h3>
+                      <ChevronDown aria-hidden className={cn("size-4 shrink-0 transition-transform", isActive && "rotate-180")} />
+                    </motion.summary>
+                    <div className="pb-space-lg pl-[48px] sm:pl-[52px]">
+                      <div className="mb-space-sm flex items-center gap-space-xs text-primary-container">
+                        <Icon aria-hidden className="size-4" strokeWidth={1.7} />
+                        <span className="text-label-md [letter-spacing:0]">Tahap {step.index}</span>
+                      </div>
+                      <p className="text-body-sm leading-relaxed text-pure-white/80 sm:text-body-md lg:text-body-sm">{step.body}</p>
+                      {stepImage && (
+                        <div className={cn(styles.mediaFrame, "relative mt-space-lg overflow-hidden rounded-md bg-pure-white/5 lg:hidden")} style={{ "--process-image-ratio": stepImage.width / stepImage.height } as CSSProperties}>
+                          <Image src={stepImage.src} alt={stepImage.alt} fill loading={isActive ? "eager" : "lazy"} sizes="(min-width: 640px) 80vw, 75vw" className="object-contain" />
+                        </div>
+                      )}
+                    </div>
+                  </details>
+                </li>
+              );
+            })}
+          </ol>
         </div>
       </div>
     </div>

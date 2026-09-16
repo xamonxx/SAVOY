@@ -1,0 +1,26 @@
+.horizontal {
+  display: block;
+  height: 3px;
+  background: linear-gradient(to right, currentColor 0%, currentColor 55%, transparent 100%);
+  clip-path: polygon(0 0, 72% 0, 100% 50%, 72% 100%, 0 100%);
+}
+
+.vertical {
+  display: block;
+  width: 3px;
+  background: linear-gradient(
+    to bottom,
+    transparent 0,
+    currentColor 32px,
+    currentColor calc(100% - 80px),
+    transparent 100%
+  );
+  clip-path: polygon(
+    50% 0,
+    100% 24px,
+    100% calc(100% - 48px),
+    50% 100%,
+    0 calc(100% - 48px),
+    0 24px
+  );
+}
