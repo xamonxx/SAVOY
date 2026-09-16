@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@source not "../../.seo-audit";
+
+@theme {
+  --color-savoy-espresso: #4f3b38;
+  --color-savoy-gold: #d79d00;
+  --color-savoy-obsidian: #0b0a09;
+  --color-savoy-ivory: #f7f4ee;
+  --color-savoy-limestone: #d8d0c8;
+  --color-savoy-ink: #1a1716;
+
+  --color-surface: #f7f4ee;
+  --color-surface-muted: #ebe5dc;
+  --color-surface-inset: #fffaf2;
+  --color-ink-muted: #6a605c;
+  --color-border-soft: rgba(26, 23, 22, 0.13);
+  --color-border-dark: rgba(247, 244, 238, 0.16);
+  --color-error: #9d2f24;
+  --color-error-surface: #f6ddd9;
+
+  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+
+  --spacing-space-2xs: 0.25rem;
+  --spacing-space-xs: 0.5rem;
+  --spacing-space-sm: 0.75rem;
+  --spacing-space-md: 1rem;
+  --spacing-space-lg: 1.5rem;
+  --spacing-space-xl: 2rem;
+  --spacing-space-2xl: 3rem;
+  --spacing-space-3xl: 4.5rem;
+  --spacing-space-4xl: 6rem;
+  --spacing-space-5xl: 8rem;
+  --spacing-gutter: clamp(1.25rem, 3vw, 4rem);
+  --spacing-max-width: 1440px;
+
+  --radius-xs: 0.125rem;
+  --radius-sm: 0.25rem;
+  --radius-md: 0.375rem;
+  --radius-lg: 0.5rem;
+
+  --shadow-soft: 0 24px 80px -56px rgba(11, 10, 9, 0.45);
+  --ease-savoy: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background:
+      linear-gradient(90deg, rgba(26, 23, 22, 0.035) 1px, transparent 1px) 0 0 /
+        96px 96px,
+      var(--color-savoy-ivory);
+    color: var(--color-savoy-ink);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--color-savoy-gold);
+    color: var(--color-savoy-obsidian);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-savoy-gold);
+    outline-offset: 3px;
+    border-radius: var(--radius-xs);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-display);
+    letter-spacing: 0;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  input,
+  textarea,
+  select,
+  button {
+    font: inherit;
+  }
+}
+
+@utility container-savoy {
+  width: 100%;
+  max-width: var(--spacing-max-width);
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+}
+
+@utility section-savoy {
+  padding-block: clamp(5rem, 9vw, 9rem);
+}
+
+@utility display-savoy {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.98;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+@utility heading-savoy {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.03;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+@utility meta-savoy {
+  font-size: 0.76rem;
+  line-height: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+@utility image-well {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(79, 59, 56, 0.82), rgba(11, 10, 9, 0.94)),
+    radial-gradient(circle at 30% 25%, rgba(215, 157, 0, 0.24), transparent 28%);
+}
+
+@utility skip-link {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  transform: translateY(-180%);
+  background: var(--color-savoy-obsidian);
+  color: var(--color-savoy-ivory);
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: transform 180ms var(--ease-savoy);
+
+  &:focus-visible {
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
