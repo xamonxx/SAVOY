@@ -22,7 +22,7 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#fbf9f4",
+          backgroundColor: "#F7F4EE",
           padding: 72,
           fontFamily: "sans-serif",
         }}
@@ -33,7 +33,7 @@ export default function OpenGraphImage() {
               width: 20,
               height: 20,
               borderRadius: 999,
-              backgroundColor: "#feb302",
+              backgroundColor: "#D79D00",
             }}
           />
           <div
@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
               fontWeight: 700,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "#514532",
+              color: "#4F3B38",
             }}
           >
             {site.name}
@@ -63,12 +63,12 @@ export default function OpenGraphImage() {
               lineHeight: 1.08,
               fontWeight: 600,
               letterSpacing: "-0.03em",
-              color: "#1b1c19",
+              color: "#1A1716",
             }}
           >
             Ruang yang dirancang untuk cara Anda hidup.
           </div>
-          <div style={{ fontSize: 28, color: "#514532" }}>
+          <div style={{ fontSize: 28, color: "#4F3B38" }}>
             Interior &amp; custom furniture — dirancang, diproduksi, dan dipasang
             oleh satu tim.
           </div>
@@ -80,13 +80,13 @@ export default function OpenGraphImage() {
             alignItems: "center",
             gap: 20,
             fontSize: 22,
-            color: "#777773",
+            color: "#766B66",
           }}
         >
           <div
             style={{
-              backgroundColor: "#feb302",
-              color: "#090b0d",
+              backgroundColor: "#D79D00",
+              color: "#0B0A09",
               padding: "10px 22px",
               borderRadius: 12,
               fontWeight: 700,

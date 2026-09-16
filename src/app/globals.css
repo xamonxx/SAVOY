@@ -10,64 +10,64 @@
 /* =====================================================================
    SAVOY - DESIGN TOKENS
    Source of truth: BAHAN/DESIGN.md (frontmatter) + BAHAN/code.html config.
-   Warm Architectural Editorial: quiet confidence, craftsmanship, targeted
-   vitality. Yellow (#feb302) is a 5% focal accent, never a surface.
+   SAVOY / Quiet Spatial Luxury. Warm Ivory is the dominant surface, Espresso
+   and Obsidian carry structure, and Gold is only a 3-5% accent.
    ===================================================================== */
 
 @theme {
   /* ---------- Surfaces (60%) ---------- */
-  --color-surface: #fbf9f4;
-  --color-surface-dim: #dbdad5;
-  --color-surface-bright: #fbf9f4;
+  --color-surface: #f7f4ee;
+  --color-surface-dim: #d8d0c8;
+  --color-surface-bright: #f7f4ee;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f5f3ee;
-  --color-surface-container: #f0eee9;
-  --color-surface-container-high: #eae8e3;
-  --color-surface-container-highest: #e4e2dd;
-  --color-surface-variant: #e4e2dd;
-  --color-surface-tint: #7e5700;
-  --color-background: #fbf9f4;
+  --color-surface-container-low: #f1ede6;
+  --color-surface-container: #ebe5dc;
+  --color-surface-container-high: #e2dbd2;
+  --color-surface-container-highest: #d8d0c8;
+  --color-surface-variant: #d8d0c8;
+  --color-surface-tint: #4f3b38;
+  --color-background: #f7f4ee;
 
   /* ---------- Grounded contrast (25%) ---------- */
-  --color-on-surface: #1b1c19;
-  --color-on-surface-variant: #514532;
-  --color-on-background: #1b1c19;
-  --color-inverse-surface: #30312e;
-  --color-inverse-on-surface: #f2f1ec;
-  --color-deep-black: #090b0d;
-  --color-charcoal: #111315;
+  --color-on-surface: #1a1716;
+  --color-on-surface-variant: #4f3b38;
+  --color-on-background: #1a1716;
+  --color-inverse-surface: #0b0a09;
+  --color-inverse-on-surface: #f7f4ee;
+  --color-deep-black: #0b0a09;
+  --color-charcoal: #1a1716;
   --color-pure-white: #ffffff;
-  --color-muted-gray: #777773;
+  --color-muted-gray: #766b66;
 
   /* ---------- Brand accent (5%) ---------- */
-  --color-primary: #7e5700;
+  --color-primary: #4f3b38;
   --color-on-primary: #ffffff;
-  --color-primary-container: #feb302;
-  --color-primary-container-hover: #e5a100;
-  --color-on-primary-container: #6a4900;
-  --color-inverse-primary: #ffba36;
-  --color-primary-fixed: #ffdeac;
-  --color-primary-fixed-dim: #ffba36;
-  --color-on-primary-fixed: #281900;
-  --color-on-primary-fixed-variant: #604100;
+  --color-primary-container: #d79d00;
+  --color-primary-container-hover: #c18b00;
+  --color-on-primary-container: #1a1716;
+  --color-inverse-primary: #d79d00;
+  --color-primary-fixed: #f2dcaa;
+  --color-primary-fixed-dim: #d79d00;
+  --color-on-primary-fixed: #1a1716;
+  --color-on-primary-fixed-variant: #4f3b38;
 
   /* ---------- Secondary / tertiary ---------- */
-  --color-secondary: #5d5e61;
+  --color-secondary: #4f3b38;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #e2e2e5;
-  --color-on-secondary-container: #636467;
-  --color-secondary-fixed: #e2e2e5;
-  --color-secondary-fixed-dim: #c6c6c9;
-  --color-on-secondary-fixed: #1a1c1e;
-  --color-on-secondary-fixed-variant: #454749;
-  --color-tertiary: #625e56;
+  --color-secondary-container: #d8d0c8;
+  --color-on-secondary-container: #4f3b38;
+  --color-secondary-fixed: #d8d0c8;
+  --color-secondary-fixed-dim: #c5bbb2;
+  --color-on-secondary-fixed: #1a1716;
+  --color-on-secondary-fixed-variant: #4f3b38;
+  --color-tertiary: #766b66;
   --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #c7c0b7;
-  --color-on-tertiary-container: #524e47;
-  --color-tertiary-fixed: #e9e2d8;
-  --color-tertiary-fixed-dim: #ccc6bc;
-  --color-on-tertiary-fixed: #1e1b15;
-  --color-on-tertiary-fixed-variant: #4a463f;
+  --color-tertiary-container: #d8d0c8;
+  --color-on-tertiary-container: #4f3b38;
+  --color-tertiary-fixed: #ebe5dc;
+  --color-tertiary-fixed-dim: #d8d0c8;
+  --color-on-tertiary-fixed: #1a1716;
+  --color-on-tertiary-fixed-variant: #4f3b38;
 
   /* ---------- Feedback ---------- */
   --color-error: #ba1a1a;
@@ -76,12 +76,12 @@
   --color-on-error-container: #93000a;
 
   /* ---------- Structure ---------- */
-  --color-outline: #847560;
-  --color-outline-variant: #d6c4ac;
-  --color-border-hairline: rgba(17, 19, 21, 0.08);
-  --color-border-hairline-strong: rgba(17, 19, 21, 0.15);
-  --color-border-hairline-dark: rgba(247, 245, 240, 0.12);
-  --color-scrim: rgba(9, 11, 13, 0.35);
+  --color-outline: #8b7f78;
+  --color-outline-variant: #d8d0c8;
+  --color-border-hairline: rgba(26, 23, 22, 0.09);
+  --color-border-hairline-strong: rgba(26, 23, 22, 0.17);
+  --color-border-hairline-dark: rgba(247, 244, 238, 0.14);
+  --color-scrim: rgba(11, 10, 9, 0.38);
 
   /* ---------- Typography ---------- */
   --text-display: 80px;

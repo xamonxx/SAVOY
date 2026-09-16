@@ -52,7 +52,7 @@ export const metadata: Metadata = {
  * with it would break that ratio before the page even renders.
  */
 export const viewport: Viewport = {
-  themeColor: "#fbf9f4",
+  themeColor: "#F7F4EE",
   colorScheme: "light",
 };
 
