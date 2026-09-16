@@ -5,8 +5,8 @@ import { cn } from "@/lib/cn";
 import { site } from "@/lib/site";
 
 const SIZES = {
-  header: "h-10 w-24 object-contain sm:h-12 sm:w-28 lg:h-14 lg:w-32",
-  footer: "h-12 w-28 object-contain sm:h-14 sm:w-32",
+  header: "h-14 w-40 object-contain sm:h-16 sm:w-48 lg:h-[72px] lg:w-56",
+  footer: "h-16 w-48 object-contain sm:h-[72px] sm:w-56",
 } as const;
 
 type BrandMarkProps = {
@@ -40,7 +40,6 @@ type BrandMarkProps = {
  * charcoal twin for the warm-white surface the site mostly uses.
  */
 export function BrandMark({
-  tone = "dark",
   size = "header",
   className,
   asLink = true,
@@ -48,10 +47,10 @@ export function BrandMark({
 }: BrandMarkProps) {
   const image = (
     <Image
-      src={tone === "dark" ? "/brand/savoy-logo.jpg" : "/brand/savoy-brand-plate.png"}
+      src="/brand/savoy-logo-transparent.png"
       alt={site.name}
-      width={1080}
-      height={1080}
+      width={760}
+      height={272}
       loading={eager ? "eager" : "lazy"}
       fetchPriority="low"
       className={SIZES[size]}
