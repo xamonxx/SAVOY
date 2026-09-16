@@ -1,7 +1,16 @@
 import { clsx, type ClassValue } from "clsx";
 import { extendTailwindMerge } from "tailwind-merge";
 
-/** Custom font-size tokens that tailwind-merge should treat as type scale. */
+/**
+ * The design system's type scale uses names tailwind-merge cannot recognise as
+ * font sizes (`text-label-lg`, `text-headline-md`, …). Left unconfigured it
+ * files them under `text-color` instead, so `cn("text-pure-white", "text-label-lg")`
+ * silently drops the colour - which is how a black button ended up with black
+ * text on it.
+ *
+ * Declaring the scale here puts every `text-*` utility in the right group, so
+ * a size and a colour can coexist regardless of the order they are passed in.
+ */
 const FONT_SIZES = [
   "display",
   "display-mobile",
@@ -18,9 +27,20 @@ const FONT_SIZES = [
   "label-eyebrow",
 ] as const;
 
-const SHADOWS = ["soft"] as const;
+/** Custom named shadows, for the same reason: they are not shadow colours. */
+const SHADOWS = ["hairline", "panel", "media"] as const;
 
-/** Custom spacing tokens used by the SAVOY layout. */
+/**
+ * The spacing scale, which has the same problem one layer down.
+ *
+ * `space-xl` is neither a length nor an arbitrary value, so tailwind-merge
+ * cannot file `px-space-xl` under padding-x at all. An unclassified class is
+ * never a conflict, so it is never dropped: passing `px-space-md` to a
+ * component whose size already sets `px-space-xl` left both on the element and
+ * handed the decision to the cascade, where the override quietly lost. That is
+ * how a full-width hero button kept 32px of padding it had been told to give
+ * up, and wrapped its label onto a second line at 320px.
+ */
 const SPACING = [
   "space-2xs",
   "space-xs",
@@ -32,7 +52,10 @@ const SPACING = [
   "space-3xl",
   "space-4xl",
   "space-5xl",
-  "gutter",
+  "gutter-mobile",
+  "gutter-desktop",
+  "margin-mobile",
+  "margin-desktop",
 ] as const;
 
 /**

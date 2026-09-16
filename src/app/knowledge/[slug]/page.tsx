@@ -1,0 +1,501 @@
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowRight, Clock } from "lucide-react";
+
+import { arrowRowClasses, Eyebrow, TextLink } from "@/components/ui/typography";
+import { ProjectCard } from "@/components/ui/project-card";
+import { CoverImage } from "@/components/ui/cover-image";
+import { WhatsAppCta } from "@/components/ui/whatsapp-cta";
+import { FormattedText } from "@/components/ui/formatted-text";
+import {
+  articleSeoTitle,
+} from "@/data/knowledge";
+import { projects, publishedImageSizes } from "@/data/projects";
+import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import {
+  ORGANISATION_ID,
+  absoluteUrl,
+  breadcrumbJsonLd,
+  buildMetadata,
+  jsonLdGraph,
+  jsonLdScript,
+  webPageJsonLd,
+} from "@/lib/seo";
+import { cn } from "@/lib/cn";
+import { site } from "@/lib/site";
+import type { KnowledgeArticle } from "@/types";
+
+/**
+ * Dynamic params enabled so newly published articles from the admin panel
+ * are resolved and rendered on demand without requiring a redeploy.
+ */
+export const dynamicParams = true;
+
+export async function generateStaticParams() {
+  const articles = await getAllArticles();
+  return articles.map((article) => ({ slug: article.slug }));
+}
+
+type SlugPageProps = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata(props: SlugPageProps) {
+  const { slug } = await props.params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) {
+    return buildMetadata({
+      title: "Artikel tidak ditemukan",
+      description: "Panduan yang Anda cari tidak tersedia.",
+      path: `/knowledge/${slug}`,
+    });
+  }
+
+  return buildMetadata({
+    title: articleSeoTitle(article),
+    description: article.summary,
+    path: `/knowledge/${article.slug}`,
+    type: "article",
+    publishedTime: article.publishedAt,
+    modifiedTime: article.updatedAt,
+  });
+}
+
+/** "2026-01-15" -> "15 Januari 2026". */
+function formatArticleDate(iso: string): string {
+  return new Intl.DateTimeFormat("id-ID", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(new Date(iso));
+}
+
+function articleGraph(article: KnowledgeArticle) {
+  const path = `/knowledge/${article.slug}`;
+  const url = absoluteUrl(path);
+
+  return jsonLdGraph(
+    {
+      "@type": "Article",
+      "@id": `${url}#article`,
+      headline: articleSeoTitle(article),
+      alternativeHeadline: article.title,
+      description: article.summary,
+      articleSection: article.category,
+      datePublished: article.publishedAt,
+      // Emitted only when the article has genuinely been revised: a
+      // dateModified that tracks the build would be a freshness claim the
+      // content does not back up.
+      ...(article.updatedAt ? { dateModified: article.updatedAt } : {}),
+      // `coverImage` can already be a full URL (a pasted external link) or a
+      // site-relative upload path - only the second kind needs `absoluteUrl`.
+      ...(article.coverImage
+        ? {
+            image: /^https?:\/\//.test(article.coverImage)
+              ? article.coverImage
+              : absoluteUrl(article.coverImage),
+          }
+        : {}),
+      wordCount: countWords(article),
+      timeRequired: `PT${article.readingMinutes}M`,
+      inLanguage: "id-ID",
+      author: { "@id": ORGANISATION_ID },
+      publisher: { "@id": ORGANISATION_ID },
+      isPartOf: { "@id": `${url}#webpage` },
+      mainEntityOfPage: { "@id": `${url}#webpage` },
+    },
+    webPageJsonLd({
+      path,
+      name: articleSeoTitle(article),
+      description: article.summary,
+      breadcrumb: true,
+      datePublished: article.publishedAt,
+      dateModified: article.updatedAt,
+    }),
+    breadcrumbJsonLd([
+      { name: "Panduan", path: "/knowledge" },
+      { name: article.category, path },
+    ])
+  );
+}
+
+/** Rough word count over the typed body blocks, for Article structured data. */
+function countWords(article: KnowledgeArticle): number {
+  const text = article.body
+    .map((block) => {
+      switch (block.type) {
+        case "paragraph":
+        case "heading":
+          return block.text;
+        case "list":
+          return block.items.join(" ");
+        case "callout":
+          return `${block.title} ${block.text}`;
+      }
+    })
+    .join(" ");
+
+  return text.split(/\s+/).filter(Boolean).length;
+}
+
+
+export default async function ArticlePage(props: SlugPageProps) {
+  const { slug } = await props.params;
+  const article = await getArticleBySlug(slug);
+
+  if (!article) notFound();
+
+  const allArticles = await getAllArticles();
+
+  // Select up to 4 other articles, prioritizing same category first, then other categories
+  const sameCategoryOthers = allArticles.filter(
+    (item) =>
+      item.slug !== article.slug &&
+      item.category.trim().toLowerCase() === article.category.trim().toLowerCase()
+  );
+  const differentCategoryOthers = allArticles.filter(
+    (item) =>
+      item.slug !== article.slug &&
+      item.category.trim().toLowerCase() !== article.category.trim().toLowerCase()
+  );
+  const others = [...sameCategoryOthers, ...differentCategoryOthers].slice(0, 4);
+
+  // Select 4 relevant projects (prioritize category or location match)
+  const matchingProjects = projects.filter((p) => {
+    const catMatch =
+      article.category.toLowerCase().includes(p.categoryShort.toLowerCase()) ||
+      p.categoryName.toLowerCase().includes(article.category.toLowerCase());
+    const locMatch =
+      Boolean(p.location && article.category.toLowerCase().includes(p.location.toLowerCase()));
+    return catMatch || locMatch;
+  });
+
+  const featuredProjects = [
+    ...matchingProjects,
+    ...projects.filter((p) => !matchingProjects.some((m) => m.slug === p.slug)),
+  ].slice(0, 4);
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={jsonLdScript(articleGraph(article))}
+      />
+
+      <article className="bg-surface py-space-3xl lg:py-space-4xl">
+        <div className="container-editorial">
+          <Link
+            href="/knowledge"
+            className={cn(arrowRowClasses, "text-on-surface-variant hover:text-on-surface")}
+          >
+            <ArrowLeft
+              aria-hidden
+              className="size-4 transition-transform group-hover:-translate-x-0.5"
+            />
+            Semua panduan
+          </Link>
+
+          <div className="mt-space-lg grid gap-x-gutter-desktop gap-y-space-3xl lg:grid-cols-12">
+          <div className="lg:col-span-8">
+          <header className="max-w-3xl space-y-space-sm">
+            <Eyebrow>{article.category}</Eyebrow>
+            <h1 className="text-headline-lg-mobile text-on-surface lg:text-headline-lg">
+              {article.title}
+            </h1>
+            <p className="text-body-lg leading-relaxed text-on-surface-variant">
+              {article.summary}
+            </p>
+            {/*
+              Author and dates are on the page, not just in the markup: this is
+              the byline a reader (and an E-E-A-T assessment) looks for.
+            */}
+            <div className="flex flex-wrap items-center gap-x-space-md gap-y-space-2xs text-label-md text-muted-gray">
+              <span>
+                Ditulis oleh{" "}
+                <span className="font-semibold text-on-surface-variant">
+                  Tim Teknis {site.name}
+                </span>
+              </span>
+              <span aria-hidden>&bull;</span>
+              <span>
+                {article.updatedAt ? "Diperbarui" : "Dipublikasikan"}{" "}
+                <time dateTime={article.updatedAt ?? article.publishedAt}>
+                  {formatArticleDate(article.updatedAt ?? article.publishedAt)}
+                </time>
+              </span>
+              <span aria-hidden>&bull;</span>
+              <span className="inline-flex items-center gap-space-2xs">
+                <Clock aria-hidden className="size-4" />
+                {article.readingMinutes} menit baca
+              </span>
+            </div>
+          </header>
+
+          {article.coverImage ? (
+            <div className="relative mt-space-xl aspect-video w-full max-w-3xl overflow-hidden rounded-lg shadow-hairline">
+              <CoverImage
+                src={article.coverImage}
+                alt={article.coverImageAlt || article.title}
+                sizes="(min-width: 48rem) 768px, 92vw"
+              />
+            </div>
+          ) : null}
+
+          <div className="mt-space-2xl max-w-3xl space-y-space-lg">
+            {article.body.map((block, index) => {
+              switch (block.type) {
+                case "heading":
+                  return (
+                    <h2
+                      key={index}
+                      className="pt-space-md text-headline-md-mobile text-on-surface lg:text-headline-md"
+                    >
+                      {block.text}
+                    </h2>
+                  );
+                case "paragraph":
+                  return (
+                    <p
+                      key={index}
+                      className="text-body-lg leading-relaxed text-on-surface-variant"
+                    >
+                      <FormattedText text={block.text} />
+                    </p>
+                  );
+                case "list":
+                  return (
+                    <ul key={index} className="space-y-space-xs">
+                      {block.items.map((item) => (
+                        <li
+                          key={item}
+                          className="flex gap-space-sm text-body-md leading-relaxed text-on-surface-variant"
+                        >
+                          <span
+                            aria-hidden
+                            className="mt-2.5 size-1.5 shrink-0 rounded-full bg-primary-container"
+                          />
+                          <FormattedText text={item} />
+                        </li>
+                      ))}
+                    </ul>
+                  );
+                case "callout":
+                  return (
+                    <aside
+                      key={index}
+                      className="space-y-space-2xs rounded-md border-l-2 border-primary-container bg-surface-container-low p-space-lg"
+                    >
+                      <p className="text-label-lg font-semibold text-on-surface">
+                        {block.title}
+                      </p>
+                      <p className="text-body-md leading-relaxed text-on-surface-variant">
+                        <FormattedText text={block.text} />
+                      </p>
+                    </aside>
+                  );
+                case "image": {
+                  /*
+                    Two kinds of image reach this block and they need different
+                    handling.
+
+                    A path the pipeline published has pre-rendered variants and
+                    known dimensions, so it goes through next/image and the
+                    reader gets a file sized for their screen. The className is
+                    unchanged from the plain <img> it replaces, so the layout is
+                    identical - next/image with explicit width and height adds
+                    no positioning styles of its own.
+
+                    An upload or a pasted remote URL has neither variants nor
+                    recorded dimensions. next/image would emit a srcset of
+                    identical URLs through the pass-through loader, or need
+                    `unoptimized`, which makes it a wrapper around the <img>
+                    below with nothing gained. Uploads are already resized to
+                    1600px WebP at upload time, which is the part that actually
+                    mattered.
+                  */
+                  const published = publishedImageSizes.get(block.src);
+
+                  return (
+                    <figure key={index} className="my-space-xl space-y-2">
+                      {published ? (
+                        <Image
+                          src={block.src}
+                          alt={block.alt || "Gambar panduan SAVOY"}
+                          width={published.width}
+                          height={published.height}
+                          sizes="(min-width: 48rem) 768px, 92vw"
+                          className="w-full rounded-xl object-cover shadow-sm max-h-[520px] bg-surface-container-low"
+                        />
+                      ) : (
+                        // eslint-disable-next-line @next/next/no-img-element -- No variants and no known dimensions; see the note above.
+                        <img
+                          src={block.src}
+                          alt={block.alt || "Gambar panduan SAVOY"}
+                          className="w-full rounded-xl object-cover shadow-sm max-h-[520px] bg-surface-container-low"
+                          loading="lazy"
+                        />
+                      )}
+                      {block.caption ? (
+                        <figcaption className="text-center text-label-sm text-muted-gray">
+                          {block.caption}
+                        </figcaption>
+                      ) : null}
+                    </figure>
+                  );
+                }
+                case "video": {
+                  const videoId =
+                    block.videoId ||
+                    (block.url
+                      ? block.url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=|shorts\/))([\w-]{11})/i)?.[1]
+                      : null);
+                  return (
+                    <div
+                      key={index}
+                      className="my-space-xl overflow-hidden rounded-xl border border-border-hairline bg-surface-container-lowest shadow-sm"
+                    >
+                      <div className="relative aspect-video w-full bg-deep-black">
+                        {videoId ? (
+                          <iframe
+                            src={`https://www.youtube-nocookie.com/embed/${videoId}`}
+                            title={block.title || "Video Panduan SAVOY"}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                            className="absolute inset-0 h-full w-full border-0"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-xs text-muted-gray">
+                            Link video YouTube tidak valid
+                          </div>
+                        )}
+                      </div>
+                      {block.title ? (
+                        <div className="p-space-sm text-center text-label-sm text-muted-gray bg-surface-container-low border-t border-border-hairline/60">
+                          {block.title}
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                }
+              }
+            })}
+          </div>
+
+          <div className="mt-space-3xl max-w-3xl rounded-md bg-surface-container-low p-space-xl">
+            <div className="flex flex-col items-start justify-between gap-space-md sm:flex-row sm:items-center">
+              <div className="space-y-1">
+                <p className="text-headline-sm font-semibold text-on-surface">
+                  Masih ragu menentukan pilihan?
+                </p>
+                <p className="text-body-sm text-on-surface-variant">
+                  Kirimkan kondisi ruangan Anda, kami bantu rekomendasikan yang
+                  paling masuk akal.
+                </p>
+              </div>
+              <WhatsAppCta
+                source="faq"
+                className="shrink-0"
+                context={`Saya membaca panduan: ${article.title}.`}
+              >
+                Tanya Tim Teknis
+              </WhatsAppCta>
+            </div>
+          </div>
+          </div>
+
+          {others.length > 0 ? (
+            <aside className="lg:col-span-4">
+              {/*
+                Sticky rather than scrolling away with the article: a reader
+                three screens deep in "Ergonomi Dapur" is exactly the reader
+                who wants "Panduan lainnya" still in view, not left behind at
+                the top of a long piece.
+              */}
+              <div className="space-y-space-md lg:sticky lg:top-24">
+                <h2 className="text-headline-sm font-semibold text-on-surface">
+                  Panduan Lainnya
+                </h2>
+                <ul className="space-y-space-sm">
+                  {others.slice(0, 4).map((item) => (
+                    <li key={item.slug}>
+                      <Link
+                        href={`/knowledge/${item.slug}`}
+                        className="group flex gap-space-sm rounded-md p-space-2xs transition-colors hover:bg-surface-container-low"
+                      >
+                        {item.coverImage ? (
+                          <div className="relative aspect-square w-16 shrink-0 overflow-hidden rounded-md bg-surface-container-high sm:w-20">
+                            <CoverImage
+                              src={item.coverImage}
+                              alt={item.coverImageAlt || item.title}
+                              sizes="80px"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex aspect-square w-16 shrink-0 items-center justify-center rounded-md bg-surface-container-high text-muted-gray sm:w-20">
+                            <Clock aria-hidden className="size-5" />
+                          </div>
+                        )}
+                        <div className="min-w-0 flex-1 space-y-0.5 py-0.5">
+                          <Eyebrow className="text-[10px]">{item.category}</Eyebrow>
+                          <h3 className="line-clamp-2 text-label-lg font-semibold leading-snug text-on-surface transition-colors group-hover:text-primary">
+                            {item.title}
+                          </h3>
+                          <span className="inline-flex items-center gap-1 text-[11px] text-muted-gray">
+                            <Clock aria-hidden className="size-3" />
+                            {item.readingMinutes} menit baca
+                          </span>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                {others.length > 4 ? (
+                  <TextLink href="/knowledge">Lihat Semua Panduan</TextLink>
+                ) : null}
+              </div>
+            </aside>
+          ) : null}
+          </div>
+        </div>
+      </article>
+
+      {/* Portofolio Showcase: 4 Cards + Lihat Semua Portofolio */}
+      {featuredProjects.length > 0 ? (
+        <section className="border-t border-border-hairline bg-surface py-space-4xl">
+          <div className="container-editorial">
+            <div className="mb-space-2xl space-y-space-2xs text-center sm:text-left">
+              <Eyebrow>Karya Nyata SAVOY</Eyebrow>
+              <h2 className="text-headline-md-mobile text-on-surface lg:text-headline-md">
+                Portofolio Pengerjaan Terkait
+              </h2>
+              <p className="max-w-2xl text-body-md text-on-surface-variant">
+                Lihat bagaimana standar presisi, material tahan lembab, dan kerapian instalasi kami diwujudkan langsung di hunian klien.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 gap-space-sm sm:gap-gutter-desktop lg:grid-cols-4">
+              {featuredProjects.map((proj) => (
+                <ProjectCard
+                  key={proj.slug}
+                  project={proj}
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 50vw"
+                />
+              ))}
+            </div>
+
+            <div className="mt-space-2xl text-center">
+              <Link
+                href="/portfolio"
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-md bg-primary px-8 text-label-lg font-semibold text-on-primary shadow-hairline transition-all hover:bg-primary-hover active:translate-y-px"
+              >
+                <span>Lihat Semua Portofolio</span>
+                <ArrowRight aria-hidden className="size-4" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
+    </>
+  );
+}

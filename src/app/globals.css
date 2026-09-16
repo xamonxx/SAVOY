@@ -1,27 +1,168 @@
 @import "tailwindcss";
 
+/*
+  Keep Tailwind's automatic source detection out of the SEO audit scratch
+  directory. It holds a throwaway Chrome profile, and Windows keeps some of
+  those files locked - which makes the CSS pipeline abort the whole build.
+*/
 @source not "../../.seo-audit";
 
+/* =====================================================================
+   SAVOY - DESIGN TOKENS
+   Source of truth: BAHAN/DESIGN.md (frontmatter) + BAHAN/code.html config.
+   Warm Architectural Editorial: quiet confidence, craftsmanship, targeted
+   vitality. Yellow (#feb302) is a 5% focal accent, never a surface.
+   ===================================================================== */
+
 @theme {
-  --color-savoy-espresso: #4f3b38;
-  --color-savoy-gold: #d79d00;
-  --color-savoy-obsidian: #0b0a09;
-  --color-savoy-ivory: #f7f4ee;
-  --color-savoy-limestone: #d8d0c8;
-  --color-savoy-ink: #1a1716;
+  /* ---------- Surfaces (60%) ---------- */
+  --color-surface: #fbf9f4;
+  --color-surface-dim: #dbdad5;
+  --color-surface-bright: #fbf9f4;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f3ee;
+  --color-surface-container: #f0eee9;
+  --color-surface-container-high: #eae8e3;
+  --color-surface-container-highest: #e4e2dd;
+  --color-surface-variant: #e4e2dd;
+  --color-surface-tint: #7e5700;
+  --color-background: #fbf9f4;
 
-  --color-surface: #f7f4ee;
-  --color-surface-muted: #ebe5dc;
-  --color-surface-inset: #fffaf2;
-  --color-ink-muted: #6a605c;
-  --color-border-soft: rgba(26, 23, 22, 0.13);
-  --color-border-dark: rgba(247, 244, 238, 0.16);
-  --color-error: #9d2f24;
-  --color-error-surface: #f6ddd9;
+  /* ---------- Grounded contrast (25%) ---------- */
+  --color-on-surface: #1b1c19;
+  --color-on-surface-variant: #514532;
+  --color-on-background: #1b1c19;
+  --color-inverse-surface: #30312e;
+  --color-inverse-on-surface: #f2f1ec;
+  --color-deep-black: #090b0d;
+  --color-charcoal: #111315;
+  --color-pure-white: #ffffff;
+  --color-muted-gray: #777773;
 
-  --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
-  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  /* ---------- Brand accent (5%) ---------- */
+  --color-primary: #7e5700;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #feb302;
+  --color-primary-container-hover: #e5a100;
+  --color-on-primary-container: #6a4900;
+  --color-inverse-primary: #ffba36;
+  --color-primary-fixed: #ffdeac;
+  --color-primary-fixed-dim: #ffba36;
+  --color-on-primary-fixed: #281900;
+  --color-on-primary-fixed-variant: #604100;
 
+  /* ---------- Secondary / tertiary ---------- */
+  --color-secondary: #5d5e61;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #e2e2e5;
+  --color-on-secondary-container: #636467;
+  --color-secondary-fixed: #e2e2e5;
+  --color-secondary-fixed-dim: #c6c6c9;
+  --color-on-secondary-fixed: #1a1c1e;
+  --color-on-secondary-fixed-variant: #454749;
+  --color-tertiary: #625e56;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #c7c0b7;
+  --color-on-tertiary-container: #524e47;
+  --color-tertiary-fixed: #e9e2d8;
+  --color-tertiary-fixed-dim: #ccc6bc;
+  --color-on-tertiary-fixed: #1e1b15;
+  --color-on-tertiary-fixed-variant: #4a463f;
+
+  /* ---------- Feedback ---------- */
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  /* ---------- Structure ---------- */
+  --color-outline: #847560;
+  --color-outline-variant: #d6c4ac;
+  --color-border-hairline: rgba(17, 19, 21, 0.08);
+  --color-border-hairline-strong: rgba(17, 19, 21, 0.15);
+  --color-border-hairline-dark: rgba(247, 245, 240, 0.12);
+  --color-scrim: rgba(9, 11, 13, 0.35);
+
+  /* ---------- Typography ---------- */
+  --text-display: 80px;
+  --text-display--line-height: 88px;
+  --text-display--letter-spacing: -0.03em;
+  --text-display--font-weight: 600;
+
+  /* 40px, not 44. At 44 the hero headline ran four lines on a 360px phone and
+     pushed the proof bar 60px below the fold. This is the token every display
+     headline shares - hero, closing CTA, CTA banner - so they step down
+     together and the hierarchy above headline-lg-mobile (36px) holds.
+
+     Not 34, which the admin-panel branch reached for while chasing the same
+     fold: at 34 this token lands below headline-lg-mobile, so the largest step
+     in the scale renders smaller than the one beneath it, everywhere the token
+     is used. If the hero specifically wants to be smaller than the other
+     display headings, that belongs on the hero's own class, not on the shared
+     token. */
+  --text-display-mobile: 40px;
+  --text-display-mobile--line-height: 44px;
+  --text-display-mobile--letter-spacing: -0.02em;
+  --text-display-mobile--font-weight: 600;
+
+  --text-headline-lg: 56px;
+  --text-headline-lg--line-height: 64px;
+  --text-headline-lg--letter-spacing: -0.025em;
+  --text-headline-lg--font-weight: 600;
+
+  --text-headline-lg-mobile: 36px;
+  --text-headline-lg-mobile--line-height: 42px;
+  --text-headline-lg-mobile--letter-spacing: -0.02em;
+  --text-headline-lg-mobile--font-weight: 600;
+
+  --text-headline-md: 36px;
+  --text-headline-md--line-height: 44px;
+  --text-headline-md--letter-spacing: -0.02em;
+  --text-headline-md--font-weight: 600;
+
+  --text-headline-md-mobile: 26px;
+  --text-headline-md-mobile--line-height: 32px;
+  --text-headline-md-mobile--letter-spacing: -0.015em;
+  --text-headline-md-mobile--font-weight: 600;
+
+  --text-headline-sm: 24px;
+  --text-headline-sm--line-height: 32px;
+  --text-headline-sm--letter-spacing: -0.01em;
+  --text-headline-sm--font-weight: 500;
+
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 28px;
+  --text-body-lg--letter-spacing: -0.005em;
+  --text-body-lg--font-weight: 400;
+
+  --text-body-md: 16px;
+  --text-body-md--line-height: 24px;
+  --text-body-md--font-weight: 400;
+
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 20px;
+  --text-body-sm--font-weight: 400;
+
+  --text-label-lg: 15px;
+  --text-label-lg--line-height: 20px;
+  --text-label-lg--letter-spacing: 0.01em;
+  --text-label-lg--font-weight: 600;
+
+  --text-label-md: 13px;
+  --text-label-md--line-height: 16px;
+  --text-label-md--letter-spacing: 0.04em;
+  --text-label-md--font-weight: 600;
+
+  /* 12px, not 11: the eyebrow is not always decoration. It carries the step
+     captions in the process section and the Sebelum/Sesudah labels on the
+     before/after frame, which are content, and 11px is under the floor most
+     mobile guidance sets for text a visitor has to read. */
+  --text-label-eyebrow: 12px;
+  --text-label-eyebrow--line-height: 16px;
+  --text-label-eyebrow--letter-spacing: 0.12em;
+  --text-label-eyebrow--font-weight: 600;
+
+  /* ---------- Spacing ---------- */
   --spacing-space-2xs: 0.25rem;
   --spacing-space-xs: 0.5rem;
   --spacing-space-sm: 0.75rem;
@@ -31,18 +172,112 @@
   --spacing-space-2xl: 3rem;
   --spacing-space-3xl: 4.5rem;
   --spacing-space-4xl: 6rem;
-  --spacing-space-5xl: 8rem;
-  --spacing-gutter: clamp(1.25rem, 3vw, 4rem);
+  --spacing-space-5xl: 9rem;
+  --spacing-gutter-mobile: 1rem;
+  --spacing-gutter-desktop: 2rem;
+  --spacing-margin-mobile: 1.25rem;
+  --spacing-margin-desktop: 4rem;
   --spacing-max-width: 1440px;
 
+  /* ---------- Radius (matches BAHAN/screen.png render: 2/4/8/12/16) ---------- */
   --radius-xs: 0.125rem;
   --radius-sm: 0.25rem;
-  --radius-md: 0.375rem;
-  --radius-lg: 0.5rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
 
-  --shadow-soft: 0 24px 80px -56px rgba(11, 10, 9, 0.45);
-  --ease-savoy: cubic-bezier(0.22, 1, 0.36, 1);
+  /* ---------- Elevation (architectural, never blur-heavy) ---------- */
+  --shadow-hairline: 0 1px 8px rgba(9, 11, 13, 0.04);
+  --shadow-panel:
+    0 12px 32px -4px rgba(17, 19, 21, 0.06), 0 2px 6px -1px rgba(17, 19, 21, 0.03);
+  --shadow-media: 0 18px 48px -12px rgba(17, 19, 21, 0.16);
+
+  /* ---------- Motion ---------- */
+  --ease-out-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Enter/exit animations for Radix-driven overlays. Defined here rather than
+     pulling in tailwindcss-animate for two keyframes. */
+  --animate-overlay-in: overlay-in 200ms var(--ease-out-editorial);
+  --animate-overlay-out: overlay-out 150ms var(--ease-out-editorial);
+  --animate-menu-in: menu-in 300ms var(--ease-out-editorial);
+  --animate-menu-out: menu-out 180ms var(--ease-out-editorial);
+
+  @keyframes overlay-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes overlay-out {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes menu-out {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-12px);
+    }
+  }
+
+  /* Radix measures the panel and exposes its height as a CSS variable, so the
+     accordion can animate to `auto` without a JavaScript measurement pass. */
+  --animate-accordion-down: accordion-down 300ms var(--ease-out-editorial);
+  --animate-accordion-up: accordion-up 220ms var(--ease-out-editorial);
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+      opacity: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+      opacity: 1;
+    }
+    to {
+      height: 0;
+      opacity: 0;
+    }
+  }
 }
+
+@theme inline {
+  --font-sans: var(--font-primary), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* =====================================================================
+   BASE
+   ===================================================================== */
 
 @layer base {
   html {
@@ -50,107 +285,372 @@
   }
 
   body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
     font-family: var(--font-sans);
-    background:
-      linear-gradient(90deg, rgba(26, 23, 22, 0.035) 1px, transparent 1px) 0 0 /
-        96px 96px,
-      var(--color-savoy-ivory);
-    color: var(--color-savoy-ink);
-    text-rendering: optimizeLegibility;
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
-  ::selection {
-    background: var(--color-savoy-gold);
-    color: var(--color-savoy-obsidian);
+  /* Visible, non-glowing focus ring - architectural, not a halo. */
+  :focus-visible {
+    outline: 2px solid var(--color-on-surface);
+    outline-offset: 2px;
+    border-radius: var(--radius-xs);
   }
 
-  :focus-visible {
-    outline: 2px solid var(--color-savoy-gold);
-    outline-offset: 3px;
-    border-radius: var(--radius-xs);
+  /*
+    Chrome and Safari paint autofilled inputs with their own background (a
+    yellow or blue tint depending on platform and whether a saved credential
+    matched) the instant a value is filled in, ignoring the input's own
+    background-color entirely. Left alone, the admin login's warm surface
+    tokens get replaced by whatever tint the browser feels like that day.
+
+    The transition-delay is the actual fix: Chrome only applies its tint via
+    a "background-color" transition it triggers internally, so pushing that
+    transition 9999s into the future means it never visibly happens. The
+    box-shadow repaints the input in our own surface color without touching
+    `background`, which is the one property `-webkit-autofill` fights back on.
+  */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus {
+    -webkit-text-fill-color: var(--color-on-surface);
+    box-shadow: 0 0 0 1000px var(--color-surface-container-low) inset;
+    transition: background-color 9999s ease-in-out 0s;
+  }
+
+  ::selection {
+    background-color: var(--color-primary-container);
+    color: var(--color-deep-black);
+  }
+
+  /* -------------------------------------------------------------------
+     Dropdowns
+
+     An option list is painted outside the document, so it inherits almost
+     nothing: left alone it borrows the page's ink onto the operating
+     system's own background. The first rules are the cross-browser floor;
+     the @supports block restyles the popup itself where that is possible.
+     ------------------------------------------------------------------- */
+
+  select {
+    /* Own the chevron ourselves (see the Select component). */
+    appearance: none;
+    /* Keep the native popup light even when the OS prefers dark. */
+    color-scheme: light;
+  }
+
+  option {
+    background-color: var(--color-surface-container-lowest);
+    color: var(--color-on-surface);
+  }
+
+  option:disabled {
+    color: var(--color-muted-gray);
+  }
+
+  /* Chrome 135+. Ignored elsewhere, where the native list above stands. */
+  @supports (appearance: base-select) {
+    select,
+    select::picker(select) {
+      appearance: base-select;
+    }
+
+    /* The built-in arrow would sit on top of ours. */
+    select::picker-icon {
+      display: none;
+    }
+
+    select::picker(select) {
+      /*
+       * Derived from the row metrics below rather than hard-coded, so the list
+       * always ends on a whole option instead of slicing one in half. Edit the
+       * option's padding or line-height and this follows.
+       */
+      --picker-row: calc(
+        var(--text-body-sm--line-height) + (2 * var(--spacing-space-xs))
+      );
+      max-height: calc((7 * var(--picker-row)) + (2 * var(--spacing-space-2xs)));
+
+      margin-top: var(--spacing-space-2xs);
+      overflow-y: auto;
+      /* Reaching the end of the list must not hand the wheel to the page. */
+      overscroll-behavior: contain;
+      /* A hairline scrollbar instead of the OS one with its arrow buttons. */
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-outline-variant) transparent;
+      padding: var(--spacing-space-2xs);
+      border: 1px solid var(--color-border-hairline-strong);
+      border-radius: var(--radius-md);
+      background-color: var(--color-surface-container-lowest);
+      box-shadow: var(--shadow-panel);
+      font-size: var(--text-body-sm);
+      line-height: var(--text-body-sm--line-height);
+    }
+
+    select option {
+      padding: var(--spacing-space-xs) var(--spacing-space-sm);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background-color 120ms var(--ease-out-soft);
+    }
+
+    /*
+     * The placeholder row is a prompt, not a choice. It is technically
+     * `:checked` while nothing is picked, so it has to be excluded here -
+     * otherwise it and the hovered row below it merge into one grey slab.
+     */
+    select option:disabled {
+      background-color: transparent;
+      cursor: default;
+    }
+
+    select option:hover:not(:disabled),
+    select option:focus:not(:disabled) {
+      outline: none;
+      background-color: var(--color-surface-container-high);
+    }
+
+    select option:checked:not(:disabled) {
+      background-color: var(--color-surface-container-high);
+      font-weight: 600;
+    }
+
+    /* System tick glyph; the highlight above already carries the state. */
+    select option::checkmark {
+      display: none;
+    }
   }
 
   h1,
   h2,
-  h3 {
-    font-family: var(--font-display);
-    letter-spacing: 0;
+  h3,
+  h4 {
     text-wrap: balance;
   }
 
   p {
     text-wrap: pretty;
   }
+}
 
-  input,
-  textarea,
-  select,
-  button {
-    font: inherit;
+/* =====================================================================
+   UTILITIES
+   ===================================================================== */
+
+@utility container-editorial {
+  margin-inline: auto;
+  width: 100%;
+  max-width: var(--spacing-max-width);
+  padding-inline: var(--spacing-margin-mobile);
+
+  @media (width >= 64rem) {
+    padding-inline: var(--spacing-margin-desktop);
   }
 }
 
-@utility container-savoy {
-  width: 100%;
-  max-width: var(--spacing-max-width);
-  margin-inline: auto;
-  padding-inline: var(--spacing-gutter);
+/* ---------------------------------------------------------------------
+   SCROLL REVEAL
+
+   Deliberately CSS-only, driven by a view() timeline instead of JavaScript.
+
+   The earlier Motion-based version server-rendered 78 elements at
+   `opacity: 0` and relied on hydration to reveal them, which meant a failed
+   or throttled bundle left the whole page blank. Here the content is visible
+   by default and the animation is purely additive: browsers without
+   scroll-driven animation support simply show the page, and the reveal never
+   becomes a prerequisite for reading it.
+   --------------------------------------------------------------------- */
+
+/*
+ * Route change transition.
+ *
+ * A transition out of `@starting-style`, deliberately not a keyframe
+ * animation. The rule that matters is the same one the scroll reveals follow:
+ * the resting state is the visible one, and the motion is purely additive. A
+ * keyframe animation with `fill: both` would hold the page at `opacity: 0`
+ * whenever it is paused - a backgrounded tab, a throttled renderer - and a
+ * blank page is a far worse failure than a missing fade.
+ *
+ * Browsers without `@starting-style` (pre-Chrome 117, pre-Safari 17.5) simply
+ * show the new page at once.
+ */
+@media (prefers-reduced-motion: no-preference) {
+  .page-enter {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 220ms var(--ease-out-editorial),
+      transform 220ms var(--ease-out-editorial);
+  }
+
+  @starting-style {
+    .page-enter {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+  }
 }
 
-@utility section-savoy {
-  padding-block: clamp(5rem, 9vw, 9rem);
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-@utility display-savoy {
-  font-family: var(--font-display);
-  font-size: clamp(3rem, 8vw, 6rem);
-  line-height: 0.98;
-  font-weight: 600;
-  letter-spacing: 0;
+@keyframes reveal-image {
+  from {
+    opacity: 0.7;
+    transform: scale(1.08);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
-@utility heading-savoy {
-  font-family: var(--font-display);
-  font-size: clamp(2.25rem, 5vw, 4rem);
-  line-height: 1.03;
-  font-weight: 600;
-  letter-spacing: 0;
+/*
+ * Scroll-linked drift for photographs sitting inside a fixed frame.
+ *
+ * The overscale is what makes it safe: at 1.1 the picture overhangs its frame
+ * by 5% top and bottom, so a 4% travel in either direction never pulls an edge
+ * into view. Runs across the element's whole pass through the viewport, which
+ * on a 4:5 card works out at roughly 40px - inside the 20-60px the design
+ * system allows for parallax (pasal 15).
+ */
+@keyframes media-drift {
+  from {
+    transform: translateY(-4%) scale(1.1);
+  }
+  to {
+    transform: translateY(4%) scale(1.1);
+  }
 }
 
-@utility meta-savoy {
-  font-size: 0.76rem;
-  line-height: 1rem;
-  font-weight: 700;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .reveal,
+    .reveal-image,
+    .media-drift,
+    .reveal-group > * {
+      animation-timeline: view();
+      animation-fill-mode: both;
+      animation-timing-function: var(--ease-out-editorial);
+    }
+
+    .reveal,
+    .reveal-group > * {
+      animation-name: reveal-up;
+      animation-range: entry 0% cover 32%;
+    }
+
+    .reveal-image {
+      animation-name: reveal-image;
+      animation-range: entry 0% cover 44%;
+    }
+
+    /* Linear, and across the full pass: a drift is not an entrance, so it must
+       not ease or finish early the way the reveals above do. */
+    .media-drift {
+      animation-name: media-drift;
+      animation-timing-function: linear;
+      animation-range: cover 0% cover 100%;
+    }
+
+    /* Stagger: later items in a group finish a little further into the
+       scroll, which reads as items arriving in order. */
+    .reveal-group > *:nth-child(2) {
+      animation-range: entry 0% cover 40%;
+    }
+    .reveal-group > *:nth-child(3) {
+      animation-range: entry 0% cover 48%;
+    }
+    .reveal-group > *:nth-child(4) {
+      animation-range: entry 0% cover 56%;
+    }
+    .reveal-group > *:nth-child(n + 5) {
+      animation-range: entry 0% cover 64%;
+    }
+
+    /* Manual offsets for the handful of places that need a beat between
+       sibling blocks rather than inside a grid. */
+    .reveal-delay-1 {
+      animation-range: entry 0% cover 40%;
+    }
+    .reveal-delay-2 {
+      animation-range: entry 0% cover 48%;
+    }
+    .reveal-delay-3 {
+      animation-range: entry 0% cover 56%;
+    }
+  }
 }
 
-@utility image-well {
+/* =====================================================================
+   TOUCH TARGETS
+
+   A 44px reachable area for controls the design deliberately draws small:
+   a text link sitting on its own line, an icon in a row of icons. The area
+   is a pseudo-element rather than padding, so the type keeps the size and
+   the rhythm it was drawn at and only the region a thumb can hit grows.
+
+   Scoped to `pointer: coarse` because the problem is a fingertip, not a
+   viewport - a phone held in landscape is wider than `sm` and still has
+   one. On a mouse an invisible slab reaching past the text would do
+   nothing but steal clicks from whatever sits beside it.
+
+   Only for targets with ~14px of clear space above and below. Where
+   neighbours sit closer than that - a stacked list - grow the rows
+   themselves instead, or the two hit areas overlap and one swallows the
+   other.
+   ===================================================================== */
+
+@utility tap-safe {
   position: relative;
-  overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(79, 59, 56, 0.82), rgba(11, 10, 9, 0.94)),
-    radial-gradient(circle at 30% 25%, rgba(215, 157, 0, 0.24), transparent 28%);
+
+  @media (pointer: coarse) {
+    &::after {
+      content: "";
+      position: absolute;
+      inset-inline: 0;
+      top: 50%;
+      translate: 0 -50%;
+      height: 100%;
+      min-height: 2.75rem;
+    }
+  }
 }
 
 @utility skip-link {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  left: var(--spacing-space-md);
+  top: var(--spacing-space-md);
   z-index: 100;
-  transform: translateY(-180%);
-  background: var(--color-savoy-obsidian);
-  color: var(--color-savoy-ivory);
-  padding: 0.75rem 1rem;
-  border-radius: var(--radius-sm);
-  transition: transform 180ms var(--ease-savoy);
+  translate: 0 -200%;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-deep-black);
+  color: var(--color-pure-white);
+  padding: var(--spacing-space-sm) var(--spacing-space-lg);
+  font-size: var(--text-label-md);
+  font-weight: 600;
+  transition: translate 200ms var(--ease-out-editorial);
 
   &:focus-visible {
-    transform: translateY(0);
+    translate: 0 0;
   }
 }
+
+/* =====================================================================
+   REDUCED MOTION (pasal 16)
+   ===================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -158,7 +658,7 @@
   *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

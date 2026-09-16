@@ -24,7 +24,7 @@ export const IMAGE_LADDER = [256, 384, 640, 960, 1280, 1600];
 export const VARIANT_ROOT = "/v";
 
 /** Only images under these prefixes are rendered through next/image. */
-export const VARIANT_SOURCES = ["/brand/"];
+export const VARIANT_SOURCES = ["/images/", "/logo/", "/brand/"];
 
 /** The ladder step that covers `width`, or the largest one we built. */
 export function variantWidth(width) {

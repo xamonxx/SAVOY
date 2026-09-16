@@ -16,7 +16,7 @@ export type WebhookResult = { ok: true } | { ok: false; error: string };
  *   value would still put real names, phone numbers and addresses on the
  *   wire in clear text - worth refusing outright rather than trusting it was
  *   typed correctly.
- * - An HMAC-SHA256 signature (`X-Savoy-Signature`, when
+ * - An HMAC-SHA256 signature (`X-SAVOY-Signature`, when
  *   `LEAD_WEBHOOK_SECRET` is set) lets the receiver confirm a request
  *   actually came from this app rather than a guess against its endpoint
  *   URL. Optional and additive: a receiver that does not check it is no
@@ -45,7 +45,7 @@ export async function postToWebhook(
   const secret = process.env.LEAD_WEBHOOK_SECRET;
   const headers: Record<string, string> = { "Content-Type": "application/json" };
   if (secret) {
-    headers["X-Savoy-Signature"] = crypto
+    headers["X-SAVOY-Signature"] = crypto
       .createHmac("sha256", secret)
       .update(body)
       .digest("hex");
