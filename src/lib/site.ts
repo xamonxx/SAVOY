@@ -140,3 +140,16 @@ export type Site = typeof site;
 export function hasWhatsApp(): boolean {
   return /^\d{8,15}$/.test(site.whatsappNumber);
 }
+
+/** Comma-joined, human-readable form of `site.address` for display (footer, contact page). */
+export function formatAddress(): string | null {
+  if (!site.address) return null;
+  return [
+    site.address.streetAddress,
+    site.address.addressLocality,
+    site.address.addressRegion,
+    site.address.postalCode,
+  ]
+    .filter(Boolean)
+    .join(", ");
+}

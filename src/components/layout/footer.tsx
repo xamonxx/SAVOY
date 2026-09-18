@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
-import { Mail, MessageCircle, MessageSquarePlus } from "lucide-react";
+import { Mail, MapPin, MessageCircle, MessageSquarePlus } from "lucide-react";
 
 import { BrandMark } from "@/components/layout/brand-mark";
 import { navLinks } from "@/components/layout/nav-links";
 import { SocialLinks } from "@/components/layout/social-links";
 import { WhatsAppCta } from "@/components/ui/whatsapp-cta";
 import { track } from "@/lib/analytics";
-import { site } from "@/lib/site";
+import { formatAddress, site } from "@/lib/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { servedLocations } from "@/data/projects";
 
@@ -62,6 +62,7 @@ export function Footer() {
   // with dead space under it.
   const hasSocial = Object.values(site.social).some(Boolean);
   const whatsappUrl = buildWhatsAppUrl({ source: "footer" });
+  const address = formatAddress();
 
   return (
     <footer className="relative overflow-hidden border-t border-border-hairline-bold bg-surface">
@@ -148,6 +149,27 @@ export function Footer() {
                     <MessageCircle aria-hidden className="size-3.5 shrink-0 text-primary-container" />
                     Chat WhatsApp
                   </a>
+                </li>
+              ) : null}
+              {address ? (
+                <li>
+                  {site.mapsUrl ? (
+                    <a
+                      href={site.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={() => track("maps_click", { source: "footer" })}
+                      className={`${footerRowClasses} items-start pointer-coarse:items-start`}
+                    >
+                      <MapPin aria-hidden className="mt-0.5 size-3.5 shrink-0 text-primary-container" />
+                      <span>{address}</span>
+                    </a>
+                  ) : (
+                    <span className={`${footerRowClasses} items-start pointer-coarse:items-start`}>
+                      <MapPin aria-hidden className="mt-0.5 size-3.5 shrink-0 text-primary-container" />
+                      <span>{address}</span>
+                    </span>
+                  )}
                 </li>
               ) : null}
             </ul>

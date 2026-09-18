@@ -15,7 +15,7 @@ import {
   jsonLdScript,
   webPageJsonLd,
 } from "@/lib/seo";
-import { hasWhatsApp, site } from "@/lib/site";
+import { formatAddress, hasWhatsApp, site } from "@/lib/site";
 
 const CONTACT_DESCRIPTION =
   "Hubungi SAVOY untuk konsultasi interior dan custom furniture. Konsultasi awal dan estimasi tidak dikenakan biaya.";
@@ -44,6 +44,7 @@ function contactJsonLd() {
 
 export default function ContactPage() {
   const whatsappReady = hasWhatsApp();
+  const address = formatAddress();
 
   return (
     <>
@@ -132,6 +133,31 @@ export default function ContactPage() {
               ) : null}
               <SocialLinks />
             </Reveal>
+
+            {address ? (
+              <Reveal
+                delay={3}
+                className="space-y-space-md rounded-md bg-surface-container-lowest p-space-xl shadow-hairline"
+              >
+                <span className="flex size-12 items-center justify-center rounded-md bg-surface-container text-primary">
+                  <MapPin aria-hidden className="size-6" />
+                </span>
+                <h2 className="text-headline-sm font-semibold text-on-surface">
+                  Alamat Kantor
+                </h2>
+                <p className="text-body-sm text-on-surface-variant">{address}</p>
+                {site.mapsUrl ? (
+                  <a
+                    href={site.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-label-lg font-semibold text-on-surface underline decoration-primary-container decoration-2 underline-offset-4"
+                  >
+                    Lihat di Google Maps
+                  </a>
+                ) : null}
+              </Reveal>
+            ) : null}
           </div>
         </div>
       </section>
