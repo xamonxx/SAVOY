@@ -59,12 +59,13 @@ export async function generateMetadata(props: SlugPageProps) {
     type: "article",
     publishedTime: article.publishedAt,
     modifiedTime: article.updatedAt,
-    // The article's own cover photo, not the generic branded card - a link
-    // preview showing the actual room/furniture is what makes a reader stop
-    // scrolling. `metadataBase` (src/app/layout.tsx) resolves a relative path
-    // like this one against the site origin automatically; falls back to
-    // `buildMetadata`'s own default when an article has no cover image.
-    image: article.coverImage,
+    // A generated card (opengraph-image.tsx in this route), not the raw
+    // cover photo: that photo is `.webp`, and Meta's link-preview crawler -
+    // which WhatsApp shares - has unreliable WebP support for `og:image`. A
+    // failed fetch there blanks out the whole card, not just the image, which
+    // is exactly what a shared article link showed. `ImageResponse` always
+    // renders PNG, so every article gets a branded card that actually loads.
+    image: `/knowledge/${article.slug}/opengraph-image`,
   });
 }
 
