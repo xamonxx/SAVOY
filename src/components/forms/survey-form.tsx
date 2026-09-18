@@ -172,6 +172,34 @@ export function SurveyForm() {
     });
   }
 
+  /**
+   * `handleSubmit` validates the whole schema on the final submit, not just
+   * the step on screen - a visitor who mistyped something back on step 1-3
+   * could reach step 4 looking clean, and clicking submit would silently
+   * fail: `errors` gets fields the visible step's `fieldError()` never reads,
+   * so the button appeared to do nothing at all. Jump back to whichever step
+   * actually holds the first invalid field and show it there instead.
+   */
+  function onInvalidSubmit(formErrors: typeof errors) {
+    const invalidFields = Object.keys(formErrors) as (keyof SurveyInput)[];
+    const stepIndex = SURVEY_STEPS.findIndex((item) =>
+      item.fields.some((field) => invalidFields.includes(field))
+    );
+
+    if (stepIndex !== -1) {
+      setStep(stepIndex);
+      const firstInvalidField = SURVEY_STEPS[stepIndex].fields.find((field) =>
+        invalidFields.includes(field)
+      );
+      // The target step's fields only mount after this state update commits,
+      // so `setFocus` needs to run on the next tick rather than right here.
+      if (firstInvalidField) {
+        setTimeout(() => setFocus(firstInvalidField), 0);
+      }
+    }
+    setShowCurrentStepErrors(true);
+  }
+
   const submitSurveyForm = handleSubmit((values, event) => {
     // Read straight from the native form element via the submit event,
     // rather than a ref: a ref read inside a render-defined closure like
@@ -219,7 +247,7 @@ export function SurveyForm() {
         window.location.href = handoff;
       }
     });
-  });
+  }, onInvalidSubmit);
 
   const projectTypeError = fieldError("projectType");
   const projectTypeOtherError = fieldError("projectTypeOther");
