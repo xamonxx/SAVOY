@@ -5,7 +5,6 @@ import { HeroHeadline } from "@/components/motion/hero-headline";
 import { ParallaxMedia } from "@/components/motion/parallax-media";
 import { Reveal } from "@/components/motion/reveal";
 import {
-  heroProject,
   heroSlides,
   photoCount,
   populatedCategories,
@@ -17,19 +16,17 @@ import { site } from "@/lib/site";
 /**
  * Section 01 - Hero.
  *
- * A single full-window photograph with the offer standing on top of it. The
- * frames cross-dissolve and drift with the scroll, so the first screen is the
- * work itself rather than a picture placed beside a description of it.
+ * A full-window photograph with the offer standing on top of it, cross-
+ * dissolving between a mix of categories (`heroSlides`) so the first screen
+ * reads as studio range rather than one job on repeat - no per-frame credit
+ * badge, since a single "location · category" caption stopped being true for
+ * every frame once the categories started mixing.
  *
  * The floating "Studio & Workshop" badge is gone. In its place is a proof bar
  * built from the portfolio data itself, so the first screen carries verifiable
  * numbers instead of a decorative label.
  */
 export function Hero() {
-  const caption = [heroProject.location, heroProject.categoryShort]
-    .filter(Boolean)
-    .join(" · ");
-
   const proof = [
     { value: projectCount, label: "Proyek terdokumentasi" },
     { value: photoCount, label: "Foto pengerjaan" },
@@ -168,14 +165,6 @@ export function Hero() {
           </Reveal>
         </ParallaxMedia>
       </div>
-
-      {/* Credit for the photograph, moved to the right so it never collides
-          with the text column. */}
-      {caption ? (
-        <span className="absolute bottom-0 right-0 bg-scrim-black/80 px-space-md py-space-xs text-label-eyebrow uppercase text-pure-white backdrop-blur-sm">
-          {caption}
-        </span>
-      ) : null}
     </section>
   );
 }

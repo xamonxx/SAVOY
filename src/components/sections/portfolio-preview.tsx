@@ -6,7 +6,7 @@ import { Eyebrow } from "@/components/ui/typography";
 import {
   featuredProjects,
   getProjectsByCategory,
-  heroProject,
+  heroProjects,
   photoCount,
   projectCount,
 } from "@/data/projects";
@@ -36,13 +36,14 @@ const GRID_SIZES = [
  * scrolling, no pin.
  */
 export function PortfolioPreview() {
-  // The hero already shows one project in full bleed; swap it out here so the
-  // same photograph does not appear twice on one page.
+  // The hero already shows these projects in full bleed; swap each out here
+  // so the same photograph does not appear twice on one page.
+  const heroSlugs = new Set(heroProjects.map((project) => project.slug));
   const selection = featuredProjects
     .map((project) => {
-      if (project.slug !== heroProject.slug) return project;
+      if (!heroSlugs.has(project.slug)) return project;
       const alternative = getProjectsByCategory(project.categorySlug).find(
-        (candidate) => candidate.slug !== heroProject.slug
+        (candidate) => !heroSlugs.has(candidate.slug)
       );
       return alternative ?? project;
     })

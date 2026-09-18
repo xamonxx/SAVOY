@@ -288,11 +288,18 @@ export const featuredProjects: Project[] = populatedCategories
   })
   .filter((project): project is Project => Boolean(project));
 
-/** The photograph that leads the homepage. */
-export const heroProject: Project =
-  featuredProjects.find((project) => project.categorySlug === "kitchen-set") ??
-  featuredProjects[0] ??
-  projects[0];
+/**
+ * The categories mixed into the hero, in display order. Kept short and
+ * deliberately varied - the point is range, not an exhaustive tour of every
+ * category - and each slug that has no populated project simply drops out
+ * rather than falling back to a duplicate.
+ */
+const HERO_CATEGORY_SLUGS = ["kitchen-set", "bedroom", "tv-backdrop"];
+
+/** The projects that lead the homepage - one per hero category. */
+export const heroProjects: Project[] = HERO_CATEGORY_SLUGS.map((slug) =>
+  featuredProjects.find((project) => project.categorySlug === slug)
+).filter((project): project is Project => Boolean(project));
 
 /**
  * The two frames beside the materials copy.
@@ -320,13 +327,15 @@ export const materialImages: ProjectImage[] = [
 ];
 
 /**
- * The frames the homepage hero cross-dissolves between.
- *
- * All drawn from `heroProject`, so the caption printed over the photograph
- * stays true for every frame. Capped at three; a project with fewer photos
- * simply yields fewer frames rather than borrowing another job's work.
+ * The frames the homepage hero cross-dissolves between: one photo from each
+ * of `heroProjects`, so the rotation shows the studio's range instead of one
+ * job's gallery on repeat. No per-frame caption is printed over these - a
+ * single "location · category" badge stopped being true for every frame the
+ * moment the categories started mixing.
  */
-export const heroSlides: ProjectImage[] = heroProject.gallery.slice(0, 3);
+export const heroSlides: ProjectImage[] = heroProjects
+  .map((project) => project.gallery[0])
+  .filter((image): image is ProjectImage => Boolean(image));
 
 /* ------------------------------------------------------------------ */
 /* Case study                                                          */
