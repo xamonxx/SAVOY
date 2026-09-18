@@ -8,6 +8,7 @@ import { ProjectCard } from "@/components/ui/project-card";
 import { CoverImage } from "@/components/ui/cover-image";
 import { WhatsAppCta } from "@/components/ui/whatsapp-cta";
 import { FormattedText } from "@/components/ui/formatted-text";
+import { ArticleShare } from "@/components/knowledge/article-share";
 import {
   articleSeoTitle,
 } from "@/data/knowledge";
@@ -58,6 +59,12 @@ export async function generateMetadata(props: SlugPageProps) {
     type: "article",
     publishedTime: article.publishedAt,
     modifiedTime: article.updatedAt,
+    // The article's own cover photo, not the generic branded card - a link
+    // preview showing the actual room/furniture is what makes a reader stop
+    // scrolling. `metadataBase` (src/app/layout.tsx) resolves a relative path
+    // like this one against the site origin automatically; falls back to
+    // `buildMetadata`'s own default when an article has no cover image.
+    image: article.coverImage,
   });
 }
 
@@ -230,6 +237,10 @@ export default async function ArticlePage(props: SlugPageProps) {
                 {article.readingMinutes} menit baca
               </span>
             </div>
+            <ArticleShare
+              title={article.title}
+              url={absoluteUrl(`/knowledge/${article.slug}`)}
+            />
           </header>
 
           {article.coverImage ? (
@@ -401,6 +412,14 @@ export default async function ArticlePage(props: SlugPageProps) {
                 Tanya Tim Teknis
               </WhatsAppCta>
             </div>
+          </div>
+
+          <div className="mt-space-2xl max-w-3xl">
+            <ArticleShare
+              title={article.title}
+              url={absoluteUrl(`/knowledge/${article.slug}`)}
+              variant="footer"
+            />
           </div>
           </div>
 

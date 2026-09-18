@@ -47,6 +47,7 @@ export function LoginForm() {
             name="username"
             type="text"
             required
+            maxLength={80}
             autoComplete="username"
             placeholder="Masukkan username admin..."
             className="w-full rounded-lg border border-border-hairline bg-surface-container-low px-3.5 py-2.5 pl-10 text-sm text-on-surface placeholder:text-muted-gray transition-colors focus:border-primary focus:bg-surface focus:outline-none focus:ring-1 focus:ring-primary"
@@ -69,6 +70,7 @@ export function LoginForm() {
             name="password"
             type={showPassword ? "text" : "password"}
             required
+            maxLength={1024}
             autoComplete="current-password"
             placeholder="Masukkan password admin..."
             className="w-full rounded-lg border border-border-hairline bg-surface-container-low px-3.5 py-2.5 pl-10 pr-10 text-sm text-on-surface placeholder:text-muted-gray transition-colors focus:border-primary focus:bg-surface focus:outline-none focus:ring-1 focus:ring-primary"
@@ -102,7 +104,7 @@ export function LoginForm() {
       <button
         type="submit"
         disabled={isPending || state.isBlocked}
-        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-deep-black shadow-hairline transition-all hover:bg-primary-container-hover active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50"
+        className="inline-flex w-full items-center justify-center gap-2 rounded-lg bg-primary-container px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-pure-white shadow-hairline transition-all hover:bg-primary-container-hover active:scale-[0.98] disabled:pointer-events-none disabled:opacity-50"
       >
         {isPending ? (
           <>

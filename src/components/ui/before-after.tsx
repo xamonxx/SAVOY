@@ -245,13 +245,13 @@ export function BeforeAfter({
               sizes="(min-width: 1024px) 70vw, 92vw"
               className="object-cover"
             />
-            <span className="pointer-events-none absolute left-space-sm top-space-sm rounded-sm bg-deep-black/80 px-space-sm py-space-2xs text-label-eyebrow uppercase text-pure-white">
+            <span className="pointer-events-none absolute left-space-sm top-space-sm rounded-sm bg-scrim-black/80 px-space-sm py-space-2xs text-label-eyebrow uppercase text-pure-white">
               {beforeLabel}
             </span>
           </div>
 
           <div className="absolute inset-0 [clip-path:inset(0_0_0_calc(var(--pos)*1%))]">
-            <span className="pointer-events-none absolute right-space-sm top-space-sm rounded-sm bg-primary-container px-space-sm py-space-2xs text-label-eyebrow uppercase text-deep-black">
+            <span className="pointer-events-none absolute right-space-sm top-space-sm rounded-sm bg-primary-container px-space-sm py-space-2xs text-label-eyebrow uppercase text-pure-white">
               {afterLabel}
             </span>
           </div>

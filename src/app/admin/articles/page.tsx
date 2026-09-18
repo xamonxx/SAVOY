@@ -52,7 +52,7 @@ export default async function AdminArticlesPage() {
 
         <Link
           href="/admin/articles/new"
-          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-primary-container px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-deep-black shadow-hairline transition-all hover:bg-primary-container-hover active:scale-[0.98]"
+          className="inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-primary-container px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-pure-white shadow-hairline transition-all hover:bg-primary-container-hover active:scale-[0.98]"
         >
           <Plus className="size-4" />
           Tulis Artikel Baru

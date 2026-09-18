@@ -16,7 +16,7 @@ export default async function AdminLoginPage() {
     <div className="flex min-h-[75vh] flex-col items-center justify-center">
       <div className="w-full max-w-md space-y-6 rounded-2xl border border-border-hairline bg-surface p-8 shadow-panel">
         <div className="space-y-2 text-center">
-          <span className="mx-auto flex size-11 items-center justify-center rounded-xl bg-primary-container text-base font-black text-deep-black shadow-hairline">
+          <span className="mx-auto flex size-11 items-center justify-center rounded-xl bg-primary-container text-base font-black text-pure-white shadow-hairline">
             N
           </span>
           <h1 className="text-xl font-bold tracking-tight text-on-surface">

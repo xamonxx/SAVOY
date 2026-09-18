@@ -9,7 +9,7 @@
     "coverImageAlt": "Tim SAVOY melakukan survey lokasi dan menandai titik stopkontak sebelum instalasi",
     "readingMinutes": 5,
     "publishedAt": "2026-03-08",
-    "updatedAt": "2026-09-11",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
@@ -61,7 +61,7 @@
       {
         "type": "callout",
         "title": "Satu hal yang paling sering terlupa",
-        "text": "Ukur lebar pintu masuk dan tikungan koridor. Modul yang sempurna di gambar bisa gagal masuk ruangan, dan memotongnya di lokasi selalu mengorbankan kerapian."
+        "text": "==Ukur lebar pintu masuk dan tikungan koridor== sebelum desain difinalisasi. Modul yang sempurna di gambar bisa gagal masuk ruangan, dan memotongnya di lokasi selalu mengorbankan kerapian."
       }
     ]
   },
@@ -75,7 +75,7 @@
     "coverImageAlt": "Lemari pakaian custom dengan pembagian gantungan dan rak terbuka",
     "readingMinutes": 5,
     "publishedAt": "2026-02-20",
-    "updatedAt": "2026-09-11",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
@@ -122,7 +122,7 @@
       {
         "type": "callout",
         "title": "Cara paling cepat menghitung kebutuhan",
-        "text": "Ukur lemari lama Anda: berapa sentimeter batang gantungan yang terisi, dan berapa tumpukan lipat yang ada. Tambahkan 20% untuk pertumbuhan. Angka itu jauh lebih akurat daripada menebak dari denah."
+        "text": "Ukur lemari lama Anda: berapa sentimeter batang gantungan yang terisi, dan berapa tumpukan lipat yang ada. ==Tambahkan 20% untuk pertumbuhan.== Angka itu jauh lebih akurat daripada menebak dari denah."
       }
     ]
   },
@@ -136,7 +136,7 @@
     "coverImageAlt": "Kitchen set custom dengan layout L-shape dan area kerja sink-kompor yang efisien",
     "readingMinutes": 7,
     "publishedAt": "2026-02-04",
-    "updatedAt": "2026-09-11",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
@@ -169,7 +169,7 @@
       },
       {
         "type": "paragraph",
-        "text": "Sediakan minimal 60 cm tabletop kosong di antara sink dan kompor. Di sanalah pemotongan terjadi. Kalau jaraknya kurang, talenan akan selalu berebut tempat dengan panci dan bahan mentah."
+        "text": "==Sediakan minimal 60 cm tabletop kosong di antara sink dan kompor.== Di sanalah pemotongan terjadi. Kalau jaraknya kurang, talenan akan selalu berebut tempat dengan panci dan bahan mentah."
       },
       {
         "type": "list",
@@ -197,7 +197,7 @@
     "coverImageAlt": "Kabinet dapur dengan finishing material tahan lembab untuk area basah",
     "readingMinutes": 6,
     "publishedAt": "2026-01-15",
-    "updatedAt": "2026-09-11",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
@@ -231,7 +231,7 @@
       {
         "type": "callout",
         "title": "Yang perlu diingat",
-        "text": "Tidak ada satu material yang menang di semua kondisi. Yang benar adalah mencampurnya sesuai posisi: HMR untuk area basah, plywood untuk rak berbeban dan bentang lebar, MDF untuk pintu profil yang akan dicat duco."
+        "text": "Tidak ada satu material yang menang di semua kondisi. Yang benar adalah mencampurnya sesuai posisi: ==HMR untuk area basah, plywood untuk rak berbeban dan bentang lebar, MDF untuk pintu profil yang akan dicat duco.=="
       },
       {
         "type": "heading",
@@ -256,18 +256,18 @@
     "slug": "solusi-custom-furniture-rumah-dan-apartemen-bandung",
     "title": "Custom Furniture Bandung: Menjawab Masalah Lembab, Dinding Miring, & Ruang Sempit",
     "category": "Furniture Custom Bandung",
-    "summary": "Mengapa furniture pabrikan sering cepat rusak di Bandung? Simak solusi penggunaan HMR tahan lembab, pemanfaatan sudut miring, dan survey aktual langsung dari workshop lokal.",
+    "summary": "Kenapa furniture pabrikan cepat rusak di Bandung? Solusi HMR tahan lembab, penyesuaian dinding miring, dan survey langsung dari workshop lokal kami.",
     "seoTitle": "Solusi Custom Furniture Bandung yang Awet & Presisi",
     "coverImage": "/images/portfolio/wardrobe/ibu-astuti-buah-batu-regensi-01.webp",
     "coverImageAlt": "Lemari pakaian built-in custom di Bandung oleh SAVOY",
     "readingMinutes": 6,
     "publishedAt": "2026-03-10",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Custom furniture adalah sistem perabot yang dirancang khusus mengikuti dimensi aktual ruangan, alur aktivitas penghuni, serta karakter arsitektur hunian. Berbeda dengan furnitur toko beli-jadi yang berukuran kaku, custom furniture dibuat milimeter demi milimeter sehingga tidak menyisakan rongga debu di belakang lemari atau sudut canggung yang terbuang."
+        "text": "Rumah-rumah di Bandung punya satu kesamaan yang jarang disadari sampai furnitur baru datang: dindingnya jarang benar-benar siku. Bangunan kolonial lama di Dago dan Setiabudi dibangun dengan toleransi yang longgar, dan cluster baru pun sering meleset satu-dua derajat karena buru-buru dikejar target serah terima. Furnitur pabrikan tidak tahu soal ini - ia dicetak lurus sempurna di pabrik, lalu dipasang paksa ke dinding yang tidak lurus."
       },
       {
         "type": "image",
@@ -277,41 +277,41 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Udara Lembab Pegunungan & Dinding yang Tidak Siku"
+        "text": "Dua Musuh Utama Furnitur di Bandung"
       },
       {
         "type": "paragraph",
-        "text": "Banyak pemilik hunian di Bandung mengeluhkan dua kendala utama saat memasang furnitur siap pakai:"
+        "text": "Selain dinding yang tidak siku, dataran tinggi Bandung juga berarti udara yang lebih lembap dibanding kota-kota pesisir. Dua hal ini, digabung, adalah alasan paling umum kenapa furnitur jadi cepat rusak di sini:"
       },
       {
         "type": "list",
         "items": [
-          "**Kelembaban tinggi di dataran Bandung:** Papan partikel atau MDF standar pada kitchen set dan kabinet bawah mudah menyerap uap air, membengkak, dan memicu jamur putih dalam 6-12 bulan pertama.",
-          "**Dinding bergelombang & sudut tidak 90 derajat:** Rumah-rumah di Bandung—baik bangunan kolonial, perumahan lama di Dago/Setiabudi, maupun cluster modern—jarang memiliki dinding yang tegak lurus sempurna. Furnitur jadi akan menyisakan celah 1-3 cm yang menganga di samping dinding.",
-          "**Ruang sempit dengan lorong terbatas:** Sudut bawah tangga atau koridor sering menjadi zona mati karena tidak ada furnitur toko yang ukurannya pas."
+          "**Papan partikel atau MDF standar menyerap uap air** dan memicu jamur putih pada kabinet bawah dapur - biasanya muncul dalam 6-12 bulan pertama saja.",
+          "**Dinding tidak benar-benar siku** meninggalkan celah 1-3 cm di samping lemari jadi, baik di rumah kolonial lama maupun cluster modern.",
+          "**Sudut bawah tangga dan koridor sempit** jadi ruang mati karena tidak ada furnitur toko dengan ukuran yang pas."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi SAVOY untuk Wilayah Bandung"
+        "text": "Yang Kami Ubah di Setiap Proyek Bandung"
       },
       {
         "type": "paragraph",
-        "text": "Dengan workshop yang berlokasi langsung di Bandung, tim kami menerapkan standar manufaktur khusus:"
+        "text": "Karena workshop kami sendiri berada di Bandung, penyesuaian ini bukan improvisasi di lapangan - sudah jadi standar kerja sejak hari pertama:"
       },
       {
         "type": "list",
         "items": [
-          "**Papan HMR (High Moisture Resistance) Hijau:** Untuk area basah seperti kabinet bawah kitchen set dan wastafel, kami hanya memakai HMR berserat padat dengan resin tahan lembab tinggi.",
-          "**Edging ABS Mesin Hot-Melt:** Seluruh sisi potongan ditutup dengan edging mesin bersuhu 180°C sehingga uap air dan tumpahan air tidak mampu merembes ke inti papan.",
-          "**Scribe & Skirting Presisi:** Modul samping dipotong mengikuti kelengkungan aktual dinding di lokasi, sehingga lemari menyatu rapat tanpa celah.",
-          "**Survey Dimensi Langsung:** Tim teknis kami datang langsung ke lokasi di seluruh Bandung untuk mengukur dinding laser dan mendokumentasikan jalur utilitas pipa serta kabel."
+          "==Papan HMR hijau, bukan MDF biasa,== dipakai untuk setiap kabinet bawah kitchen set dan area wastafel - seratnya diberi resin tahan lembap tinggi sehingga tidak menyerap uap.",
+          "**Edging ABS dipasang mesin hot-melt pada suhu 180°C**, menutup rapat setiap sisi potongan supaya air tidak bisa merembes masuk dari tepinya.",
+          "**Scribing dan skirting mengikuti kontur dinding asli** - hasil ukur laser di lokasi, bukan dinding yang dianggap lurus di atas kertas.",
+          "Semua dimulai dari survey dimensi langsung: tim kami datang ke rumah Anda, bukan mengandalkan denah yang dikirim lewat chat."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasikan Kebutuhan Proyek Anda di Bandung",
-        "text": "Punya ruangan di Bandung yang ingin dioptimalkan dengan kitchen set, lemari pakaian, atau backdrop TV? Hubungi kami langsung di [Konsultasi WhatsApp SAVOY](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20custom%20furniture%20untuk%20wilayah%20Bandung)."
+        "text": "Punya ruangan di Bandung yang ingin dioptimalkan dengan kitchen set, lemari pakaian, atau backdrop TV? Hubungi kami langsung di [Konsultasi WhatsApp SAVOY](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20custom%20furniture%20untuk%20wilayah%20Bandung), atau lihat cakupan wilayah kami di [layanan Furniture Custom Bandung](/services/furniture-custom-bandung)."
       }
     ]
   },
@@ -325,12 +325,12 @@
     "coverImageAlt": "Lemari pakaian custom bebas rayap di Cimahi oleh SAVOY",
     "readingMinutes": 5,
     "publishedAt": "2026-03-09",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Custom furniture memberikan kendali penuh kepada pemilik rumah atas material, tata letak laci, serta finishing luar. Bagi warga Cimahi yang memiliki rumah bertingkat atau denah memanjang, custom furniture adalah kunci agar setiap meter persegi ruangan berfungsi optimal tanpa terlihat sesak."
+        "text": "Lemari pabrikan dari particle board punya satu titik lemah yang jarang disebutkan di brosur toko: rayap tanah menyukainya. Untuk rumah-rumah di Cimahi yang berbatasan langsung dengan lahan atau kebun - masih banyak di Cihanjuang, Baros, dan Cimahi Utara - ini bukan risiko teoretis, tapi hal yang kami temukan berulang kali saat survey."
       },
       {
         "type": "image",
@@ -340,40 +340,36 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Ancaman Rayap Tanah & Ruang Bawah Tangga yang Terbengkalai"
+        "text": "Kenapa Furnitur Cepat Rusak di Rumah Cimahi"
       },
       {
         "type": "paragraph",
-        "text": "Dua masalah yang paling sering kami jumpai saat survey ke perumahan di Cimahi (seperti Cihanjuang, Baros, dan Cimahi Utara):"
+        "text": "Selain rayap, ada dua keluhan lain yang terus berulang setiap kali kami survey ke rumah-rumah di Cimahi:"
       },
       {
         "type": "list",
         "items": [
-          "**Serangan rayap pada furnitur serbuk kayu:** Lemari pabrikan dari serbuk kayu pres (particle board) sangat rentan hancur dimakan rayap hanya dalam waktu 1-2 tahun.",
-          "**Sudut segitiga bawah tangga yang kotor:** Area bawah tangga sering hanya menjadi tempat menumpuk kardus dan sapu karena sulit menemukan lemari yang kemiringannya pas dengan anak tangga.",
-          "**Pintu lemari yang membentur tempat tidur:** Ukuran kamar yang kompak sering membuat pintu lemari swing tidak bisa dibuka penuh."
+          "==Lemari particle board bisa habis dimakan rayap dalam 1-2 tahun== - serbuk kayu pres yang jadi bahan dasarnya justru makanan favorit rayap tanah.",
+          "**Sudut bawah tangga cuma jadi tempat numpuk kardus dan sapu**, karena kemiringan setiap anak tangga berbeda dan lemari toko tidak ada yang pas.",
+          "**Pintu lemari swing membentur tempat tidur** begitu kamar berukuran kompak, karena bukaan penuh 90 derajat butuh ruang yang tidak selalu ada."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Tepat untuk Hunian di Cimahi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Pendekatan SAVOY menyelesaikan masalah tersebut secara struktural:"
+        "text": "Cara Kami Membangun Furnitur yang Tahan Lama di Sini"
       },
       {
         "type": "list",
         "items": [
-          "**Plywood & Blockboard Pilihan dengan Lapisan HPL:** Material multipleks tebal dengan perekat resin padat tidak disukai rayap, diperkuat lapisan HPL tahan gores yang membungkus permukaan secara menyeluruh.",
-          "**Desain Lemari Bawah Tangga Bertingkat:** Membagi sudut kemiringan tangga menjadi laci tarik heavy-duty untuk sepatu di bagian bawah dan gantungan jaket/koper di bagian yang lebih tinggi.",
-          "**Pintu Sliding dengan Rel Gantung Soft-Close:** Menghilangkan risiko benturan dengan tempat tidur, menjaga sirkulasi lalu lalang kamar tetap lega."
+          "**Plywood dan blockboard berperekat resin padat**, bukan particle board - struktur ini jauh kurang disukai rayap, lalu dibungkus lapisan HPL tahan gores di seluruh permukaannya.",
+          "**Lemari bawah tangga dibuat bertingkat mengikuti kemiringan aktual**: laci tarik heavy-duty untuk sepatu di bagian rendah, gantungan jaket dan koper di bagian yang lebih tinggi.",
+          "**Pintu sliding dengan rel gantung soft-close** menggantikan pintu swing, jadi tidak ada lagi benturan dengan tempat tidur dan sirkulasi kamar tetap lega."
         ]
       },
       {
         "type": "callout",
         "title": "Jadwalkan Survey Gratis untuk Area Cimahi",
-        "text": "Ingin mengubah ruang bawah tangga atau membuat kitchen set di area Cimahi? Diskusikan ukuran dan denah Anda via WhatsApp di [Chat WhatsApp SAVOY Cimahi](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20custom%20furniture%20untuk%20area%20Cimahi)."
+        "text": "Ingin mengubah ruang bawah tangga atau membuat kitchen set di area Cimahi? Diskusikan ukuran dan denah Anda via WhatsApp di [Chat WhatsApp SAVOY Cimahi](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20custom%20furniture%20untuk%20area%20Cimahi), atau baca cakupan layanan kami di [Furniture Custom Cimahi](/services/furniture-custom-cimahi)."
       }
     ]
   },
@@ -382,17 +378,17 @@
     "title": "Furniture Custom Bandung Barat: Harmonisasi Plafon Tinggi & Ruang Terbuka",
     "category": "Furniture Custom Bandung Barat",
     "summary": "Menghadapi masalah proporsi dinding kosong pada rumah berplafon 4 meter di Kotabaru Parahyangan dan Padalarang dengan backdrop TV serta partisi built-in.",
-    "seoTitle": "Custom Furniture Bandung Barat & Kotabaru Parahyangan",
+    "seoTitle": "Custom Furniture Bandung Barat: Plafon Tinggi",
     "coverImage": "/images/portfolio/wardrobe/bpk-darwin-padalarang-01.webp",
     "coverImageAlt": "Lemari sliding door custom di Padalarang, Bandung Barat",
     "readingMinutes": 6,
     "publishedAt": "2026-03-08",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Rumah-rumah modern di kawasan Bandung Barat seperti Kotabaru Parahyangan, Padalarang, hingga villa di Lembang memiliki ciri khas arsitektur langit-langit tinggi (high ceiling) dan jendela kaca besar. Custom furniture di area ini bukan sekadar tempat menyimpan barang, melainkan elemen arsitektural yang menyeimbangkan skala kemegahan ruangan."
+        "text": "Sebuah meja TV toko setinggi 45 cm bisa terlihat sempurna di ruang pamer, lalu terlihat tenggelam begitu dipasang di rumah dengan plafon 4 meter - dan itu justru ciri arsitektur yang umum di Kotabaru Parahyangan, Padalarang, dan villa-villa di Lembang. Di rumah dengan langit-langit setinggi ini, furnitur bukan cuma soal menyimpan barang. Ia harus ikut menyeimbangkan skala ruangan."
       },
       {
         "type": "image",
@@ -402,55 +398,51 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Dinding 4 Meter Terasa Kosong & Gema Ruangan"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tantangan spesifik yang dialami pemilik rumah di Bandung Barat:"
+        "text": "Tiga Hal yang Sering Terasa Janggal di Rumah Berplafon Tinggi"
       },
       {
         "type": "list",
         "items": [
-          "**Skala furnitur toko yang kekecilan:** Meja TV setinggi 45 cm terlihat tenggelam dan tidak proporsional saat diletakkan di bawah dinding setinggi 3.8 - 4.2 meter.",
-          "**Gema suara pada open-plan living:** Ruang tamu dan ruang makan tanpa partisi sering memantulkan gema suara yang mengurangi kenyamanan.",
-          "**Kabel home theater dan stopkontak berantakan:** Instalasi audio-visual TV modern membutuhkan jalur tersembunyi agar kabel HDMI, soundbar, dan konsol game tidak merusak estetika ruangan."
+          "**Furnitur toko kekecilan** - dinding setinggi 3.8-4.2 meter membuat perabot standar terlihat tidak proporsional, seberapa pun bagusnya desainnya.",
+          "**Gema suara di ruang tanpa sekat** - ruang tamu dan ruang makan open-plan memantulkan suara lebih keras tanpa ada bidang yang menyerapnya.",
+          "**Kabel home theater berseliweran** - HDMI, soundbar, dan konsol game butuh jalur tersembunyi yang tidak selalu dipikirkan sejak awal."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Desain Built-In SAVOY"
+        "text": "Built-In yang Ikut Menata Skala Ruangan"
       },
       {
         "type": "list",
         "items": [
-          "**Backdrop TV Full-Height dengan Akustik Kisi-Kisi (Fluted Panel):** Panel dinding vertikal dari lantai hingga plafon memberikan aksen dramatis sekaligus memecah pantulan suara gema ruangan.",
-          "**Partisi Pembatas Ruang Dua Muka (Room Divider):** Memisahkan area foyer dengan ruang keluarga tanpa menutup aliran cahaya alami, dilengkapi rak pajangan dan laci penyimpanan di kedua sisi.",
-          "**Sistem Cable Management Tanam:** Seluruh jalur kabel disembunyikan rapi di dalam rongga panel dengan pintu servis magnetik yang mudah diakses saat penambahan perangkat."
+          "**Backdrop TV full-height dengan panel kisi (fluted panel)** dari lantai sampai plafon - selain jadi aksen dramatis, permukaan bergerigi ini ==memecah pantulan suara== sehingga gema ruangan berkurang.",
+          "**Partisi dua muka sebagai pembatas ruang**, memisahkan foyer dari ruang keluarga tanpa menghalangi cahaya alami, lengkap dengan rak pajangan di kedua sisinya.",
+          "**Cable management tertanam di dalam panel**, dengan pintu servis magnetik yang mudah dibuka setiap kali ada perangkat baru yang perlu disambungkan."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasi Desain untuk Kawasan Bandung Barat",
-        "text": "Siap mempercantik hunian Anda di Kotabaru Parahyangan, Padalarang, atau Lembang? Hubungi arsitek interior kami melalui [WhatsApp SAVOY Bandung Barat](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20furniture%20custom%20Bandung%20Barat)."
+        "text": "Siap mempercantik hunian Anda di Kotabaru Parahyangan, Padalarang, atau Lembang? Hubungi arsitek interior kami melalui [WhatsApp SAVOY Bandung Barat](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20furniture%20custom%20Bandung%20Barat), atau lihat area jangkauan kami di [Furniture Custom Bandung Barat](/services/furniture-custom-bandung-barat)."
       }
     ]
   },
   {
     "slug": "solusi-custom-furniture-apartemen-dan-townhouse-jakarta",
-    "title": "Maksimalkan Setiap Sentimeter: Solusi Custom Furniture Apartemen & Rumah Sempit di Jakarta",
+    "title": "Custom Furniture Apartemen & Rumah Sempit di Jakarta",
     "category": "Furniture Custom Jakarta",
     "summary": "Mengatasi masalah ruang sempit unit studio & 2BR di Jakarta dengan smart storage multifungsi, ranjang laci sorong, dan kitchen set kompak bebas bau.",
-    "seoTitle": "Custom Furniture Apartemen & Rumah Jakarta: Solusi Compact",
+    "seoTitle": "Custom Furniture Apartemen Jakarta: Solusi Compact",
     "coverImage": "/images/portfolio/apartemen/ibu-finta-jakarta-selatan-01.webp",
     "coverImageAlt": "Interior apartemen custom Jakarta Selatan oleh SAVOY",
     "readingMinutes": 6,
     "publishedAt": "2026-03-07",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Di tengah harga tanah Jakarta yang premium, memiliki hunian compact menuntut kecerdasan tata ruang. Custom furniture memungkinkan satu elemen perabot menjalankan dua hingga tiga fungsi sekaligus, mengubah unit apartemen studio 24 m² atau townhouse sempit menjadi tempat tinggal yang lapang, tertata, dan nyaman."
+        "text": "Harga tanah di Jakarta jarang memberi ruang untuk perabot yang cuma punya satu fungsi. Di unit studio 24 m² atau townhouse sempit, meja makan yang hanya jadi meja makan, atau lemari yang hanya jadi lemari, adalah kemewahan yang tidak selalu terjangkau ruang lantainya. Yang justru dibutuhkan adalah satu perabot yang bekerja rangkap dua atau tiga."
       },
       {
         "type": "image",
@@ -460,55 +452,51 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Keterbatasan Luas Lantai & Regulasi Ketat Pengelola Gedung"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kendala khas yang dihadapi pemilik properti di Jakarta:"
+        "text": "Kendala Khas Hunian Compact di Jakarta"
       },
       {
         "type": "list",
         "items": [
-          "**Barang menumpuk tanpa tempat penyimpanan:** Pakaian, koper, dan dokumen kerja memenuhi lantai karena lemari pakaian standar tidak muat ditaruh berdampingan dengan meja kerja.",
-          "**Aroma masakan terperangkap di unit studio:** Kitchen set apartemen seringkali terlalu sempit untuk cooktop dan cooker hood yang layak.",
-          "**Jalur lift barang sempit & jam kerja terbatas:** Gedung apartemen di Jakarta menerapkan aturan ketat (working permit) sehingga furnitur yang dirakit lama di lokasi sering terkena komplain pengelola."
+          "**Lemari pakaian standar tidak muat berdampingan dengan meja kerja**, jadi pakaian, koper, dan dokumen akhirnya menumpuk di lantai.",
+          "**Kitchen set apartemen sering terlalu sempit** untuk cooktop dan cooker hood yang layak, membuat aroma masakan terperangkap di unit studio.",
+          "**Aturan jam kerja dan lift barang gedung sangat ketat** - furnitur yang dirakit berlama-lama di unit gampang kena komplain pengelola."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Modular Knock-Down SAVOY"
+        "text": "Modular, Prefabrikasi, dan Dua Fungsi Sekaligus"
       },
       {
         "type": "list",
         "items": [
-          "**Modul Prefabrikasi Siap Pasang:** Seluruh modul diproduksi, difinishing, dan diuji pasang di workshop kami terlebih dahulu, sehingga proses instalasi di unit Jakarta berlangsung cepat, minim kebisingan, dan bebas debu gergaji.",
-          "**Ranjang Tatami Storage:** Ranjang platform dengan mekanisme hidrolik dan laci dorong samping yang mampu menampung hingga 3 koper ukuran kabin dan bed cover tebal.",
-          "**Kitchen Set Terintegrasi Drop-Leaf Table:** Meja makan lipat yang dapat disembunyikan rata dengan kabinet dapur saat tidak digunakan, mengembalikan 1,5 meter persegi ruang gerak harian."
+          "**Seluruh modul diproduksi dan diuji pasang lebih dulu di workshop kami** - bukan di unit Anda - sehingga instalasi di lokasi berlangsung cepat, nyaris tanpa kebisingan atau debu gergaji.",
+          "==Ranjang tatami dengan mekanisme hidrolik dan laci dorong samping== mampu menampung hingga 3 koper ukuran kabin plus bed cover tebal, tanpa lemari tambahan.",
+          "**Meja makan drop-leaf yang menyatu dengan kabinet dapur** - dilipat rata saat tidak dipakai, mengembalikan sekitar 1,5 meter persegi ruang gerak harian."
         ]
       },
       {
         "type": "callout",
         "title": "Survey & Pengiriman ke Seluruh Jakarta",
-        "text": "Punya unit apartemen atau rumah di Jakarta Selatan, Barat, Pusat, Timur, atau Utara? Konsultasikan denah unit Anda di [WhatsApp Layanan Jakarta](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20furniture%20custom%20wilayah%20Jakarta)."
+        "text": "Punya unit apartemen atau rumah di Jakarta Selatan, Barat, Pusat, Timur, atau Utara? Konsultasikan denah unit Anda di [WhatsApp Layanan Jakarta](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20furniture%20custom%20wilayah%20Jakarta), atau baca cakupan kami di [Furniture Custom Jakarta](/services/furniture-custom-jakarta)."
       }
     ]
   },
   {
     "slug": "panduan-custom-furniture-rumah-cluster-tangerang-bsd",
-    "title": "Trik Custom Furniture Rumah Cluster Tangerang & BSD: Menata Dapur & Ruang Keluarga Terbuka",
+    "title": "Custom Furniture Rumah Cluster Tangerang & BSD: Dapur Terbuka",
     "category": "Furniture Custom Tangerang",
     "summary": "Solusi mengatasi dapur terbuka yang terlihat dari pintu masuk, penutup meja cor semen standar developer, serta backdrop TV minimalis mewah di Tangerang.",
-    "seoTitle": "Custom Furniture Tangerang & BSD: Solusi Rumah Cluster",
+    "seoTitle": "Custom Furniture Tangerang & BSD: Rumah Cluster",
     "coverImage": "/images/portfolio/kitchen-set/modern-01.webp",
     "coverImageAlt": "Kitchen set modern dapur & ruang keluarga terbuka rumah cluster",
     "readingMinutes": 5,
     "publishedAt": "2026-03-06",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Perumahan cluster modern di BSD City, Gading Serpong, Alam Sutera, dan Bintaro memiliki denah open-space yang estetik namun membutuhkan trik khusus dalam penataan zonasi. Custom furniture menjadi batas visual yang elegan antara area privat dan area publik tanpa perlu mendirikan dinding bata masif."
+        "text": "Baru serah terima rumah cluster di BSD City, Gading Serpong, Alam Sutera, atau Bintaro biasanya berarti satu hal yang sama: meja dapur masih berupa cor semen kasar dengan keramik polos, tanpa kabinet bawah sama sekali. Denah open-space rumah cluster memang estetik, tapi tetap butuh trik penataan supaya area privat dan publik tidak bercampur begitu saja."
       },
       {
         "type": "image",
@@ -518,55 +506,51 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Meja Cor Bawaan Developer & Dapur Terbuka Tanpa Privasi"
-      },
-      {
-        "type": "paragraph",
-        "text": "Keluhan yang paling banyak disampaikan penghuni baru cluster di Tangerang:"
+        "text": "Apa yang Biasanya Dikeluhkan Penghuni Baru"
       },
       {
         "type": "list",
         "items": [
-          "**Meja dapur cor beton yang kasar:** Developer sering hanya menyediakan meja semen dengan keramik polos tanpa kabinet bawah, sehingga tumpukan tabung gas dan wajan terlihat berantakan.",
-          "**Dapur langsung terlihat dari pintu utama:** Tamu yang baru masuk rumah langsung bisa melihat cucian piring di sink dapur.",
-          "**Dinding ruang keluarga polos tanpa focal point:** Ruangan terasa hampa tanpa backdrop yang mengikat sofa dan televisi."
+          "**Meja dapur cor beton tanpa kabinet bawah** - tabung gas dan tumpukan wajan jadi terlihat berantakan karena tidak ada tempat menyembunyikannya.",
+          "**Dapur langsung terlihat dari pintu utama** - tamu yang baru masuk bisa langsung melihat cucian piring menumpuk di sink.",
+          "**Dinding ruang keluarga polos tanpa focal point**, membuat ruangan terasa hampa meski sofa dan TV sudah tertata."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Interior Efisien SAVOY"
+        "text": "Menata Ulang Tanpa Bongkar Struktur"
       },
       {
         "type": "list",
         "items": [
-          "**Retrofit Meja Cor Semen:** Kami memasang rangka kabinet pintu dan laci penutup meja beton tanpa perlu membongkar struktur semen, menghemat biaya renovasi hingga 40%.",
-          "**Mini Bar Island sebagai Partisi Visual:** Menghalangi pandangan langsung ke area cuci piring sekaligus berfungsi sebagai meja sarapan kasual keluarga.",
-          "**Backdrop TV Floating dengan LED Profil:** Memberikan suasana hangat (warm white) pada malam hari dan menyembunyikan kotak saklar listrik pengembang dengan rapi."
+          "==Retrofit meja cor semen== - kami memasang rangka kabinet pintu dan laci penutup langsung di atas meja beton yang sudah ada, tanpa membongkar strukturnya, sehingga biaya renovasi bisa hemat hingga 40% dibanding bongkar total.",
+          "**Mini bar island sebagai partisi visual**, menghalangi pandangan langsung ke area cuci piring sekaligus jadi meja sarapan kasual keluarga.",
+          "**Backdrop TV floating dengan LED profil** memberi suasana hangat di malam hari dan sekaligus menyembunyikan kotak saklar bawaan pengembang."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasi Rumah Cluster Tangerang & BSD",
-        "text": "Baru serah terima kunci rumah di BSD, Serpong, atau Bintaro? Jadwalkan survey pengukuran aktual via WhatsApp di [Chat WhatsApp SAVOY Tangerang](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20furniture%20custom%20wilayah%20Tangerang%20BSD)."
+        "text": "Baru serah terima kunci rumah di BSD, Serpong, atau Bintaro? Jadwalkan survey pengukuran aktual via WhatsApp di [Chat WhatsApp SAVOY Tangerang](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20furniture%20custom%20wilayah%20Tangerang%20BSD), atau lihat cakupan area di [Furniture Custom Tangerang](/services/furniture-custom-tangerang)."
       }
     ]
   },
   {
     "slug": "solusi-custom-furniture-tahan-panas-dan-lembab-bekasi",
-    "title": "Kunci Custom Furniture Awet di Bekasi: Mengatasi Masalah HPL Mengelupas & Lemari Melengkung",
+    "title": "Custom Furniture Bekasi: Solusi HPL Mengelupas & Lemari Melengkung",
     "category": "Furniture Custom Bekasi",
     "summary": "Suhu ruangan tinggi di Bekasi kerap memicu perekat HPL terkelupas dan papan melendut. Simak teknik pelapisan mesin hot-melt dan sirkulasi lemari pakaian.",
-    "seoTitle": "Custom Furniture Bekasi: Material Tahan Panas & Awet",
+    "seoTitle": "Custom Furniture Bekasi: Tahan Panas & Awet",
     "coverImage": "/images/portfolio/wardrobe/wardrobe-2024-07-01.webp",
     "coverImageAlt": "Lemari pakaian master suite tahan lembab di Bekasi",
     "readingMinutes": 6,
     "publishedAt": "2026-03-05",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Bekasi memiliki suhu rata-rata yang relatif lebih tinggi dibanding kota sekitarnya, terutama pada rumah beratap spandek atau lantai atas ruko. Dalam industri furniture custom, faktor temperatur dan sirkulasi udara menjadi variabel krusial yang menentukan apakah lemari Anda akan bertahan 2 tahun atau 15 tahun."
+        "text": "Rumah beratap spandek atau ruko lantai atas di Bekasi rutin menyentuh suhu ruangan 33-35°C di siang hari - cukup panas untuk melemahkan lem HPL biasa dalam hitungan bulan, bukan tahun. Di industri furniture custom, temperatur dan sirkulasi udara adalah variabel yang menentukan apakah lemari Anda bertahan 2 tahun atau 15 tahun."
       },
       {
         "type": "image",
@@ -576,42 +560,38 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: HPL Menggelembung & Baju Cepat Pengap"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kondisi lingkungan di kawasan Bekasi memicu masalah khas pada perabot rumah:"
+        "text": "Tiga Gejala Furnitur yang Kalah dari Panas Bekasi"
       },
       {
         "type": "list",
         "items": [
-          "**Lem HPL melemah akibat panas:** Perekat kuning standar yang diaplikasikan manual seringkali menguap dan lepas saat suhu ruangan mencapai 33-35°C di siang hari, menyebabkan HPL menggelembung di bagian sudut.",
-          "**Lemari pakaian pengap dan lembab di malam hari:** Perbedaan suhu ekstrem antara siang yang terik dan malam ber-AC menimbulkan kondensasi di dalam lemari tertutup rapat, memicu bau apek pada pakaian.",
-          "**Rak panjang melendut menahan beban:** Rak buku atau lemari pakaian selebar 90 cm tanpa balok penopang tengah akan melengkung ke bawah seiring waktu."
+          "==Lem kuning standar menguap dan lepas di suhu 33-35°C==, membuat HPL menggelembung di bagian sudut lemari atau kabinet.",
+          "**Lemari pakaian pengap dan lembap di malam hari** - beda suhu ekstrem antara siang terik dan malam ber-AC memicu kondensasi di dalam lemari tertutup rapat, lalu bau apek pada pakaian.",
+          "**Rak selebar 90 cm melendut ke bawah** seiring waktu kalau tidak ada penopang tengah yang menahan bebannya."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Konstruksi SAVOY untuk Kawasan Bekasi"
+        "text": "Konstruksi yang Kami Sesuaikan untuk Bekasi"
       },
       {
         "type": "list",
         "items": [
-          "**Lem Kontak Tahan Panas Tinggi & Press Hidrolik:** Kami memakai lem formulasi khusus industri dan proses press merata sehingga daya rekat HPL tahan terhadap fluktuasi suhu ruang.",
-          "**Ventilasi Louvre Tersembunyi:** Penambahan kisi ventilasi tipis di bagian atas atau bawah pintu lemari menjaga sirkulasi udara mikro di dalam lemari tetap berganti.",
-          "**Balok Pengaku (Stiffener Rail) Rak:** Setiap rak dengan bentang di atas 80 cm diperkuat dengan rangka tulang bawah sehingga kuat menahan tumpukan buku dan baju tebal tanpa risiko melengkung."
+          "**Lem kontak tahan panas tinggi dengan proses press hidrolik** - formulasi industri yang daya rekatnya tidak goyah oleh fluktuasi suhu ruang.",
+          "**Ventilasi louvre tersembunyi** di bagian atas atau bawah pintu lemari, menjaga sirkulasi udara mikro tetap berganti tanpa mengubah tampilan luarnya.",
+          "**Balok pengaku (stiffener rail) pada rak berbentang di atas 80 cm**, menahan tumpukan buku atau baju tebal tanpa risiko melengkung."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasikan Kebutuhan Anda di Bekasi",
-        "text": "Ingin furniture yang tahan cuaca panas dan awet bertahun-tahun di Summarecon Bekasi, Harapan Indah, atau Grand Galaxy? Hubungi kami di [WhatsApp SAVOY Bekasi](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20custom%20furniture%20wilayah%20Bekasi)."
+        "text": "Ingin furniture yang tahan cuaca panas dan awet bertahun-tahun di Summarecon Bekasi, Harapan Indah, atau Grand Galaxy? Hubungi kami di [WhatsApp SAVOY Bekasi](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20custom%20furniture%20wilayah%20Bekasi), atau lihat cakupan layanan di [Furniture Custom Bekasi](/services/furniture-custom-bekasi)."
       }
     ]
   },
   {
     "slug": "perbandingan-lengkap-finishing-hpl-duco-dan-melamik",
-    "title": "HPL vs Cat Duco vs Melamik: Mana Finishing Custom Furniture yang Paling Tepat untuk Ruangan Anda?",
+    "title": "HPL vs Cat Duco vs Melamik: Panduan Memilih Finishing Custom Furniture",
     "category": "Finishing & Perawatan",
     "summary": "Panduan memilih jenis finishing custom furniture berdasarkan fungsi ruang, ketahanan gores, kelembaban, serta kemudahan perawatannya.",
     "seoTitle": "Perbandingan Finishing HPL, Cat Duco, dan Melamik",
@@ -619,12 +599,12 @@
     "coverImageAlt": "Kitchen set finishing cat duco putih semi klasik",
     "readingMinutes": 7,
     "publishedAt": "2026-03-04",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Finishing adalah lapisan terluar yang bersentuhan langsung dengan tangan, mata, dan aktivitas harian Anda. Memilih finishing bukan sekadar soal warna, melainkan menentukan seberapa tahan furnitur Anda terhadap tumpahan kopi, goresan kuku, panas panci, serta kemudahan membersihkannya setiap hari."
+        "text": "Finishing adalah satu-satunya bagian furnitur yang benar-benar tersentuh setiap hari - tangan yang membuka pintu, kuku yang menggores tanpa sengaja, panci panas yang diletakkan sekilas. Memilih finishing bukan soal selera warna saja, tapi soal seberapa tahan permukaan itu terhadap kebiasaan harian rumah Anda sendiri."
       },
       {
         "type": "image",
@@ -634,42 +614,38 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Salah Pilih Finishing Berujung Penyesalan"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kesalahan umum yang sering terjadi saat memesan custom furniture:"
+        "text": "Salah Pasang Finishing, Ini Akibatnya"
       },
       {
         "type": "list",
         "items": [
-          "**Cat duco dipakai di dapur basah tanpa lapisan pelindung:** Cipratan minyak dan kunyit meresap ke pori-pori cat matte murah dan meninggalkan noda kuning permanen.",
-          "**HPL murah dengan sambungan tepi kasar:** Garis hitam sambungan HPL terlihat jelas dan tajam saat tergores lengan.",
-          "**Melamik di area lembab:** Lapisan melamik pada kayu rentan memutih (milky stain) bila sering terkena uap air panas."
+          "**Cat duco tanpa lapisan pelindung di dapur basah** - cipratan minyak dan kunyit meresap ke pori cat matte murah dan meninggalkan noda kuning yang tidak hilang lagi.",
+          "**HPL murah dengan sambungan tepi kasar** - garis sambungannya terlihat jelas dan tajam saat lengan tidak sengaja tergores.",
+          "**Melamik di area lembap** - lapisannya rentan memutih (milky stain) kalau sering kena uap air panas."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi: Pemetaan Finishing Sesuai Fungsi Ruang"
+        "text": "Cocokkan Finishing dengan Fungsi Ruangnya, Bukan Sebaliknya"
       },
       {
         "type": "list",
         "items": [
-          "**HPL (High Pressure Laminate):** Paling ideal untuk kitchen set modern, meja kerja, dan kamar anak. Keunggulannya sangat tahan gores, tahan panas moderat, mudah dilap, dan motifnya sangat konsisten.",
-          "**Cat Duco (Polyurethane / NC):** Pilihan utama untuk pintu bergaya American Classic, Shaker style, atau warna kustom pastel. Tidak memiliki garis sambungan edging karena disemprot menyeluruh, menghasilkan tampilan mulus tanpa celah.",
-          "**Melamik / Veneer Kayu Alami:** Solusi terbaik untuk pecinta nuansa hangat serat kayu asli pada backdrop TV, panel dinding lobi, atau meja makan aksen."
+          "**HPL (High Pressure Laminate)** paling pas untuk kitchen set modern, meja kerja, dan kamar anak - ==tahan gores, tahan panas moderat, mudah dilap, dan motifnya konsisten dari lembar ke lembar==.",
+          "**Cat duco (polyurethane/NC)** pilihan utama untuk pintu American Classic, Shaker style, atau warna pastel custom - disemprot menyeluruh sehingga tanpa garis sambungan edging sama sekali.",
+          "**Melamik atau veneer kayu alami** untuk yang menginginkan serat kayu asli pada backdrop TV, panel dinding, atau meja makan aksen."
         ]
       },
       {
         "type": "callout",
         "title": "Ingin Melihat Contoh Sampel Finishing Langsung?",
-        "text": "Tim SAVOY membawa sampel katalog HPL, kartu warna Duco, dan potongan material asli saat survey ke lokasi Anda. Hubungi kami di [WhatsApp Sampel Finishing](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20pilihan%20finishing%20furniture)."
+        "text": "Tim SAVOY membawa sampel katalog HPL, kartu warna Duco, dan potongan material asli saat survey ke lokasi Anda. Hubungi kami di [WhatsApp Sampel Finishing](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20pilihan%20finishing%20furniture). Sudah punya furnitur HPL/Duco di rumah? Baca juga [cara merawatnya agar tetap mengkilap](/knowledge/cara-merawat-furniture-hpl-dan-duco-agar-tetap-mengkilap)."
       }
     ]
   },
   {
     "slug": "prinsip-tata-letak-dan-sirkulasi-ruang-furniture-custom",
-    "title": "Jangan Sampai Menyesal: Prinsip Sirkulasi & Tata Letak Furniture Custom yang Benar",
+    "title": "Prinsip Sirkulasi & Tata Letak Furniture Custom yang Benar",
     "category": "Desain & Tata Letak",
     "summary": "Mengapa ruangan terasa sesak meski luas? Pelajari aturan jarak sirkulasi 90 cm, swing door vs sliding door, serta penempatan titik stopkontak tanam.",
     "seoTitle": "Prinsip Sirkulasi & Tata Letak Furniture Custom",
@@ -677,12 +653,12 @@
     "coverImageAlt": "Proses desain tata letak furniture custom SAVOY",
     "readingMinutes": 6,
     "publishedAt": "2026-03-03",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Banyak orang mengira ruangan yang nyaman ditentukan oleh seberapa banyak perabot yang bisa dimasukkan. Faktanya, kemewahan sejati dari sebuah interior adalah ruang kosong yang bernafas (breathing room)—ruang di mana Anda bisa melangkah, membuka laci, dan bergerak tanpa harus memiringkan badan."
+        "text": "Ruangan yang nyaman bukan yang paling banyak diisi perabot. Justru sebaliknya - kemewahan sejati sebuah interior ada pada ruang kosong yang masih bisa dilangkahi, laci yang masih bisa dibuka penuh, dan tubuh yang tidak perlu miring untuk lewat."
       },
       {
         "type": "image",
@@ -692,42 +668,38 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Ruangan Luas yang Terasa Macet dan Sesak"
-      },
-      {
-        "type": "paragraph",
-        "text": "Penyebab utama tata letak perabot terasa canggung:"
+        "text": "Kenapa Ruangan Luas Bisa Tetap Terasa Sesak"
       },
       {
         "type": "list",
         "items": [
-          "**Lorong sirkulasi di bawah 70 cm:** Dua orang berpapasan harus saling menyingkir, atau kursi makan yang ditarik menabrak pintu lemari.",
-          "**Pintu lemari menabrak lampu gantung atau stopkontak:** Desain yang tidak memperhitungkan radius ayunan pintu lemari built-in.",
-          "**Kaki kabinet lantai menghalangi robot vacuum:** Debu di kolong lemari tidak pernah terjangkau dan menjadi sarang kotoran."
+          "**Lorong sirkulasi di bawah 70 cm** - dua orang berpapasan harus saling menyingkir, atau kursi makan yang ditarik menabrak pintu lemari.",
+          "**Pintu lemari menabrak lampu gantung atau stopkontak**, karena radius ayunan pintu built-in tidak dihitung sejak awal desain.",
+          "**Kaki kabinet lantai menghalangi robot vacuum**, sehingga debu di kolongnya tidak pernah benar-benar terjangkau."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Perhitungan Dimensi Ergonomis SAVOY"
+        "text": "Angka-Angka yang Kami Pegang Saat Mendesain"
       },
       {
         "type": "list",
         "items": [
-          "**Aturan Jarak Sirkulasi Emas:** Minimal 90 cm untuk jalur utama antar-ruang, dan minimal 80 cm di antara meja makan dengan dinding pembatas.",
-          "**Penerapan Kabinet Floating (Gantung Dinding):** Mengangkat kabinet 20-25 cm di atas lantai memberikan efek visual melayang, memperluas persepsi lantai, dan memudahkan pembersihan harian.",
-          "**Simulasi Alur Buka Tutup 3D:** Sebelum produksi dimulai, kami membuat gambar kerja detail dengan simulasi bukaan penuh pintu dan laci untuk memastikan nol tubrukan di lokasi."
+          "==Minimal 90 cm untuk jalur sirkulasi utama==, dan minimal 80 cm antara meja makan dengan dinding pembatas.",
+          "**Kabinet floating diangkat 20-25 cm dari lantai** - selain memberi efek melayang, kolong ini juga jadi jauh lebih mudah dibersihkan setiap hari.",
+          "**Simulasi bukaan pintu dan laci dibuat di gambar kerja 3D** sebelum produksi dimulai, supaya nol tubrukan begitu dipasang di lokasi."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasikan Denah Tata Letak Ruang Anda",
-        "text": "Kirimkan sketsa denah atau foto ruangan Anda ke tim desain SAVOY untuk evaluasi alur sirkulasi via WhatsApp di [Chat WhatsApp Evaluasi Denah](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20tata%20letak%20dan%20sirkulasi%20ruangan)."
+        "text": "Kirimkan sketsa denah atau foto ruangan Anda ke tim desain SAVOY untuk evaluasi alur sirkulasi via WhatsApp di [Chat WhatsApp Evaluasi Denah](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20tata%20letak%20dan%20sirkulasi%20ruangan)."
       }
     ]
   },
   {
     "slug": "cara-menghemat-budget-custom-furniture-tanpa-kurangi-kualitas",
-    "title": "5 Strategi Menghemat Anggaran Custom Furniture Tanpa Menurunkan Ketahanan Konstruksi",
+    "title": "5 Strategi Menghemat Anggaran Custom Furniture Tanpa Kurangi Kualitas",
     "category": "Tips & Inspirasi",
     "summary": "Tips praktis membagi alokasi biaya antara material inti, hardware engsel/rel berkualitas, dan efisiensi modul laci agar investasi interior Anda maksimal.",
     "seoTitle": "Tips Hemat Budget Custom Furniture Berkualitas",
@@ -735,12 +707,12 @@
     "coverImageAlt": "Proses penawaran RAB custom furniture SAVOY",
     "readingMinutes": 5,
     "publishedAt": "2026-03-02",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Membuat custom furniture adalah investasi jangka panjang untuk kenyamanan hunian Anda. Namun, banyak pemilik rumah yang over-budget karena membagi anggaran secara keliru—mengalokasikan terlalu banyak biaya pada hal-hal dekoratif luar, sementara bagian struktural dalam justru dipangkas habis-habisan."
+        "text": "Kebanyakan proyek yang over-budget bukan karena kliennya boros, tapi karena anggarannya dibagi ke tempat yang salah - terlalu banyak untuk hal dekoratif yang terlihat, terlalu sedikit untuk bagian struktural yang justru menentukan umur pakainya."
       },
       {
         "type": "image",
@@ -750,43 +722,39 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Biaya Membengkak & Penyesalan Spesifikasi Material"
-      },
-      {
-        "type": "paragraph",
-        "text": "Mengapa estimasi biaya renovasi custom furniture kerap meleset:"
+        "text": "Tiga Alasan Estimasi Biaya Sering Meleset"
       },
       {
         "type": "list",
         "items": [
-          "**Terlalu banyak laci kecil:** Setiap laci membutuhkan rel khusus, waktu perakitan lebih lama, dan material ekstra. Sepuluh laci kecil jauh lebih mahal dibanding dua laci besar berpembagi.",
-          "**Hardware murah di pintu yang sering dibuka:** Memakai engsel tanpa soft-close di pintu dapur menyebabkan pintu cepat turun dan berisik hanya dalam beberapa bulan.",
-          "**Material seragam di seluruh rumah:** Memakai HMR mahal di rak buku ruang tamu yang kering adalah pemborosan, sementara memakai MDF di kabinet wastafel adalah bom waktu."
+          "**Terlalu banyak laci kecil** - setiap laci butuh rel sendiri, waktu perakitan lebih lama, dan material ekstra. Sepuluh laci kecil jauh lebih mahal dari dua laci besar berpembagi.",
+          "**Hardware murah di pintu yang paling sering dibuka** - engsel tanpa soft-close di pintu dapur biasanya sudah kendur dan berisik hanya dalam beberapa bulan.",
+          "**Material yang sama dipakai di seluruh rumah** - HMR mahal di rak buku ruang tamu yang kering itu pemborosan, tapi MDF biasa di kabinet wastafel adalah bom waktu."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi: Alokasi Cerdas Sesuai Beban & Fungsi"
+        "text": "Ke Mana Sebaiknya Anggaran Diarahkan"
       },
       {
         "type": "list",
         "items": [
-          "**Metode Spesifikasi Hybrid:** Pakai HMR tahan air khusus untuk kabinet bawah dapur dan area basah, dan gunakan plywood/multipleks standar di lemari pakaian dan backdrop TV kering.",
-          "**Prioritaskan Hardware Utama:** Alokasikan budget untuk engsel sendok hidrolik bermerek (slow-motion) pada pintu yang dibuka puluhan kali sehari, dan gunakan hardware standar pada lemari koper atas yang jarang dibuka.",
-          "**Kurangi Laci, Perbanyak Rak Fleksibel:** Ganti laci kecil dengan rak ambalan berpindah (adjustable shelves) yang bisa disesuaikan ketinggiannya kapan saja dengan biaya jauh lebih terjangkau.",
-          "**Pilih HPL Solid / Woodgrain Standar:** Motif HPL standar berkualitas tinggi memiliki ketahanan yang identik dengan motif premium bertekstur khusus namun dengan harga 20-30% lebih hemat."
+          "**Spesifikasi hybrid**: HMR tahan air khusus untuk kabinet bawah dapur dan area basah, plywood atau multipleks standar untuk lemari pakaian dan backdrop TV yang kering.",
+          "==Prioritaskan hardware pada pintu yang dibuka puluhan kali sehari== - engsel hidrolik slow-motion di situ, hardware standar sudah cukup untuk lemari koper atas yang jarang disentuh.",
+          "**Kurangi laci, perbanyak rak ambalan berpindah (adjustable shelves)** - ketinggiannya bisa disesuaikan kapan saja dan biayanya jauh lebih terjangkau daripada menambah laci.",
+          "**Pilih HPL solid/woodgrain standar** - ketahanannya setara motif premium bertekstur khusus, tapi harganya 20-30% lebih hemat."
         ]
       },
       {
         "type": "callout",
         "title": "Dapatkan Estimasi Biaya Transparan Tanpa Komitmen",
-        "text": "Ingin estimasi rencana anggaran biaya (RAB) furniture custom yang transparan sesuai budget Anda? Konsultasikan langsung via WhatsApp di [Chat Estimasi Budget WhatsApp](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20estimasi%20budget%20custom%20furniture)."
+        "text": "Ingin estimasi rencana anggaran biaya (RAB) furniture custom yang transparan sesuai budget Anda? Konsultasikan langsung via WhatsApp di [Chat Estimasi Budget WhatsApp](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20estimasi%20budget%20custom%20furniture)."
       }
     ]
   },
   {
     "slug": "renovasi-kitchen-set-anti-rayap-lembab-bandung",
-    "title": "Renovasi Kitchen Set di Bandung: Mengatasi Masalah Jalur Pipa Bocor & Dinding Rembes",
+    "title": "Renovasi Kitchen Set Bandung: Solusi Pipa Bocor & Dinding Rembes",
     "category": "Furniture Custom Bandung",
     "summary": "Panduan teknis mengganti kitchen set lama yang lapuk di Bandung: relokasi sink, penanganan dinding lembab di musim hujan, dan pemilihan tabletop kuarsa.",
     "seoTitle": "Renovasi Kitchen Set Bandung: Solusi Pipa & Rembes",
@@ -794,12 +762,12 @@
     "coverImageAlt": "Kitchen set L-shape renovasi di Soreang, Bandung",
     "readingMinutes": 6,
     "publishedAt": "2026-03-01",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Renovasi kitchen set custom bukan sekadar membongkar kabinet lama dan menggantinya dengan yang baru. Tantangan terbesar justru terletak pada penyesuaian jalur pipa pembuangan, kran air bersih, dan stopkontak tanam tanpa harus membongkar seluruh keramik lantai dapur."
+        "text": "Mengganti kitchen set lama yang lapuk jarang sesederhana membongkar kabinet dan memasang yang baru. Bagian yang paling sering meleset justru jalur pipa pembuangan, kran air bersih, dan stopkontak tanam - semuanya harus disesuaikan tanpa membongkar seluruh keramik lantai dapur."
       },
       {
         "type": "image",
@@ -809,37 +777,37 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Dinding Belakang Basah & Bau Apek di Kolong Sink"
+        "text": "Kenapa Dapur Lama Cepat Rusak Duluan"
       },
       {
         "type": "paragraph",
-        "text": "Banyak dapur rumah di Bandung (khususnya Soreang, Dago, dan Buahbatu) mengalami kerusakan dini karena:"
+        "text": "Di dapur-dapur Bandung yang kami tangani - terutama di Soreang, Dago, dan Buahbatu - kerusakan dininya hampir selalu bermula dari tiga hal ini:"
       },
       {
         "type": "list",
         "items": [
-          "**Kondensasi dinding luar saat musim hujan:** Dinding belakang yang berbatasan langsung dengan tanah atau taman luar ruangan memicu rembesan uap dingin, membuat tripleks standar lapuk berjamur.",
-          "**Bocoran halus leher angsa wastafel:** Tetesan air dari pipa afur meresap ke lantai kabinet bawah yang tidak kedap air, memicu keropos pada engsel pintu.",
-          "**Posisi kompor terlalu dekat dengan jendela:** Hembusan angin kencang sering mematikan api kompor gas dan membahayakan keselamatan."
+          "**Kondensasi dinding luar saat musim hujan** - dinding belakang yang berbatasan dengan tanah atau taman memicu rembesan uap dingin hingga tripleks standar lapuk berjamur.",
+          "**Bocoran halus di leher angsa wastafel** - tetesan air dari pipa afur meresap ke lantai kabinet bawah yang tidak kedap air, lalu membuat engsel pintu keropos.",
+          "**Kompor terlalu dekat jendela** - hembusan angin kencang bisa mematikan api kompor gas begitu saja."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Teknis Renovasi SAVOY"
+        "text": "Yang Kami Ganti Saat Merenovasi"
       },
       {
         "type": "list",
         "items": [
-          "**Lapisan Plat Aluminium / Stainless di Kolong Sink:** Lantai kabinet bawah wastafel dilapisi lembaran anti-air dengan bibir penahan tumpahan (drip-lip).",
-          "**Rongga Sirkulasi Udara Dinding (Backing Air Gap):** Kabinet dipasang dengan jarak celah 1-2 cm dari dinding basah untuk sirkulasi udara bebas jamur.",
-          "**Top Table Kuarsa Tahan Gores & Panas:** Permukaan meja padat tanpa pori yang tidak meninggalkan noda minyak atau bumbu kunyit.",
-          "**Survey Laser Aktual & Pemetaan Utilitas:** Pengukuran ulang elevasi lantai keramik agar meja dapur rata air sempurna."
+          "==Lapisan plat aluminium atau stainless di kolong sink==, lengkap dengan bibir penahan tumpahan (drip-lip), jadi air tidak lagi meresap ke lantai kabinet.",
+          "**Celah udara 1-2 cm antara kabinet dan dinding basah** (backing air gap), menjaga sirkulasi tetap jalan dan mencegah jamur tumbuh diam-diam.",
+          "**Top table kuarsa tahan gores dan panas** - permukaannya padat tanpa pori, jadi noda minyak atau kunyit tidak menempel permanen.",
+          "**Survey laser dan pemetaan ulang utilitas** untuk memastikan elevasi lantai keramik dan meja dapur benar-benar rata air."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasikan Rencana Renovasi Dapur Anda",
-        "text": "Ingin merenovasi kitchen set lama Anda di Bandung dengan material tahan air bergaransi? Hubungi tim teknis SAVOY via WhatsApp di [Chat Konsultasi Renovasi Dapur](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20renovasi%20kitchen%20set%20wilayah%20Bandung)."
+        "text": "Ingin merenovasi kitchen set lama Anda di Bandung dengan material tahan air bergaransi? Hubungi tim teknis SAVOY via WhatsApp di [Chat Konsultasi Renovasi Dapur](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20renovasi%20kitchen%20set%20wilayah%20Bandung)."
       }
     ]
   },
@@ -853,12 +821,12 @@
     "coverImageAlt": "Walk-in closet lemari pakaian custom di Cimahi",
     "readingMinutes": 5,
     "publishedAt": "2026-02-28",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Banyak orang mengira walk-in closet hanya bisa diwujudkan di rumah mewah dengan ruangan khusus pakaian. Dengan perencanaan custom furniture terpadu, kamar tidur berukuran 3x3 meter atau 3x4 meter di Cimahi pun dapat memiliki area wardrobe semi-walk-in yang mewah dan fungsional."
+        "text": "Walk-in closet sering dianggap fasilitas rumah mewah dengan ruangan khusus pakaian. Padahal dengan perencanaan yang tepat, kamar 3x3 meter atau 3x4 meter di Cimahi pun bisa punya area wardrobe semi-walk-in yang terasa lapang - selama lemari dan meja riasnya dirancang menyatu, bukan dibeli terpisah."
       },
       {
         "type": "image",
@@ -868,36 +836,32 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Perabot Lepasan Membuat Kamar Terasa Sesak"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kesalahan penataan kamar tidur yang sering terjadi:"
+        "text": "Kesalahan Penataan Kamar yang Paling Sering Terjadi"
       },
       {
         "type": "list",
         "items": [
-          "**Membeli lemari 3 pintu dan meja rias terpisah:** Menyisakan celah 15 cm di antara lemari dan meja rias yang menjadi sarang debu dan tidak bisa dibersihkan.",
-          "**Pintu lemari ayun membentur kasur:** Jarak sisa lorong hanya 50 cm sehingga pintu lemari tidak bisa dibuka 90 derajat.",
-          "**Pencahayaan redup di dalam lemari:** Kesulitan membedakan warna pakaian gelap di pagi hari."
+          "**Lemari 3 pintu dan meja rias dibeli terpisah** - menyisakan celah 15 cm di antara keduanya yang jadi sarang debu dan tidak pernah dibersihkan.",
+          "**Pintu lemari ayun membentur kasur** karena sisa lorong hanya 50 cm, tidak cukup untuk bukaan penuh 90 derajat.",
+          "**Bagian dalam lemari terlalu redup** - sulit membedakan warna pakaian gelap di pagi hari."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Desain Wardrobe Terintegrasi SAVOY"
+        "text": "Wardrobe yang Dirancang Sebagai Satu Kesatuan"
       },
       {
         "type": "list",
         "items": [
-          "**Partisi Kaca Tempered Tinted:** Pintu kaca berbingkai aluminium tipis menciptakan ilusi kedalaman ruangan tanpa membuat isi pakaian tampak berantakan.",
-          "**Meja Rias Floating Menyatu Kabinet:** Meja rias dibuat menyambung langsung dari sisi lemari dengan cermin vertikal LED touch-sensor.",
-          "**Lampu LED Profile Sensor Otomatis:** Lampu menyala lembut begitu pintu lemari dibuka dan padam saat ditutup, hemat energi dan elegan."
+          "**Partisi kaca tempered tinted berbingkai aluminium tipis** menciptakan ilusi kedalaman ruangan tanpa membuat isi lemari tampak berantakan dari luar.",
+          "**Meja rias floating menyambung langsung dari sisi lemari**, lengkap dengan cermin vertikal LED touch-sensor.",
+          "==Lampu LED menyala otomatis begitu pintu dibuka dan padam saat ditutup== - hemat energi dan tidak perlu meraba saklar di pagi buta."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasikan Desain Lemari Impian Anda di Cimahi",
-        "text": "Punya kamar berukuran kompak di Cimahi yang ingin diubah menjadi master bedroom elegan? Chat kami langsung di [WhatsApp Lemari Custom Cimahi](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20lemari%20pakaian%20custom%20Cimahi)."
+        "text": "Punya kamar berukuran kompak di Cimahi yang ingin diubah menjadi master bedroom elegan? Chat kami langsung di [WhatsApp Lemari Custom Cimahi](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20lemari%20pakaian%20custom%20Cimahi)."
       }
     ]
   },
@@ -911,12 +875,12 @@
     "coverImageAlt": "Lemari bawah tangga custom di Padalarang, Bandung Barat",
     "readingMinutes": 5,
     "publishedAt": "2026-02-26",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Ruang di bawah tangga adalah salah satu 'ruang mati' terbesar di rumah tingkat dua lantai di Bandung Barat. Tanpa perabot custom, area ini biasanya hanya dimanfaatkan untuk menyandarkan sapu, tumpukan galon cadangan, atau kardus barang bekas yang merusak pemandangan ruang tengah."
+        "text": "Di rumah dua lantai Bandung Barat, ruang di bawah tangga hampir selalu jadi salah satu 'ruang mati' terbesar di rumah - tempat sapu disandarkan, galon cadangan ditumpuk, dan kardus lama bersembunyi sampai merusak pemandangan ruang tengah."
       },
       {
         "type": "image",
@@ -926,36 +890,32 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Kemiringan Sudut yang Tidak Standar & Debu Bertumpuk"
-      },
-      {
-        "type": "paragraph",
-        "text": "Tantangan arsitektural ruang bawah tangga:"
+        "text": "Kenapa Sudut Ini Sulit Diisi Lemari Toko"
       },
       {
         "type": "list",
         "items": [
-          "**Kemiringan anak tangga unik di setiap rumah:** Tinggi bordes dan derajat kemiringan tangga cor beton berbeda-beda, mustahil memakai lemari pabrikan.",
-          "**Kedalaman sempit di bagian depan tapi dalam di bagian belakang:** Mencapai barang di sudut terdalam sangat sulit bila hanya memakai pintu biasa.",
-          "**Lantai bawah tangga berisiko lembab:** Dekat dengan jalur pembuangan kamar mandi bawah tangga."
+          "**Kemiringan anak tangga berbeda di setiap rumah** - tinggi bordes dan derajat kemiringan cor beton tidak pernah sama persis, jadi lemari pabrikan mustahil pas.",
+          "**Sempit di depan, dalam di belakang** - barang di sudut paling dalam sulit dijangkau kalau hanya mengandalkan pintu biasa.",
+          "**Lantainya berisiko lembap** karena posisinya sering berdekatan dengan jalur pembuangan kamar mandi bawah tangga."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Lemari Bawah Tangga Presisi SAVOY"
+        "text": "Cara Kami Memaksimalkan Sudut Ini"
       },
       {
         "type": "list",
         "items": [
-          "**Laci Sorong Pull-Out Beroda Baja:** Seluruh isi rak ditarik keluar ke depan sehingga barang di sudut paling dalam sekalipun dapat dijangkau dalam satu tarikan ringan.",
-          "**Kombinasi Pintu Rata Dinding (Flush Door):** Pintu tanpa handle dengan mekanisme push-to-open yang menyatu rata dengan warna dinding ruangan.",
-          "**Ventilasi Mikro Tersembunyi:** Menjaga barang-barang yang disimpan di dalam lemari bawah tangga bebas dari bau apek dan jamur."
+          "==Laci sorong pull-out beroda baja== - seluruh isi rak ditarik ke depan sekaligus, jadi barang di sudut paling dalam pun terjangkau dengan satu tarikan ringan.",
+          "**Pintu rata dinding (flush door) tanpa handle**, dengan mekanisme push-to-open yang menyatu warna dengan dinding ruangan.",
+          "**Ventilasi mikro tersembunyi** menjaga barang yang disimpan di dalamnya bebas dari bau apek dan jamur."
         ]
       },
       {
         "type": "callout",
         "title": "Ubah Sudut Bawah Tangga Anda Sekarang",
-        "text": "Ingin area bawah tangga rumah Anda di Padalarang, Batujajar, atau Kotabaru terlihat rapi dan mewah? Hubungi kami via WhatsApp di [Chat Lemari Bawah Tangga WhatsApp](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20lemari%20bawah%20tangga%20Bandung%20Barat)."
+        "text": "Ingin area bawah tangga rumah Anda di Padalarang, Batujajar, atau Kotabaru terlihat rapi dan mewah? Hubungi kami via WhatsApp di [Chat Lemari Bawah Tangga WhatsApp](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20lemari%20bawah%20tangga%20Bandung%20Barat), atau lihat cakupan area di [Furniture Custom Bandung Barat](/services/furniture-custom-bandung-barat)."
       }
     ]
   },
@@ -964,17 +924,17 @@
     "title": "Kitchen Set Mini & Pantry Multifungsi untuk Apartemen Studio di Jakarta",
     "category": "Furniture Custom Jakarta",
     "summary": "Solusi memasak tanpa asap dan tumpukan perabot di apartemen Jakarta: kompor induksi tanam, cooker hood slim ductless, dan rak bumbu dorong.",
-    "seoTitle": "Kitchen Set Apartemen Studio Jakarta: Desain Compact",
+    "seoTitle": "Kitchen Set Apartemen Studio Jakarta",
     "coverImage": "/images/portfolio/apartemen/pak-yudi-jakarta-pusat-01.webp",
     "coverImageAlt": "Kitchen set minimalis apartemen studio Jakarta Pusat",
     "readingMinutes": 6,
     "publishedAt": "2026-02-24",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Tinggal di apartemen studio atau 1-bedroom di Jakarta menuntut efisiensi ruang tingkat tinggi. Lebar dinding dapur yang seringkali hanya 120-150 cm harus mampu menampung fungsi cuci piring, memasak, penyimpanan alat makan, hingga kulkas mini tanpa mengorbankan kenyamanan gerak."
+        "text": "Lebar dinding dapur di apartemen studio Jakarta sering cuma 120-150 cm, tapi tetap dituntut menampung cuci piring, memasak, penyimpanan alat makan, sampai kulkas mini - tanpa membuat penghuninya harus menyamping setiap kali bergerak."
       },
       {
         "type": "image",
@@ -984,36 +944,32 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Dapur Sempit, Bau Asap, & Colokan Listrik Terbatas"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kendala utama dapur apartemen metropolitan Jakarta:"
+        "text": "Kendala Khas Dapur Apartemen Studio"
       },
       {
         "type": "list",
         "items": [
-          "**Asap dan aroma masakan menempel di kasur:** Jarak antara dapur dan ranjang hanya 2-3 meter di unit studio.",
-          "**Tabletop habis untuk menaruh dispenser dan microwave:** Tidak ada sisa tempat kosong untuk memotong bahan makanan.",
-          "**Kabel rice cooker dan ketel listrik bertumpuk di satu stopkontak:** Rawan korsleting dan merusak estetika ruangan."
+          "**Asap dan aroma masakan menempel di kasur** - jarak dapur ke ranjang di unit studio seringkali cuma 2-3 meter.",
+          "**Tabletop habis untuk dispenser dan microwave**, tidak menyisakan tempat kosong untuk memotong bahan makanan.",
+          "**Kabel rice cooker dan ketel listrik menumpuk di satu stopkontak** - rawan korsleting sekaligus merusak tampilan dapur."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Desain Pantry Compact SAVOY"
+        "text": "Desain Pantry yang Bekerja di Ruang Sempit"
       },
       {
         "type": "list",
         "items": [
-          "**Cooker Hood Slim Karbon Aktif Tersembunyi:** Menghisap asap dan menyaring partikel minyak tanpa perlu membobol pipa keluar gedung.",
-          "**Appliance Garage dengan Pintu Geser / Tambour:** Menyembunyikan microwave dan dispenser di balik pintu kabinet rapi saat tidak dipakai.",
-          "**Sink Ekstra Dalam dengan Talenan Geser:** Lubang wastafel dapat ditutup talenan kayu yang pas, menambah area potong bahan masakan saat dibutuhkan."
+          "**Cooker hood slim karbon aktif tersembunyi**, menyaring asap dan partikel minyak tanpa perlu membobol pipa keluar gedung.",
+          "==Appliance garage dengan pintu geser (tambour)== menyembunyikan microwave dan dispenser di balik pintu kabinet rapi saat tidak dipakai.",
+          "**Sink ekstra dalam dengan talenan geser** - lubang wastafel bisa ditutup talenan kayu yang pas, menambah area potong saat dibutuhkan."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasi Interior Apartemen di Jakarta",
-        "text": "Miliki unit apartemen di Jakarta Selatan, Barat, Pusat, atau Timur yang ingin ditata fungsional? Diskusikan dengan tim kami di [WhatsApp Apartemen Jakarta](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20kitchen%20set%20apartemen%20Jakarta)."
+        "text": "Miliki unit apartemen di Jakarta Selatan, Barat, Pusat, atau Timur yang ingin ditata fungsional? Diskusikan dengan tim kami di [WhatsApp Apartemen Jakarta](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20kitchen%20set%20apartemen%20Jakarta), atau lihat cakupan area di [Furniture Custom Jakarta](/services/furniture-custom-jakarta)."
       }
     ]
   },
@@ -1027,12 +983,12 @@
     "coverImageAlt": "Backdrop TV modern custom untuk rumah cluster Tangerang",
     "readingMinutes": 5,
     "publishedAt": "2026-02-22",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Ruang keluarga pada rumah cluster baru di kawasan BSD City, Gading Serpong, dan Karawaci umumnya dirancang tanpa sekat pembatas dengan ruang makan. Backdrop TV custom berfungsi ganda: sebagai titik fokus estetika ruang tamu sekaligus solusi menyembunyikan kekacauan kabel elektronik di dinding."
+        "text": "Rumah cluster baru di BSD City, Gading Serpong, dan Karawaci hampir selalu punya ruang keluarga tanpa sekat pembatas dari ruang makan - artinya dinding TV langsung terlihat dari mana saja. Backdrop TV custom di sini berfungsi ganda: titik fokus estetika sekaligus tempat menyembunyikan kekacauan kabel elektronik."
       },
       {
         "type": "image",
@@ -1042,36 +998,32 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Kabel Menggantung Berantakan & Dinding Retak Rambut"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kondisi dinding ruang TV yang sering dikeluhkan pemilik rumah cluster:"
+        "text": "Yang Bikin Dinding Ruang TV Terlihat Berantakan"
       },
       {
         "type": "list",
         "items": [
-          "**Kabel TV, soundbar, dan colokan menggantung:** Dinding putih terlihat kotor dan tidak rapi karena colokan listrik berada di bawah TV.",
-          "**Dinding plesteran cluster baru mengalami retak rambut:** Menurunkan keindahan ruang keluarga saat dipandang.",
-          "**Meja TV lantai memakan ruang sirkulasi lorong:** Menghalangi jalur jalan menuju tangga atau dapur."
+          "**Kabel TV, soundbar, dan colokan menggantung** - dinding putih terlihat kotor karena colokan listrik ada tepat di bawah TV.",
+          "**Retak rambut pada plesteran rumah cluster baru**, yang perlahan menurunkan keindahan ruang keluarga.",
+          "**Meja TV lantai memakan ruang sirkulasi lorong**, menghalangi jalur ke tangga atau dapur."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Backdrop TV Floating SAVOY"
+        "text": "Backdrop yang Merapikan Sekaligus Mempercantik"
       },
       {
         "type": "list",
         "items": [
-          "**Panel Dinding Tanam Jalur Conduit:** Seluruh kabel listrik dan HDMI dilewatkan di dalam pipa khusus di balik panel backdrop, bebas kabel menjuntai.",
-          "**Kabinet Gantung Floating Tanpa Kaki:** Membebaskan ruang lantai hingga 100%, memudahkan sapu dan robot vacuum lewat tanpa rintangan.",
-          "**Aksen Marmer HPL & Kisi Fluted:** Kombinasi tekstur marmer elegan dan kisi-kisi kayu memberikan kesan mewah seperti lobi hotel bintang lima."
+          "==Seluruh kabel listrik dan HDMI dilewatkan di dalam pipa conduit tersembunyi== di balik panel backdrop - tidak ada lagi kabel menjuntai.",
+          "**Kabinet gantung floating tanpa kaki**, membebaskan ruang lantai sepenuhnya sehingga sapu dan robot vacuum lewat tanpa rintangan.",
+          "**Aksen marmer HPL dipadu kisi fluted** memberi kesan mewah tanpa harus memakai marmer asli yang berat dan mahal."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasikan Backdrop TV Rumah Anda di Tangerang",
-        "text": "Tingkatkan estetika ruang keluarga rumah cluster Anda di Tangerang dan BSD. Konsultasikan ukuran layar TV dan dinding Anda via WhatsApp di [Chat Backdrop TV Tangerang](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20backdrop%20TV%20Tangerang)."
+        "text": "Tingkatkan estetika ruang keluarga rumah cluster Anda di Tangerang dan BSD. Konsultasikan ukuran layar TV dan dinding Anda via WhatsApp di [Chat Backdrop TV Tangerang](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20backdrop%20TV%20Tangerang), atau lihat cakupan area di [Furniture Custom Tangerang](/services/furniture-custom-tangerang)."
       }
     ]
   },
@@ -1085,12 +1037,12 @@
     "coverImageAlt": "Kitchen set tahan panas dan anti lembab di Bekasi",
     "readingMinutes": 6,
     "publishedAt": "2026-02-18",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Suhu udara kawasan Bekasi yang relatif terik menuntut pemilihan bahan furnitur dapur yang tahan terhadap pemuaian termal. Di samping itu, kebiasaan memasak masakan berkuah dan tumisan khas Indonesia menghasilkan uap panas dan cipratan minyak intensif yang membutuhkan spesifikasi material di atas rata-rata."
+        "text": "Masakan berkuah dan tumisan khas Indonesia menghasilkan uap panas dan cipratan minyak yang jauh lebih intensif daripada dapur negara empat musim - ditambah suhu udara Bekasi yang relatif terik, kabinet dapur di sini butuh spesifikasi material di atas rata-rata supaya tidak cepat rusak."
       },
       {
         "type": "image",
@@ -1100,36 +1052,32 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Kabinet Dekat Kompor Melengkung & Bau Gas Terperangkap"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kerusakan umum yang sering terjadi di dapur rumah Bekasi:"
+        "text": "Kerusakan yang Paling Sering Kami Temukan"
       },
       {
         "type": "list",
         "items": [
-          "**Pintu kabinet di atas kompor melengkung:** Uap mendidih dari panci merebus masuk ke pori-pori kayu murah dan membuat pintu kabinet tidak bisa menutup rapat.",
-          "**Tabung gas di dalam lemari tertutup rapat tanpa sirkulasi:** Berbahaya saat terjadi kebocoran gas halus dari regulator.",
-          "**Engsel sendok berkarat cepat:** Udara lembab berminyak mempercepat korosi pada engsel besi murah."
+          "**Pintu kabinet di atas kompor melengkung** - uap mendidih dari panci masuk ke pori kayu murah hingga pintunya tidak bisa lagi menutup rapat.",
+          "**Tabung gas disimpan di lemari tertutup rapat tanpa sirkulasi** - berbahaya kalau terjadi kebocoran halus dari regulator.",
+          "**Engsel sendok cepat berkarat** karena udara lembap berminyak mempercepat korosi pada besi murah."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Spesifikasi Tahan Panas SAVOY"
+        "text": "Spesifikasi yang Kami Terapkan di Dapur Bekasi"
       },
       {
         "type": "list",
         "items": [
-          "**Papan Inti Plywood Padat dengan Pelindung Alum Foil:** Area kompor dan oven tanam dilapisi isolator panas aluminium foil tahan api.",
-          "**Engsel Stainless Steel SUS 304:** Engsel hidrolik murni anti-karat dengan jaminan ketahanan terhadap uap air dan garam dapur.",
-          "**Pintu Kabinet Gas Berkisi Louvre:** Ventilasi bawah memastikan aliran udara segar konstan untuk keamanan maksimal tabung elpiji."
+          "==Papan inti plywood padat dilapisi isolator aluminium foil tahan api== di area kompor dan oven tanam.",
+          "**Engsel stainless steel SUS 304** - hidrolik murni anti-karat, tahan terhadap uap air dan garam dapur.",
+          "**Pintu kabinet gas berkisi louvre**, memastikan aliran udara segar konstan untuk keamanan tabung elpiji."
         ]
       },
       {
         "type": "callout",
         "title": "Konsultasi Kitchen Set Aman & Awet di Bekasi",
-        "text": "Dapatkan dapur cantik yang tahan panas puluhan tahun untuk hunian Anda di Grand Galaxy, Harapan Indah, atau Summarecon Bekasi. Hubungi kami di [WhatsApp Kitchen Set Bekasi](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20kitchen%20set%20Bekasi)."
+        "text": "Dapatkan dapur cantik yang tahan panas puluhan tahun untuk hunian Anda di Grand Galaxy, Harapan Indah, atau Summarecon Bekasi. Hubungi kami di [WhatsApp Kitchen Set Bekasi](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20kitchen%20set%20Bekasi), atau lihat cakupan area di [Furniture Custom Bekasi](/services/furniture-custom-bekasi)."
       }
     ]
   },
@@ -1143,12 +1091,12 @@
     "coverImageAlt": "Perawatan finishing HPL dan Duco furniture custom",
     "readingMinutes": 7,
     "publishedAt": "2026-02-15",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Setelah berinvestasi pada custom furniture berkualitas, perawatan harian yang tepat adalah kunci menjaga kilau dan keawetan mekanisnya. Seringkali kerusakan bukan karena materialnya yang jelek, melainkan karena penggunaan cairan pembersih yang salah yang merusak lapisan pelindung terluar."
+        "text": "Kerusakan pada furnitur HPL dan duco jarang berasal dari materialnya sendiri. Penyebab paling umum justru cara membersihkannya - cairan yang salah bisa mengikis lapisan pelindung terluar jauh lebih cepat daripada pemakaian normal bertahun-tahun."
       },
       {
         "type": "image",
@@ -1158,36 +1106,32 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Noda Minyak Menempel & Rel Laci Macet"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kecerobohan perawatan yang merusak furnitur custom:"
+        "text": "Kebiasaan yang Diam-Diam Merusak Furnitur"
       },
       {
         "type": "list",
         "items": [
-          "**Menggosok HPL dengan spons kawat atau cairan pemutih:** Menghilangkan lapisan anti-gores dan menimbulkan baret permanen.",
-          "**Mengelap cat duco dengan alkohol berkonsentrasi tinggi:** Menyebabkan cat putih menguning (yellowing) dan lapisan pernis mengelupas.",
-          "**Debu halus menumpuk di jalur rel laci:** Membuat laci terasa berat saat ditarik dan merusak bola baja bearing di dalamnya."
+          "**Menggosok HPL dengan spons kawat atau cairan pemutih** - menghilangkan lapisan anti-gores dan meninggalkan baret permanen.",
+          "**Mengelap cat duco dengan alkohol berkonsentrasi tinggi** - membuat cat putih menguning (yellowing) dan lapisan pernisnya mengelupas.",
+          "**Membiarkan debu halus menumpuk di jalur rel laci** - laci jadi berat saat ditarik dan bola baja bearing di dalamnya ikut rusak."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Perawatan Praktis & Aman dari Tim Teknis"
+        "text": "Rutinitas Perawatan yang Sebenarnya Aman"
       },
       {
         "type": "list",
         "items": [
-          "**Gunakan Kain Microfiber & Air Sabun Cuci Piring Ringan:** Formula pembersih piring ampuh mengangkat lemak masakan tanpa mengikis resin laminasi HPL.",
-          "**Lap Kering Segera:** Jangan biarkan air menggenang di sambungan edging lebih dari 10 menit setelah dibersihkan.",
-          "**Semprotkan Pelumas Silikon Kering pada Rel:** Lakukan 6 bulan sekali pada rel laci dan engsel hidrolik untuk menjaga pergerakan tetap senyap dan lancar."
+          "==Kain microfiber dengan air sabun cuci piring ringan== sudah cukup mengangkat lemak masakan tanpa mengikis resin laminasi HPL.",
+          "**Lap kering segera** - jangan biarkan air menggenang di sambungan edging lebih dari 10 menit setelah dibersihkan.",
+          "**Semprotkan pelumas silikon kering pada rel setiap 6 bulan** - baik rel laci maupun engsel hidrolik, supaya pergerakannya tetap senyap dan lancar."
         ]
       },
       {
         "type": "callout",
         "title": "Butuh Bantuan Service atau Penyesuaian Hardware?",
-        "text": "Pintu lemari Anda mulai miring atau engsel butuh disetel ulang? Konsultasikan perbaikan furniture Anda bersama tim SAVOY via [WhatsApp Tim Perawatan](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20perawatan%20dan%20service%20furniture)."
+        "text": "Pintu lemari Anda mulai miring atau engsel butuh disetel ulang? Konsultasikan perbaikan furniture Anda bersama tim SAVOY via [WhatsApp Tim Perawatan](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20perawatan%20dan%20service%20furniture). Belum yakin finishing mana yang paling cocok? Baca [perbandingan HPL, Duco, dan Melamik](/knowledge/perbandingan-lengkap-finishing-hpl-duco-dan-melamik)."
       }
     ]
   },
@@ -1201,12 +1145,12 @@
     "coverImageAlt": "Meja kerja built-in dan rak buku ergonomis di kamar tidur",
     "readingMinutes": 6,
     "publishedAt": "2026-02-12",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Bekerja dari rumah (work from home) telah menjadi rutinitas permanen bagi banyak profesional. Namun, bekerja di meja makan atau meja kopi ruang tamu terbukti menurunkan fokus dan memicu sakit leher. Meja kerja custom built-in yang dirancang pas dengan sudut ruangan menghadirkan ruang kerja produktif tanpa menyita luas kamar tidur."
+        "text": "Bekerja di meja makan atau meja kopi ruang tamu terasa praktis di awal, tapi cenderung menurunkan fokus dan memicu sakit leher begitu work from home berubah dari pengecualian menjadi rutinitas. Sudut kamar yang selama ini kosong sebenarnya cukup untuk meja kerja built-in yang jauh lebih layak."
       },
       {
         "type": "image",
@@ -1216,55 +1160,51 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Meja Kerja Berantakan & Ergonomi Buruk"
-      },
-      {
-        "type": "paragraph",
-        "text": "Kendala umum ruang kerja dadakan di rumah:"
+        "text": "Kenapa Ruang Kerja Dadakan Terasa Tidak Nyaman"
       },
       {
         "type": "list",
         "items": [
-          "**Tinggi meja tidak pas:** Meja yang terlalu tinggi memaksa bahu terangkat, memicu pegal otot punggung atas dalam 2 jam kerja.",
-          "**Kabel monitor, laptop, dan charger berseliweran:** Meja terlihat kumuh dan sempit untuk meletakkan buku catatan.",
-          "**Buku dan berkas bertumpuk tidak beraturan:** Mencari dokumen penting membuang waktu dan mengganggu konsentrasi."
+          "**Tinggi meja tidak pas** - meja yang terlalu tinggi memaksa bahu terangkat dan memicu pegal punggung atas dalam waktu 2 jam saja.",
+          "**Kabel monitor, laptop, dan charger berseliweran**, membuat meja terlihat kumuh dan sempit untuk meletakkan buku catatan.",
+          "**Buku dan berkas menumpuk tidak beraturan** - mencari satu dokumen penting jadi membuang waktu dan mengganggu konsentrasi."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Meja Kerja Ergonomis SAVOY"
+        "text": "Detail yang Membuat Meja Kerja Benar-Benar Nyaman Dipakai"
       },
       {
         "type": "list",
         "items": [
-          "**Ketinggian Meja Standar 75 cm:** Sesuai standar antropometri tubuh Indonesia untuk posisi lengan 90 derajat saat mengetik.",
-          "**Grommet Aluminium Tanam & Wire Tray:** Kotak colokan listrik tersembunyi di bawah permukaan meja dengan jalur kabel rapi keluar ke stopkontak.",
-          "**Rak Buku Ambalan Berpenyangga Tersembunyi (Concealed Bracket):** Rak buku yang kuat menahan beban puluhan kilogram tanpa siku besi yang terlihat."
+          "==Tinggi meja standar 75 cm==, sesuai antropometri tubuh Indonesia untuk posisi lengan 90 derajat saat mengetik.",
+          "**Grommet aluminium tanam dan wire tray** - kotak colokan listrik tersembunyi di bawah permukaan meja dengan jalur kabel yang rapi.",
+          "**Rak buku dengan penyangga tersembunyi (concealed bracket)**, kuat menahan beban puluhan kilogram tanpa siku besi yang terlihat."
         ]
       },
       {
         "type": "callout",
         "title": "Wujudkan Ruang Kerja Nyaman di Rumah Anda",
-        "text": "Ingin sudut kamar atau ruang kosong Anda diubah menjadi home office yang nyaman dan produktif? Chat tim desainer SAVOY via WhatsApp di [Konsultasi Meja Kerja WhatsApp](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20meja%20kerja%20custom)."
+        "text": "Ingin sudut kamar atau ruang kosong Anda diubah menjadi home office yang nyaman dan produktif? Chat tim desainer SAVOY via WhatsApp di [Konsultasi Meja Kerja WhatsApp](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20meja%20kerja%20custom)."
       }
     ]
   },
   {
     "slug": "alur-pemesanan-custom-furniture-dari-survey-hingga-pasang",
-    "title": "Langkah Demi Langkah Pesan Custom Furniture: Dari Survey Dimensi Hingga Pemasangan di Lokasi",
+    "title": "Alur Pemesanan Custom Furniture: Dari Survey Dimensi Hingga Pemasangan",
     "category": "Tips & Inspirasi",
     "summary": "Ketahui proses transparan pembuatan interior custom: konsultasi awal, pengukuran laser 3D, revisi gambar kerja, produksi workshop, hingga instalasi rapi.",
-    "seoTitle": "Alur Pemesanan Custom Furniture SAVOY: Transparan & Terukur",
+    "seoTitle": "Alur Pemesanan Custom Furniture: Survey ke Pasang",
     "coverImage": "/images/process/02-survey-lokasi.webp",
     "coverImageAlt": "Proses survey lokasi custom furniture SAVOY",
     "readingMinutes": 5,
     "publishedAt": "2026-02-10",
-    "updatedAt": "2026-09-14",
+    "updatedAt": "2026-09-17",
     "status": "aktif",
     "body": [
       {
         "type": "paragraph",
-        "text": "Bagi yang baru pertama kali memesan custom furniture, prosesnya mungkin terasa membingungkan: mulai dari mana, bagaimana cara menghitung biayanya, dan bagaimana memastikan hasil akhirnya sesuai dengan yang dibayangkan? Di SAVOY, seluruh alur kerja didasarkan pada transparansi dan kepastian kontrak teknis."
+        "text": "Mulai dari mana, bagaimana biayanya dihitung, dan bagaimana memastikan hasil akhirnya benar-benar sesuai bayangan - tiga pertanyaan itu yang paling sering muncul dari orang yang baru pertama kali memesan custom furniture. Jawabannya ada pada seberapa transparan alur kerja vendornya, bukan pada seberapa bagus render 3D yang ditunjukkan di awal."
       },
       {
         "type": "image",
@@ -1274,38 +1214,34 @@
       },
       {
         "type": "heading",
-        "text": "Masalah: Ketakutan Hasil Beda dengan Desain & Biaya Siluman"
-      },
-      {
-        "type": "paragraph",
-        "text": "Pengalaman buruk yang sering dialami konsumen saat memakai vendor tidak profesional:"
+        "text": "Pengalaman Buruk yang Sering Terjadi dengan Vendor Kurang Rapi"
       },
       {
         "type": "list",
         "items": [
-          "**Warna dan ukuran hasil jadi berbeda dari 3D:** Gambar render terlihat megah, tetapi aslinya memakai material tipis dan engsel berisik.",
-          "**Biaya tambahan tiba-tiba di akhir pemasangan:** Biaya pengiriman, ongkos potong di lokasi, dan biaya pasang ditagihkan terpisah.",
-          "**Jadwal molor berminggu-minggu:** Pengerjaan di dalam rumah memakan waktu lama, mengotori lantai dengan debu gergaji dan bau cat menyengat."
+          "**Hasil jadi berbeda dari render 3D** - gambar terlihat megah, tapi aslinya memakai material tipis dan engsel berisik.",
+          "**Biaya tambahan muncul di akhir pemasangan** - ongkos kirim, potong di lokasi, dan biaya pasang ditagihkan terpisah tanpa pemberitahuan awal.",
+          "**Jadwal molor berminggu-minggu**, sementara lantai rumah kotor oleh debu gergaji dan bau cat menyengat selama itu."
         ]
       },
       {
         "type": "heading",
-        "text": "Solusi Alur Kerja Terstandar SAVOY"
+        "text": "Lima Langkah yang Kami Jalankan, Setiap Proyek"
       },
       {
         "type": "list",
         "items": [
-          "**Langkah 1 - Konsultasi & Estimasi Awal Gratis:** Kirimkan ukuran kasar ruangan dan foto via WhatsApp untuk mendapatkan perkiraan budget tanpa komitmen.",
-          "**Langkah 2 - Survey Aktual Laser di Lokasi:** Tim teknis datang langsung mengukur dinding, elevasi lantai, dan mendokumentasikan jalur utilitas.",
-          "**Langkah 3 - Gambar Kerja 2D & Sampel Material:** Anda menyetujui ukuran pasti dan memegang langsung sampel fisik HPL sebelum produksi.",
-          "**Langkah 4 - Produksi di Workshop Sendiri:** Dipotong dengan mesin panel saw presisi dan edging hot-melt tanpa mengotori rumah Anda.",
-          "**Langkah 5 - Instalasi Bersih Tim In-House:** Modul tiba siap pasang dalam 1-2 hari kerja tanpa suara bising berkepanjangan."
+          "**Langkah 1 - Konsultasi dan estimasi awal gratis:** kirim ukuran kasar ruangan dan foto via WhatsApp untuk perkiraan budget tanpa komitmen.",
+          "**Langkah 2 - Survey aktual laser di lokasi:** tim teknis mengukur dinding, elevasi lantai, dan mendokumentasikan jalur utilitas secara langsung.",
+          "**Langkah 3 - Gambar kerja 2D dan sampel material:** Anda menyetujui ukuran pasti dan memegang sendiri sampel fisik HPL sebelum produksi dimulai.",
+          "**Langkah 4 - Produksi di workshop sendiri:** dipotong dengan mesin panel saw presisi dan edging hot-melt, tanpa mengotori rumah Anda.",
+          "==Langkah 5 - Instalasi bersih oleh tim in-house: modul tiba siap pasang dalam 1-2 hari kerja==, tanpa suara bising berkepanjangan."
         ]
       },
       {
         "type": "callout",
         "title": "Mulai Proyek Furniture Custom Anda Hari Ini",
-        "text": "Konsultasikan ide dan ruangan Anda bersama tim kami secara gratis via WhatsApp di [Mulai Konsultasi WhatsApp SAVOY](https://wa.me/6281772332300?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20awal%20custom%20furniture)."
+        "text": "Konsultasikan ide dan ruangan Anda bersama tim kami secara gratis via WhatsApp di [Mulai Konsultasi WhatsApp SAVOY](https://wa.me/6281992557790?text=Halo%20SAVOY%20Furniture%2C%20saya%20ingin%20konsultasi%20awal%20custom%20furniture)."
       }
     ]
   }

@@ -48,7 +48,7 @@ export function ApproachMotion({ items }: { items: ApproachCard[] }) {
         },
       });
     },
-    { scope: sectionRef, dependencies: [reducedMotion] }
+    { scope: sectionRef, dependencies: [reducedMotion], revertOnUpdate: true }
   );
 
   return (
@@ -78,37 +78,37 @@ export function ApproachMotion({ items }: { items: ApproachCard[] }) {
           </p>
         </div>
 
-        <ol className="approach-grid grid gap-space-sm sm:grid-cols-2 xl:grid-cols-4 xl:gap-space-md">
+        {/*
+          A stepper, not four independent feature cards: the copy already
+          calls this "satu proses terpadu" (one integrated process), so the
+          layout should say that before a reader gets to the words. The
+          connecting line only reads correctly across a single row, hence
+          `xl:block` - at narrower widths the grid wraps to two columns and a
+          horizontal line would visually connect the wrong cards.
+        */}
+        <ol className="approach-grid relative grid gap-x-space-lg gap-y-space-lg sm:grid-cols-2 xl:grid-cols-4">
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-x-0 top-[22px] hidden h-px bg-border-hairline-strong xl:block"
+          />
           {items.map((item) => (
             <motion.li
               key={item.index}
-              className="approach-card group relative min-h-72 overflow-hidden rounded-lg border border-border-hairline bg-surface-container-lowest p-space-lg shadow-hairline transition-colors hover:border-primary-container sm:min-h-80 sm:p-space-xl xl:min-h-72"
-              whileHover={reducedMotion ? undefined : { y: -8 }}
-              whileTap={reducedMotion ? undefined : { y: -2 }}
+              className="approach-card group relative flex flex-col gap-space-md"
+              whileHover={reducedMotion ? undefined : { y: -4 }}
+              whileTap={reducedMotion ? undefined : { y: -1 }}
               transition={{ duration: duration.micro, ease: easeOutEditorial }}
             >
-              <span
-                aria-hidden
-                className="absolute -right-4 -top-8 select-none text-[112px] font-bold leading-none text-primary-container/12 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:-translate-y-1 group-hover:text-primary-container/18 sm:text-[136px]"
-              >
+              <span className="relative z-10 inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-border-hairline-strong bg-surface text-label-md font-bold text-on-surface transition-colors duration-300 group-hover:border-primary-container group-hover:bg-primary-container group-hover:text-on-primary-container">
                 {item.index}
               </span>
-              <span
-                aria-hidden
-                className="absolute inset-x-space-lg bottom-0 h-px origin-left scale-x-0 bg-primary-container transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-x-100"
-              />
-              <div className="relative flex h-full flex-col justify-between gap-space-xl">
-                <span className="inline-flex size-10 items-center justify-center rounded-full bg-primary-fixed text-label-md font-bold text-primary">
-                  {item.index}
-                </span>
-                <div className="space-y-space-sm">
-                  <h3 className="text-headline-sm font-semibold leading-tight text-on-surface">
-                    {item.title}
-                  </h3>
-                  <p className="text-body-sm leading-relaxed text-on-surface-variant">
-                    {item.body}
-                  </p>
-                </div>
+              <div className="space-y-space-2xs rounded-lg border border-border-hairline bg-surface-container-lowest p-space-lg shadow-hairline transition-[border-color,box-shadow] duration-300 group-hover:border-primary-container group-hover:shadow-panel">
+                <h3 className="text-headline-sm font-semibold leading-tight text-on-surface">
+                  {item.title}
+                </h3>
+                <p className="text-body-sm leading-relaxed text-on-surface-variant">
+                  {item.body}
+                </p>
               </div>
             </motion.li>
           ))}

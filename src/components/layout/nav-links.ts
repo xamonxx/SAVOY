@@ -1,8 +1,19 @@
+import {
+  BedDouble,
+  Boxes,
+  DoorClosed,
+  Refrigerator,
+  Tv,
+  type LucideIcon,
+} from "lucide-react";
+
 import { serviceAreas } from "@/data/service-areas";
 
 export type SubNavLink = {
   href: string;
   label: string;
+  /** Shown in the desktop dropdown only - the mobile menu and footer stay text-only. */
+  icon?: LucideIcon;
 };
 
 export type NavItem = {
@@ -17,11 +28,11 @@ export const areaNavLinks: SubNavLink[] = serviceAreas.map((area) => ({
 }));
 
 export const customFurnitureNavLinks: readonly SubNavLink[] = [
-  { href: "/furniture-custom/kitchen-set", label: "Kitchen Set Custom" },
-  { href: "/furniture-custom/lemari-custom", label: "Lemari Custom" },
-  { href: "/furniture-custom/lemari-bawah-tangga", label: "Lemari Bawah Tangga Custom" },
-  { href: "/furniture-custom/backdrop-tv", label: "Backdrop TV Custom" },
-  { href: "/furniture-custom/furniture-kamar", label: "Furniture Kamar" },
+  { href: "/furniture-custom/kitchen-set", label: "Kitchen Set Custom", icon: Refrigerator },
+  { href: "/furniture-custom/lemari-custom", label: "Lemari Custom", icon: DoorClosed },
+  { href: "/furniture-custom/lemari-bawah-tangga", label: "Lemari Bawah Tangga Custom", icon: Boxes },
+  { href: "/furniture-custom/backdrop-tv", label: "Backdrop TV Custom", icon: Tv },
+  { href: "/furniture-custom/furniture-kamar", label: "Furniture Kamar", icon: BedDouble },
 ] as const;
 
 /** Primary navigation, shared by the header, the mobile menu and the footer. */

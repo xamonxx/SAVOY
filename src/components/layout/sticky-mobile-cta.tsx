@@ -136,7 +136,7 @@ export function StickyMobileCta() {
             rel="noopener noreferrer"
             onClick={() => track("whatsapp_click", { source: "sticky_mobile" })}
             tabIndex={shown ? undefined : -1}
-            className="inline-flex flex-1 items-center justify-center gap-space-2xs rounded-lg bg-primary-container px-space-xs py-space-sm text-label-md font-semibold text-deep-black"
+            className="inline-flex flex-1 items-center justify-center gap-space-2xs rounded-lg bg-primary-container px-space-xs py-space-sm text-label-md font-semibold text-pure-white"
           >
             <MessageCircle aria-hidden className="size-4" />
             WhatsApp

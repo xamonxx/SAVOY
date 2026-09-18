@@ -4,6 +4,7 @@ import React, { useRef, useState, useMemo } from "react";
 import {
   Bold,
   Italic,
+  Highlighter,
   Strikethrough,
   Heading2,
   Heading3,
@@ -619,7 +620,7 @@ export function ArticleMarkdownEditor({
                   onClick={() => setFontSize("sm")}
                   className={`rounded px-2 py-0.5 text-xs font-semibold transition-colors ${
                     fontSize === "sm"
-                      ? "bg-primary-container text-deep-black"
+                      ? "bg-primary-container text-pure-white"
                       : "text-muted-gray hover:text-on-surface"
                   }`}
                 >
@@ -630,7 +631,7 @@ export function ArticleMarkdownEditor({
                   onClick={() => setFontSize("base")}
                   className={`rounded px-2 py-0.5 text-xs font-semibold transition-colors ${
                     fontSize === "base"
-                      ? "bg-primary-container text-deep-black"
+                      ? "bg-primary-container text-pure-white"
                       : "text-muted-gray hover:text-on-surface"
                   }`}
                 >
@@ -641,7 +642,7 @@ export function ArticleMarkdownEditor({
                   onClick={() => setFontSize("lg")}
                   className={`rounded px-2 py-0.5 text-xs font-semibold transition-colors ${
                     fontSize === "lg"
-                      ? "bg-primary-container text-deep-black"
+                      ? "bg-primary-container text-pure-white"
                       : "text-muted-gray hover:text-on-surface"
                   }`}
                 >
@@ -660,7 +661,7 @@ export function ArticleMarkdownEditor({
                   onClick={() => setFontFamily("sans")}
                   className={`rounded px-2 py-0.5 text-xs font-semibold transition-colors ${
                     fontFamily === "sans"
-                      ? "bg-primary-container text-deep-black"
+                      ? "bg-primary-container text-pure-white"
                       : "text-muted-gray hover:text-on-surface"
                   }`}
                 >
@@ -671,7 +672,7 @@ export function ArticleMarkdownEditor({
                   onClick={() => setFontFamily("mono")}
                   className={`rounded px-2 py-0.5 font-mono text-xs font-semibold transition-colors ${
                     fontFamily === "mono"
-                      ? "bg-primary-container text-deep-black"
+                      ? "bg-primary-container text-pure-white"
                       : "text-muted-gray hover:text-on-surface"
                   }`}
                 >
@@ -730,6 +731,14 @@ export function ArticleMarkdownEditor({
             title="Coret / Strikethrough (~~teks~~)"
           >
             <Strikethrough className="size-4" />
+          </button>
+          <button
+            type="button"
+            onClick={() => applyFormat("==", "==", "teks penting")}
+            className="rounded p-1.5 text-on-surface hover:bg-surface-container-high transition-colors"
+            title="Sorot Kuning / Highlight (==teks==)"
+          >
+            <Highlighter className="size-4" />
           </button>
           <button
             type="button"
@@ -1102,7 +1111,7 @@ export function ArticleMarkdownEditor({
       {/* 3. MODAL: TAMBAH GAMBAR (JPG & PNG)                                      */}
       {/* ========================================================================= */}
       {showImageModal ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-deep-black/60 p-4 backdrop-blur-xs animate-in fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-scrim-black/60 p-4 backdrop-blur-xs animate-in fade-in">
           <div className="w-full max-w-md rounded-xl border border-border-hairline bg-surface p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-border-hairline pb-3">
               <div className="flex items-center gap-2">
@@ -1272,7 +1281,7 @@ export function ArticleMarkdownEditor({
                 type="button"
                 disabled={isUploadingImage || (imageTab === "upload" && !selectedFile) || (imageTab === "url" && !imageUrl.trim())}
                 onClick={handleInsertImage}
-                className="inline-flex items-center gap-1.5 rounded-md bg-primary-container px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-deep-black hover:opacity-90 disabled:opacity-50 transition-opacity"
+                className="inline-flex items-center gap-1.5 rounded-md bg-primary-container px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-pure-white hover:opacity-90 disabled:opacity-50 transition-opacity"
               >
                 {isUploadingImage ? (
                   <>
@@ -1295,7 +1304,7 @@ export function ArticleMarkdownEditor({
       {/* 4. MODAL: SISIPKAN VIDEO YOUTUBE (DENGAN LIVE PREVIEW)                    */}
       {/* ========================================================================= */}
       {showVideoModal ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-deep-black/60 p-4 backdrop-blur-xs animate-in fade-in">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-scrim-black/60 p-4 backdrop-blur-xs animate-in fade-in">
           <div className="w-full max-w-lg rounded-xl border border-border-hairline bg-surface p-6 shadow-2xl space-y-4">
             <div className="flex items-center justify-between border-b border-border-hairline pb-3">
               <div className="flex items-center gap-2">
@@ -1393,7 +1402,7 @@ export function ArticleMarkdownEditor({
                 type="button"
                 disabled={!previewVideoId}
                 onClick={handleInsertVideo}
-                className="inline-flex items-center gap-1.5 rounded-md bg-primary-container px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-deep-black hover:opacity-90 disabled:opacity-50 transition-opacity"
+                className="inline-flex items-center gap-1.5 rounded-md bg-primary-container px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-pure-white hover:opacity-90 disabled:opacity-50 transition-opacity"
               >
                 <Check className="size-3.5" />
                 Sisipkan Video ke Artikel

@@ -86,13 +86,13 @@ export default function HomePage() {
 
       <Hero />
       <Survey />
-      <Problems />
-      <Approach />
       <PortfolioPreview />
+      <Approach />
+      <Problems />
       <CaseStudy />
       <ServicesGrid />
-      <KnowledgePreview />
       <Process />
+      <KnowledgePreview />
       <Timeline />
       <Materials />
       <Guarantees />

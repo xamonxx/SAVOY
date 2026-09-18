@@ -11,8 +11,8 @@ export function FormattedText({
 }) {
   if (!text) return null;
 
-  // Split by **bold**, *italic*, `code`, and [link](url)
-  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|`.*?`|\[.*?\]\(.*?\))/g);
+  // Split by **bold**, *italic*, ==highlight==, ~~strikethrough~~, `code`, and [link](url)
+  const parts = text.split(/(\*\*.*?\*\*|\*.*?\*|==.*?==|~~.*?~~|`.*?`|\[.*?\]\(.*?\))/g);
 
   return (
     <span className={className}>
@@ -29,6 +29,23 @@ export function FormattedText({
             <em key={index} className="italic text-on-surface">
               {part.slice(1, -1)}
             </em>
+          );
+        }
+        if (part.startsWith("==") && part.endsWith("==")) {
+          return (
+            <mark
+              key={index}
+              className="rounded-sm bg-highlight-marker px-1 py-0.5 text-on-highlight-marker [box-decoration-break:clone] [-webkit-box-decoration-break:clone]"
+            >
+              {part.slice(2, -2)}
+            </mark>
+          );
+        }
+        if (part.startsWith("~~") && part.endsWith("~~")) {
+          return (
+            <s key={index} className="text-on-surface-variant">
+              {part.slice(2, -2)}
+            </s>
           );
         }
         if (part.startsWith("`") && part.endsWith("`")) {

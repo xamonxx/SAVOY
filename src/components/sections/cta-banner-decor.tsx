@@ -129,22 +129,31 @@ function DecorGrid({ staticMode = false }: { staticMode?: boolean }) {
       {decorItems.map(({ Icon, className, iconClassName, rotate, size }, index) => (
         <motion.div
           key={`${className}-${rotate}`}
-          className={cn(
-            "absolute grid place-items-center rounded-lg border border-deep-black/12 bg-pure-white/18 text-deep-black shadow-[0_18px_55px_-36px_rgba(9,11,13,0.45)] backdrop-blur-[2px]",
-            sizeClass[size],
-            className,
-          )}
+          className={cn("absolute grid place-items-center", sizeClass[size], className)}
           initial={false}
           style={{
             rotate,
             y: staticMode ? 0 : index % 2 === 0 ? -8 : 8,
           }}
         >
-          <Icon
-            aria-hidden="true"
-            strokeWidth={1.7}
-            className={cn("text-deep-black/70", iconSizeClass[size], iconClassName)}
+          {/*
+            The badge's "thickness": a second, darker rounded shape sitting
+            behind and offset down-right, so the face above it reads as a
+            raised object with an edge rather than a flat translucent chip -
+            the cheapest real approximation of a 3D icon without shipping a
+            model or an icon-pack dependency.
+          */}
+          <span
+            aria-hidden
+            className="absolute inset-0 translate-x-1.5 translate-y-2 rounded-2xl bg-[color-mix(in_srgb,var(--color-deep-black)_55%,transparent)]"
           />
+          <span className="relative grid size-full place-items-center rounded-2xl border border-pure-white/70 bg-gradient-to-b from-pure-white to-surface-container-low shadow-[0_20px_32px_-14px_rgba(9,11,13,0.45),inset_0_1px_0_rgba(255,255,255,0.9)]">
+            <Icon
+              aria-hidden="true"
+              strokeWidth={2}
+              className={cn("text-primary drop-shadow-[0_1px_1px_rgba(15,60,44,0.25)]", iconSizeClass[size], iconClassName)}
+            />
+          </span>
         </motion.div>
       ))}
     </div>
@@ -152,19 +161,25 @@ function DecorGrid({ staticMode = false }: { staticMode?: boolean }) {
 }
 
 function BlueprintLines() {
+  // White-based, not `deep-black`: that token is the same dark forest green
+  // the section's own background now is, so a dark line on a dark ground
+  // simply didn't show up at all.
   return (
     <>
-      <div className="absolute left-[6%] top-[13%] hidden h-[62%] w-px bg-deep-black/12 md:block">
-        <span className="absolute -left-2 top-0 h-px w-4 bg-deep-black/20" />
-        <span className="absolute -left-2 bottom-0 h-px w-4 bg-deep-black/20" />
+      <div className="absolute left-[6%] top-[13%] hidden h-[62%] w-px bg-pure-white/20 md:block">
+        <span className="absolute -left-2 top-0 h-px w-4 bg-pure-white/28" />
+        <span className="absolute -left-2 bottom-0 h-px w-4 bg-pure-white/28" />
       </div>
-      <div className="absolute right-[6%] top-[16%] hidden h-[56%] w-px bg-deep-black/12 md:block">
-        <span className="absolute -left-2 top-0 h-px w-4 bg-deep-black/20" />
-        <span className="absolute -left-2 bottom-0 h-px w-4 bg-deep-black/20" />
+      <div className="absolute right-[6%] top-[16%] hidden h-[56%] w-px bg-pure-white/20 md:block">
+        <span className="absolute -left-2 top-0 h-px w-4 bg-pure-white/28" />
+        <span className="absolute -left-2 bottom-0 h-px w-4 bg-pure-white/28" />
       </div>
-      <div className="absolute left-[12%] right-[12%] top-[50%] hidden h-px bg-deep-black/8 lg:block" />
-      <div className="absolute left-[18%] top-[22%] hidden h-28 w-28 rounded-md border border-dashed border-deep-black/10 lg:block" />
-      <div className="absolute right-[18%] bottom-[18%] hidden h-24 w-36 rounded-md border border-dashed border-deep-black/10 lg:block" />
+      {/* Full-width and at 50%, this sits right across the headline - kept
+          near-invisible rather than boosted like the other blueprint marks,
+          since raising it read as a stray line cutting through the copy. */}
+      <div className="absolute left-[12%] right-[12%] top-[50%] hidden h-px bg-pure-white/8 lg:block" />
+      <div className="absolute left-[18%] top-[22%] hidden h-28 w-28 rounded-md border border-dashed border-pure-white/18 lg:block" />
+      <div className="absolute right-[18%] bottom-[18%] hidden h-24 w-36 rounded-md border border-dashed border-pure-white/18 lg:block" />
     </>
   );
 }

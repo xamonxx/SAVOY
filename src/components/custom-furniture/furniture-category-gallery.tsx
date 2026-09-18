@@ -54,15 +54,15 @@ export function FurnitureCategoryGallery({
               />
 
               {/* Hover Overlay with Zoom Icon */}
-              <div className="absolute inset-0 bg-deep-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
-                <div className="size-9 rounded-full bg-deep-black/60 text-pure-white backdrop-blur-sm flex items-center justify-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-200">
+              <div className="absolute inset-0 bg-scrim-black/30 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center">
+                <div className="size-9 rounded-full bg-scrim-black/60 text-pure-white backdrop-blur-sm flex items-center justify-center shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-transform duration-200">
                   <Maximize2 className="size-4" />
                 </div>
               </div>
 
               {/* Style Badge */}
               <div className="absolute top-2 left-2 pointer-events-none">
-                <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-deep-black/70 text-pure-white backdrop-blur-md">
+                <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-scrim-black/70 text-pure-white backdrop-blur-md">
                   {item.style}
                 </span>
               </div>

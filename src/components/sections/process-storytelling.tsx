@@ -48,7 +48,7 @@ export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps)
     if (!track || !scene || !steps.length || prefersReduced !== false) return;
 
     const media = gsap.matchMedia();
-    media.add("(min-width: 1024px) and (min-height: 800px) and (prefers-reduced-motion: no-preference)", () => {
+    media.add("(min-width: 1024px) and (min-height: 700px) and (prefers-reduced-motion: no-preference)", () => {
       // Only hydrated, roomy desktop layouts reserve scroll space.
       track.dataset.scrollStory = "true";
       const sync = (trigger: ScrollTrigger) => {
@@ -57,7 +57,15 @@ export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps)
       const trigger = ScrollTrigger.create({
         trigger: track,
         start: "top 112px",
-        end: () => "+=" + Math.max(1, track.offsetHeight - scene.offsetHeight),
+        // `window.innerHeight`, not any in-page element's `offsetHeight`: the
+        // accordion column's height depends on which step is open, and the
+        // media column's does too once its width-clamp formula stops binding
+        // at narrower ("laptop") viewports - a step change resized either
+        // column, which re-triggered a refresh, which recomputed `end` mid-
+        // scroll, which could shift `progress` enough to jump `active` to the
+        // wrong step and immediately jump back. The viewport height is the
+        // one number here no render of this component can ever change.
+        end: () => "+=" + Math.max(1, track.offsetHeight - window.innerHeight),
         invalidateOnRefresh: true,
         onUpdate: sync,
         onRefresh: sync,
@@ -66,11 +74,7 @@ export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps)
       });
       triggerRef.current = trigger;
 
-      const observer = new ResizeObserver(() => trigger.refresh());
-      observer.observe(scene);
-
       return () => {
-        observer.disconnect();
         triggerRef.current = null;
         delete track.dataset.scrollStory;
       };
@@ -126,7 +130,7 @@ export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps)
                 </motion.div>
               )}
             </AnimatePresence>
-            <span className="absolute left-space-lg top-space-lg inline-flex items-center gap-space-xs rounded-sm bg-surface px-space-sm py-space-xs text-label-md text-primary [letter-spacing:0]">
+            <span className="absolute left-space-lg top-space-lg inline-flex items-center gap-space-xs rounded-full border border-pure-white/25 bg-scrim-black/35 px-space-sm py-space-xs text-label-md text-inverse-on-surface backdrop-blur-md [letter-spacing:0]">
               <span aria-hidden className="size-1.5 rounded-full bg-primary-container" />
               Tahap {current.index}
             </span>
@@ -134,7 +138,7 @@ export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps)
           <div className="mt-space-lg flex items-start gap-space-lg">
             <span aria-hidden className="shrink-0 text-[56px] font-semibold leading-none tabular-nums text-primary-container">{current.index}</span>
             <div className="min-w-0 flex-1 pt-space-2xs">
-              <p className="text-[22px] font-medium leading-snug text-pure-white">{current.title}</p>
+              <p className="text-balance text-[22px] font-medium leading-snug text-pure-white">{current.title}</p>
               <div aria-hidden className="mt-space-md grid grid-cols-6 gap-space-xs">
                 {steps.map((step, index) => (
                   <span key={step.index} className={cn(styles.rule, index <= active ? "text-primary-container" : "text-pure-white/15")} />
@@ -150,13 +154,30 @@ export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps)
             <span className="text-label-md text-primary-container [letter-spacing:0]">Tahapan pengerjaan</span>
             <ArrowDown aria-hidden className="size-4 text-primary-container" />
           </div>
-          <ol>
+          <ol className="relative">
+            {/* The rail threading every step together - a plain accordion list
+                reads as an FAQ, a line running through the numbered circles
+                reads as a sequence. The fill segment tracks how far into the
+                process the visitor has scrolled. */}
+            <span aria-hidden className="absolute left-[34px] top-8 bottom-8 w-px bg-pure-white/15" />
+            <span
+              aria-hidden
+              className="absolute left-[34px] top-8 w-px bg-primary-container transition-[height] duration-700 ease-out"
+              style={{ height: `calc((100% - 4rem) * ${steps.length > 1 ? active / (steps.length - 1) : 1})` }}
+            />
             {steps.map((step, index) => {
               const isActive = active === index;
               const Icon = stepIcons[index] ?? Check;
               const stepImage = images[index];
               return (
-                <li key={step.index} aria-current={isActive ? "step" : undefined}>
+                <motion.li
+                  key={step.index}
+                  aria-current={isActive ? "step" : undefined}
+                  initial={prefersReduced ? false : { opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{ duration: duration.editorial, delay: prefersReduced ? 0 : index * 0.06, ease: easeOutEditorial }}
+                >
                   <details open={isActive} className={cn(styles.step, "group relative border-b border-pure-white/15")}>
                     {isActive && <span aria-hidden className={cn(styles.rule, "absolute inset-x-0 top-0 text-primary-container")} />}
                     <motion.summary
@@ -167,7 +188,15 @@ export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps)
                       whileHover={prefersReduced ? undefined : { x: 3 }}
                       transition={{ duration: duration.micro }}
                     >
-                      <span aria-hidden className={cn("flex size-9 shrink-0 items-center justify-center rounded-full border text-label-md tabular-nums [letter-spacing:0]", isActive ? "border-primary-container bg-primary-container text-primary" : "border-pure-white/20 text-pure-white/65")}>
+                      {/* No transition here: animating `background-color`
+                          between this arbitrary hex and the theme's
+                          `var(--color-primary-container)` is exactly the kind
+                          of literal-vs-custom-property interpolation some
+                          engines get wrong, which is what produced a badge
+                          stuck on its pre-transition color while every other
+                          part of the row had already updated. An instant
+                          swap has no such failure mode. */}
+                      <span aria-hidden className={cn("relative z-10 flex size-9 shrink-0 items-center justify-center rounded-full border text-label-md tabular-nums [letter-spacing:0]", isActive ? "border-primary-container bg-primary-container text-primary shadow-[0_0_0_5px_rgba(193,211,158,0.14)]" : "border-pure-white/20 bg-[#12332c] text-pure-white/65")}>
                         {index < active ? <Check className="size-4" /> : step.index}
                       </span>
                       <h3 className="min-w-0 flex-1 text-body-md font-semibold leading-snug">
@@ -188,7 +217,7 @@ export function ProcessStorytelling({ steps, images }: ProcessStorytellingProps)
                       )}
                     </div>
                   </details>
-                </li>
+                </motion.li>
               );
             })}
           </ol>

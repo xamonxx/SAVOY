@@ -56,7 +56,11 @@ export function CategoryFilter({ activeSlug }: { activeSlug?: string }) {
                 <span
                   className={cn(
                     "text-label-eyebrow",
-                    active ? "text-primary-container" : "text-muted-gray"
+                    // `text-muted-gray` (#767676) on this pill's background
+                    // measured 3.44:1 (audit SAV-012) - `on-surface-variant`
+                    // is the same darker gray this file already uses one
+                    // line up for the inactive label text.
+                    active ? "text-primary-container" : "text-on-surface-variant"
                   )}
                 >
                   {pill.count}

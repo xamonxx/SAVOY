@@ -78,7 +78,7 @@ export function TestimonialsMotion({ items }: { items: TestimonialMotionItem[] }
         },
       });
     },
-    { scope: sectionRef, dependencies: [reducedMotion] }
+    { scope: sectionRef, dependencies: [reducedMotion], revertOnUpdate: true }
   );
 
   if (!featured) return null;

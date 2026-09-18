@@ -1,9 +1,12 @@
 "use server";
 
+import { headers } from "next/headers";
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { extractClientIp } from "@/lib/auth";
 import { savePublicReview } from "@/lib/reviews";
 import { sendReviewEmailNotification } from "@/lib/email";
+import { checkSubmissionLimit, recordSubmission } from "@/lib/submission-limiter";
 
 const reviewSchema = z.object({
   name: z
@@ -36,9 +39,32 @@ export type SubmitReviewResult =
   | { success: true; message: string }
   | { success: false; error: string; fieldErrors?: Record<string, string> };
 
+const SUCCESS_MESSAGE =
+  "Terima kasih atas ulasan dan masukan Anda! Ulasan Anda akan tampil di halaman publik setelah ditinjau oleh tim kami.";
+
 export async function submitReviewAction(
   formData: FormData
 ): Promise<SubmitReviewResult> {
+  // Honeypot: a real visitor never sees or fills this field (hidden via CSS,
+  // not `type="hidden"`, since some bots skip genuinely hidden inputs). A
+  // filled value means a bot filled every field it could find. Answered with
+  // the same success shape a real submission gets - a bot that learns "this
+  // field gets me rejected" just stops filling it, which defeats the point.
+  if (String(formData.get("website") ?? "").trim()) {
+    return { success: true, message: SUCCESS_MESSAGE };
+  }
+
+  const headersList = await headers();
+  const clientIp = extractClientIp(headersList);
+  const limitStatus = checkSubmissionLimit("review", clientIp);
+  if (!limitStatus.allowed) {
+    const minutes = Math.ceil(limitStatus.retryAfterSeconds / 60);
+    return {
+      success: false,
+      error: `Terlalu banyak ulasan dikirim dari jaringan Anda. Silakan coba lagi dalam ${minutes} menit.`,
+    };
+  }
+
   const raw = {
     name: formData.get("name"),
     address: formData.get("address"),
@@ -80,6 +106,10 @@ export async function submitReviewAction(
     };
   }
 
+  // Counted only once the review has actually been written to disk - a
+  // rejected/failed attempt above never consumed a slot from the quota.
+  recordSubmission("review", clientIp);
+
   // Dispatch email notification to info@savoyinterior.com
   try {
     await sendReviewEmailNotification(result.review);
@@ -91,6 +121,7 @@ export async function submitReviewAction(
   revalidatePath("/");
   return {
     success: true,
-    message: "Terima kasih atas ulasan dan masukan Anda! Ulasan Anda telah berhasil disimpan dan diteruskan ke tim SAVOY.",
+    message:
+      "Terima kasih atas ulasan dan masukan Anda! Ulasan Anda akan tampil di halaman publik setelah ditinjau oleh tim kami.",
   };
 }

@@ -58,7 +58,7 @@ export function Survey() {
               <ul className="space-y-space-md">
                 {REASSURANCES.map(({ icon: Icon, title, desc }) => (
                   <li key={title} className="flex items-start gap-space-sm">
-                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-container/15 text-primary">
+                    <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary-container text-pure-white">
                       <Icon aria-hidden className="size-4" />
                     </span>
                     <div>
@@ -73,7 +73,7 @@ export function Survey() {
                 ))}
               </ul>
 
-              <div className="flex items-center gap-space-md rounded-lg border border-border-hairline bg-surface-container-low px-space-md py-space-sm">
+              <div className="flex items-center gap-space-md rounded-lg border border-border-hairline-bold bg-surface-container-low px-space-md py-space-sm">
                 <span className="text-headline-sm font-bold text-primary">
                   {projectCount}+
                 </span>

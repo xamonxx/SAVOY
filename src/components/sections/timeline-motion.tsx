@@ -1,10 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, type MouseEvent } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLenis } from "lenis/react";
 import { ArrowDown, Check, Clock3, DraftingCompass, Factory, FileText, Ruler, Wrench } from "lucide-react";
 import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 
@@ -30,8 +31,22 @@ export function TimelineMotion({ phases, note }: { phases: TimelinePhase[]; note
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const reducedMotion = useReducedMotion();
+  const lenis = useLenis();
   const current = phases[active];
   const currentMedia = chapterMedia[active];
+
+  // Bare `href="#timeline-phase-N"` anchors jump instantly - the one abrupt
+  // cut on a page that is otherwise all eased scrolling. `scroll-mt-28` on
+  // each chapter already gives the correct header clearance for a native
+  // jump, so the matching Lenis offset here is the same 112px, not a guess.
+  const jumpToPhase = (event: MouseEvent<HTMLAnchorElement>, index: number) => {
+    const target = document.getElementById(`timeline-phase-${index + 1}`);
+    if (!target) return;
+    event.preventDefault();
+    setActive(index);
+    if (lenis) lenis.scrollTo(target, { offset: -112, immediate: reducedMotion === true });
+    else target.scrollIntoView({ behavior: reducedMotion === true ? "auto" : "smooth", block: "start" });
+  };
 
   useGSAP(() => {
     const chapters = gsap.utils.toArray<HTMLElement>(".timeline-chapter", sectionRef.current);
@@ -58,7 +73,16 @@ export function TimelineMotion({ phases, note }: { phases: TimelinePhase[]; note
       start: "top 48%",
       end: "bottom 48%",
       onUpdate: syncChapter,
-      onRefresh: syncChapter,
+      // No `onRefresh` here, deliberately - this component has no viewport
+      // gate, so it runs on mobile too, where the address bar collapsing or
+      // expanding mid-pause changes `window.innerHeight` and triggers GSAP's
+      // own resize-driven refresh. `onRefresh` would re-run `syncChapter`
+      // against that new height with no actual scroll having happened,
+      // visibly jumping the highlighted chapter while the reader is just
+      // sitting still. `onUpdate` alone still keeps this fully live on every
+      // genuine scroll; a refresh only needs to correct the trigger's own
+      // start/end bookkeeping for the *next* one, not force an immediate
+      // re-sync.
       onEnter: syncChapter,
       onEnterBack: syncChapter,
     });
@@ -154,6 +178,7 @@ export function TimelineMotion({ phases, note }: { phases: TimelinePhase[]; note
                   aria-label={`${phase.index}: ${phase.title}`}
                   aria-current={active === index ? "step" : undefined}
                   title={phase.title}
+                  onClick={event => jumpToPhase(event, index)}
                   whileHover={reducedMotion ? undefined : { y: -3 }}
                   transition={{ duration: duration.micro }}
                   className={cn("relative flex min-h-11 items-center justify-center gap-1 text-label-md tabular-nums [letter-spacing:0]", index <= active ? "text-primary" : "text-muted-gray")}

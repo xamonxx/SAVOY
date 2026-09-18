@@ -47,32 +47,42 @@ export function Materials() {
           </div>
 
           <div className="lg:col-span-7">
-            <Reveal variant="image">
-              <div className="grid grid-cols-2 gap-space-md">
-                {first ? (
-                  <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-surface-container-high shadow-hairline">
-                    <Image
-                      src={first.src}
-                      alt={first.alt}
-                      fill
-                      sizes="(min-width: 1024px) 27vw, 45vw"
-                      className="object-cover"
-                    />
-                  </div>
-                ) : null}
-                {second ? (
-                  <div className="relative mt-space-lg aspect-[3/4] overflow-hidden rounded-md bg-surface-container-high shadow-hairline">
-                    <Image
-                      src={second.src}
-                      alt={second.alt}
-                      fill
-                      sizes="(min-width: 1024px) 27vw, 45vw"
-                      className="object-cover"
-                    />
-                  </div>
-                ) : null}
-              </div>
-            </Reveal>
+            {/*
+              `overflow-clip` here, outside `Reveal`, is the fix for audit
+              SAV-011: `Reveal variant="image"` scales *its own* wrapper up
+              to 1.08x during the entrance animation, and without a stable,
+              non-scaled ancestor to clip against, that transient overscale
+              widened the actual document at 768px fine-pointer widths. This
+              div never animates, so it's a safe place to clip.
+            */}
+            <div className="overflow-clip">
+              <Reveal variant="image">
+                <div className="grid grid-cols-2 gap-space-md">
+                  {first ? (
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-md bg-surface-container-high shadow-hairline">
+                      <Image
+                        src={first.src}
+                        alt={first.alt}
+                        fill
+                        sizes="(min-width: 1024px) 27vw, 45vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : null}
+                  {second ? (
+                    <div className="relative mt-space-lg aspect-[3/4] overflow-hidden rounded-md bg-surface-container-high shadow-hairline">
+                      <Image
+                        src={second.src}
+                        alt={second.alt}
+                        fill
+                        sizes="(min-width: 1024px) 27vw, 45vw"
+                        className="object-cover"
+                      />
+                    </div>
+                  ) : null}
+                </div>
+              </Reveal>
+            </div>
           </div>
         </div>
       </div>

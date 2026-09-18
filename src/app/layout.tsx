@@ -47,12 +47,13 @@ export const metadata: Metadata = {
 };
 
 /**
- * Tints the mobile browser chrome to the warm-white surface rather than the
- * brand yellow: the yellow is a 5% accent, and painting the whole status bar
- * with it would break that ratio before the page even renders.
+ * Tints the mobile browser chrome to the white content surface rather than
+ * the sage accent: the accent is reserved for buttons/icons/CTA, and
+ * painting the whole status bar with it would break that ratio before the
+ * page even renders.
  */
 export const viewport: Viewport = {
-  themeColor: "#F7F4EE",
+  themeColor: "#FFFFFF",
   colorScheme: "light",
 };
 

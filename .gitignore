@@ -59,3 +59,4 @@ public/v/
 
 # Persisted runtime counters.
 src/data/.rate-limit-state.json
+src/data/.submission-limit-state.json

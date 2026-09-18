@@ -28,9 +28,13 @@ export function CaseStudy() {
           />
         </Reveal>
 
+        {/* Split-tint comparison, not one shared card background - each half
+            gets its own wash (light error tint / light gold tint) so
+            "problem vs. solution" reads as a visual split, not just a text
+            split down the middle of one flat box. */}
         <Reveal>
-          <div className="mb-space-2xl grid gap-space-lg rounded-md bg-surface-container-low p-space-xl md:grid-cols-2 md:gap-gutter-desktop">
-            <div className="space-y-space-xs">
+          <div className="mb-space-2xl grid overflow-hidden rounded-md md:grid-cols-2">
+            <div className="space-y-space-xs bg-error-container/25 p-space-xl">
               <p className="inline-flex items-center gap-space-2xs text-label-md font-semibold text-error">
                 <TriangleAlert aria-hidden className="size-[18px]" />
                 Tantangan Awal
@@ -42,7 +46,7 @@ export function CaseStudy() {
                 tempat menumpuk barang dan debu.
               </p>
             </div>
-            <div className="space-y-space-xs">
+            <div className="space-y-space-xs bg-primary-container/10 p-space-xl">
               <p className="inline-flex items-center gap-space-2xs text-label-md font-semibold text-primary">
                 <Ruler aria-hidden className="size-[18px]" />
                 Solusi Rekayasa SAVOY

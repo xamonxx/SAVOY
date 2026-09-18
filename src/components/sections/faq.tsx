@@ -17,17 +17,29 @@ export function Faq() {
     <section className="bg-surface py-space-4xl">
       <div className="container-editorial">
         <div className="grid gap-space-2xl lg:grid-cols-12 lg:gap-gutter-desktop">
-          <Reveal className="space-y-space-xs lg:col-span-4">
-            <Eyebrow>Pertanyaan umum</Eyebrow>
-            <h2 className="text-headline-lg-mobile text-on-surface lg:text-headline-lg">
-              Hal yang sering ditanyakan.
-            </h2>
-            <p className="text-body-sm text-on-surface-variant">
-              Masih memiliki pertanyaan lain yang belum terjawab di sini? Tim kami
-              siap menjawab langsung.
-            </p>
-            <div className="pt-space-md">
-              <TextLink href="/contact">Tanya Langsung ke Tim Teknis</TextLink>
+          <Reveal className="relative space-y-space-xs overflow-hidden lg:col-span-4">
+            {/* Ghost anchor for the orphaned left column, echoing Approach's
+                background-numeral treatment - this text block gets its own
+                visual mark instead of sitting as plain text next to the
+                accordion. */}
+            <span
+              aria-hidden
+              className="pointer-events-none absolute -left-2 -top-6 select-none text-8xl font-bold leading-none text-primary-container/10 lg:-top-4 lg:text-9xl"
+            >
+              ?
+            </span>
+            <div className="relative space-y-space-xs">
+              <Eyebrow>Pertanyaan umum</Eyebrow>
+              <h2 className="text-headline-lg-mobile text-on-surface lg:text-headline-lg">
+                Hal yang sering ditanyakan.
+              </h2>
+              <p className="text-body-sm text-on-surface-variant">
+                Masih memiliki pertanyaan lain yang belum terjawab di sini? Tim kami
+                siap menjawab langsung.
+              </p>
+              <div className="pt-space-md">
+                <TextLink href="/contact">Tanya Langsung ke Tim Teknis</TextLink>
+              </div>
             </div>
           </Reveal>
 

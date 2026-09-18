@@ -3,48 +3,51 @@
 import { revalidatePath } from "next/cache";
 import { isAdminAuthenticated } from "@/lib/auth";
 import { deleteArticle, saveArticle, toggleArticleStatus } from "@/lib/articles";
+import { articleSchema, formatArticleIssues } from "@/lib/schemas/article";
 import type { KnowledgeArticle } from "@/types";
 
 export type ArticleActionResult = {
   success?: boolean;
   error?: string;
+  fieldErrors?: Record<string, string>;
   slug?: string;
   newStatus?: "aktif" | "tidak_aktif";
 };
 
 export async function saveArticleAction(
-  article: KnowledgeArticle
+  article: KnowledgeArticle,
+  /**
+   * The slug the article was loaded under, only sent when editing an
+   * existing article. `saveArticle` looks records up by `slug` alone (audit
+   * SAV-008), so without this a changed slug silently becomes a brand-new
+   * record and the old URL never goes away. The admin UI locks the slug
+   * input while editing; this is the server-side half of the same guard in
+   * case that ever gets bypassed.
+   */
+  originalSlug?: string
 ): Promise<ArticleActionResult> {
   const isAuthed = await isAdminAuthenticated();
   if (!isAuthed) {
     return { error: "Sesi admin telah berakhir. Silakan login kembali." };
   }
 
-  if (!article.title?.trim()) {
-    return { error: "Judul artikel wajib diisi." };
-  }
-  if (!article.slug?.trim()) {
-    return { error: "Slug artikel wajib diisi." };
-  }
-  if (!article.category?.trim()) {
-    return { error: "Kategori artikel wajib diisi." };
-  }
-  if (!article.summary?.trim()) {
-    return { error: "Ringkasan artikel wajib diisi." };
-  }
-  if (!article.body || article.body.length === 0) {
-    return { error: "Konten artikel tidak boleh kosong." };
-  }
-
-  // Format slug to be URL safe
-  const formattedSlug = article.slug
+  // Format slug to be URL safe before validating - the schema's slug rule is
+  // about length, not character normalization.
+  const formattedSlug = (article.slug || "")
     .toLowerCase()
     .trim()
     .replace(/[^\w\s-]/g, "")
     .replace(/[\s_-]+/g, "-")
     .replace(/^-+|-+$/g, "");
 
-  const toSave: KnowledgeArticle = {
+  if (originalSlug && originalSlug !== formattedSlug) {
+    return {
+      error:
+        "Slug tidak dapat diubah saat mengedit artikel. Buat artikel baru jika Anda benar-benar perlu URL yang berbeda.",
+    };
+  }
+
+  const candidate = {
     ...article,
     slug: formattedSlug,
     publishedAt: article.publishedAt || new Date().toISOString().split("T")[0],
@@ -52,18 +55,30 @@ export async function saveArticleAction(
     status: article.status || "aktif",
   };
 
-  const result = await saveArticle(toSave);
+  const parsed = articleSchema.safeParse(candidate);
+  if (!parsed.success) {
+    return {
+      error: "Mohon periksa kembali isian artikel.",
+      fieldErrors: formatArticleIssues(parsed.error),
+    };
+  }
+
+  const result = await saveArticle(parsed.data as KnowledgeArticle);
   if (!result.success) {
     return { error: result.error || "Gagal menyimpan artikel." };
   }
 
-  // Real-time on-demand revalidation
+  // Real-time on-demand revalidation. /sitemap.xml is its own cached
+  // metadata route (audit SAV-006) - without revalidating it explicitly, a
+  // newly published or unpublished article never shows up there until the
+  // next full rebuild.
   revalidatePath("/knowledge");
-  revalidatePath(`/knowledge/${toSave.slug}`);
+  revalidatePath(`/knowledge/${parsed.data.slug}`);
   revalidatePath("/");
   revalidatePath("/admin/articles");
+  revalidatePath("/sitemap.xml");
 
-  return { success: true, slug: toSave.slug, newStatus: toSave.status };
+  return { success: true, slug: parsed.data.slug, newStatus: parsed.data.status };
 }
 
 export async function toggleArticleStatusAction(
@@ -84,6 +99,7 @@ export async function toggleArticleStatusAction(
   revalidatePath(`/knowledge/${slug}`);
   revalidatePath("/");
   revalidatePath("/admin/articles");
+  revalidatePath("/sitemap.xml");
 
   return { success: true, slug, newStatus: result.newStatus };
 }
@@ -106,7 +122,7 @@ export async function deleteArticleAction(
   revalidatePath(`/knowledge/${slug}`);
   revalidatePath("/");
   revalidatePath("/admin/articles");
-
+  revalidatePath("/sitemap.xml");
 
   return { success: true };
 }

@@ -84,10 +84,10 @@ export function ProjectCard({
               the photograph itself. */}
           <div
             aria-hidden
-            className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-deep-black/85 via-deep-black/45 to-transparent"
+            className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-scrim-black/85 via-scrim-black/45 to-transparent"
           />
           <div className="absolute inset-x-0 bottom-0 p-space-xs sm:p-space-md text-pure-white">
-            <span className="text-[10px] sm:text-label-eyebrow uppercase text-primary-container">
+            <span className="text-[10px] sm:text-label-eyebrow uppercase text-primary-fixed [text-shadow:0_1px_4px_rgba(9,11,13,0.55)]">
               {project.categoryShort}
             </span>
             <h3 className="mt-0.5 sm:mt-space-2xs text-xs sm:text-headline-sm font-semibold leading-snug sm:leading-tight">

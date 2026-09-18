@@ -48,7 +48,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
       {
         type: "callout",
         title: "Yang perlu diingat",
-        text: "Tidak ada satu material yang menang di semua kondisi. Yang benar adalah mencampurnya sesuai posisi: HMR untuk area basah, plywood untuk rak berbeban dan bentang lebar, MDF untuk pintu profil yang akan dicat duco.",
+        text: "Tidak ada satu material yang menang di semua kondisi. Yang benar adalah mencampurnya sesuai posisi: ==HMR untuk area basah, plywood untuk rak berbeban dan bentang lebar, MDF untuk pintu profil yang akan dicat duco.==",
       },
       { type: "heading", text: "Yang sering terlewat: edging" },
       {
@@ -97,7 +97,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
       { type: "heading", text: "Zona antara sink dan kompor" },
       {
         type: "paragraph",
-        text: "Sediakan minimal 60 cm tabletop kosong di antara sink dan kompor. Di sanalah pemotongan terjadi. Kalau jaraknya kurang, talenan akan selalu berebut tempat dengan panci dan bahan mentah.",
+        text: "==Sediakan minimal 60 cm tabletop kosong di antara sink dan kompor.== Di sanalah pemotongan terjadi. Kalau jaraknya kurang, talenan akan selalu berebut tempat dengan panci dan bahan mentah.",
       },
       {
         type: "list",
@@ -161,7 +161,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
       {
         type: "callout",
         title: "Cara paling cepat menghitung kebutuhan",
-        text: "Ukur lemari lama Anda: berapa sentimeter batang gantungan yang terisi, dan berapa tumpukan lipat yang ada. Tambahkan 20% untuk pertumbuhan. Angka itu jauh lebih akurat daripada menebak dari denah.",
+        text: "Ukur lemari lama Anda: berapa sentimeter batang gantungan yang terisi, dan berapa tumpukan lipat yang ada. ==Tambahkan 20% untuk pertumbuhan.== Angka itu jauh lebih akurat daripada menebak dari denah.",
       },
     ],
   },
@@ -212,7 +212,7 @@ export const knowledgeArticles: KnowledgeArticle[] = [
       {
         type: "callout",
         title: "Satu hal yang paling sering terlupa",
-        text: "Ukur lebar pintu masuk dan tikungan koridor. Modul yang sempurna di gambar bisa gagal masuk ruangan, dan memotongnya di lokasi selalu mengorbankan kerapian.",
+        text: "==Ukur lebar pintu masuk dan tikungan koridor== sebelum desain difinalisasi. Modul yang sempurna di gambar bisa gagal masuk ruangan, dan memotongnya di lokasi selalu mengorbankan kerapian.",
       },
     ],
   },

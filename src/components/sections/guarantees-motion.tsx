@@ -47,7 +47,7 @@ export function GuaranteesMotion({ items }: { items: Guarantee[] }) {
         },
       });
     },
-    { scope: sectionRef, dependencies: [reducedMotion] }
+    { scope: sectionRef, dependencies: [reducedMotion], revertOnUpdate: true }
   );
 
   return (

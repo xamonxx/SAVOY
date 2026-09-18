@@ -9,14 +9,18 @@
  * claim the studio has not confirmed.
  */
 
-const rawSiteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://savoyinterior.com";
-
 /** Blank env vars arrive as "" - treat them as absent. */
 function optional(value: string | undefined): string | null {
   const trimmed = value?.trim();
   return trimmed ? trimmed : null;
 }
+
+// `optional()`, not a bare `??`: an `.env.local` copied from `.env.example`
+// ships every var blank by that file's own convention, and `""  ?? fallback`
+// still evaluates to `""` - only `null`/`undefined` trigger `??`. That blank
+// string then reached `new URL(site.url)` in `layout.tsx` and crashed the
+// whole app at startup.
+const rawSiteUrl = optional(process.env.NEXT_PUBLIC_SITE_URL) ?? "https://savoyinterior.com";
 
 /** Finite number or null. Used for coordinates, which must never be guessed. */
 function numeric(value: string | undefined): number | null {

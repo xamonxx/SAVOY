@@ -59,12 +59,17 @@ export const testimonialsArePlaceholder = testimonials.every(
 /**
  * Testimonials safe to render right now.
  *
- * Placeholder quotes are shown in development so the layout can be reviewed,
- * but never in production unless the site owner explicitly opts in.
+ * Audit SAV-014: this used to check `testimonialsArePlaceholder` and return
+ * the *entire* array either way - the moment even one real testimonial gets
+ * added alongside the four samples, `.every()` turns false and every
+ * remaining placeholder starts shipping to production with it. Production
+ * now filters per record instead of trusting an all-or-nothing flag.
+ * Placeholder quotes are still visible in development (or with
+ * `NEXT_PUBLIC_SHOW_TESTIMONIALS=true`) so the layout can be reviewed before
+ * any real quotes exist.
  */
 export function visibleTestimonials(): Testimonial[] {
-  if (!testimonialsArePlaceholder) return testimonials;
   if (site.showTestimonials) return testimonials;
   if (process.env.NODE_ENV === "development") return testimonials;
-  return [];
+  return testimonials.filter((testimonial) => !testimonial.isPlaceholder);
 }

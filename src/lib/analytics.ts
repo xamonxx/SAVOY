@@ -19,7 +19,8 @@ export type AnalyticsEvent =
   | "survey_submit"
   | "faq_open"
   | "final_cta_click"
-  | "social_click";
+  | "social_click"
+  | "article_share_click";
 
 export type AnalyticsPayload = Record<string, string | number | boolean>;
 

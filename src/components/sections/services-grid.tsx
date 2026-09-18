@@ -27,22 +27,46 @@ export function ServicesGrid() {
           </div>
         </Reveal>
 
+        {/*
+          Asymmetric hierarchy (redesign plan, ServicesGrid): the flagship
+          service takes twice the area of its six siblings, on the same
+          12-column split Survey/Faq/Materials already use elsewhere on the
+          page - not a new grid idiom, just reused. Differentiates this
+          section by composition rather than by decorating the same card
+          shell differently again.
+        */}
         <RevealGroup
           as="ul"
-          className="grid grid-cols-2 gap-space-sm sm:gap-gutter-desktop md:grid-cols-2 lg:grid-cols-3"
+          className="grid grid-cols-2 gap-space-sm sm:gap-gutter-desktop md:grid-cols-2 lg:grid-cols-12"
         >
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = service.icon;
+            const flagship = index === 0;
             return (
               <RevealItem
                 as="li"
                 key={service.slug}
-                className="flex flex-col gap-space-xs sm:gap-space-md rounded-md bg-surface-container-lowest p-space-sm sm:p-space-xl shadow-hairline transition-shadow hover:shadow-panel"
+                className={cn(
+                  "flex flex-col gap-space-xs sm:gap-space-md rounded-md bg-surface-container-lowest p-space-sm sm:p-space-xl shadow-hairline transition-shadow hover:shadow-panel",
+                  flagship ? "lg:col-span-6" : "lg:col-span-3"
+                )}
               >
-                <span className="flex size-8 sm:size-12 items-center justify-center rounded-md bg-surface-container text-primary">
-                  <Icon aria-hidden className="size-4 sm:size-6" />
+                <span
+                  className={cn(
+                    "flex items-center justify-center rounded-md",
+                    flagship
+                      ? "size-9 sm:size-14 bg-primary-container text-pure-white"
+                      : "size-8 sm:size-12 bg-surface-container text-primary"
+                  )}
+                >
+                  <Icon aria-hidden className={flagship ? "size-5 sm:size-7" : "size-4 sm:size-6"} />
                 </span>
-                <h3 className="text-xs sm:text-headline-sm font-semibold text-on-surface leading-snug">
+                <h3
+                  className={cn(
+                    "font-semibold text-on-surface leading-snug",
+                    flagship ? "text-sm sm:text-headline-md" : "text-xs sm:text-headline-sm"
+                  )}
+                >
                   {service.title}
                 </h3>
                 <p className="flex-1 text-[11px] sm:text-body-sm leading-relaxed text-on-surface-variant">

@@ -5,6 +5,21 @@ import { postToWebhook } from "@/lib/webhook";
 const TARGET_EMAIL = process.env.REVIEW_NOTIFICATION_EMAIL || "info@savoyinterior.com";
 
 /**
+ * Encodes a value for safe interpolation into the HTML email body (audit
+ * SAV-003). The template below is a plain string, not JSX, so nothing here
+ * gets React's automatic escaping - a reviewer typing `<b>` or `&` would
+ * otherwise become real markup in the team's inbox.
+ */
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
+
+/**
  * Sends an email notification to info@savoyinterior.com when a new public review is submitted.
  *
  * If SMTP credentials (SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS) are provided in .env.local,
@@ -48,15 +63,15 @@ export async function sendReviewEmailNotification(
         <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
           <tr>
             <td style="padding: 8px 0; color: #666; width: 130px; font-size: 14px;">Nama:</td>
-            <td style="padding: 8px 0; font-weight: bold; font-size: 14px;">${review.author}</td>
+            <td style="padding: 8px 0; font-weight: bold; font-size: 14px;">${escapeHtml(review.author)}</td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #666; font-size: 14px;">Alamat / Lokasi:</td>
-            <td style="padding: 8px 0; font-size: 14px;">${review.address}</td>
+            <td style="padding: 8px 0; font-size: 14px;">${escapeHtml(review.address)}</td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #666; font-size: 14px;">Alamat Email:</td>
-            <td style="padding: 8px 0; font-size: 14px; font-weight: 500; color: #0066cc;">${review.email || "-"} <span style="font-size: 11px; color: #888;">(Private / Data Developer)</span></td>
+            <td style="padding: 8px 0; font-size: 14px; font-weight: 500; color: #0066cc;">${review.email ? escapeHtml(review.email) : "-"} <span style="font-size: 11px; color: #888;">(Private / Data Developer)</span></td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #666; font-size: 14px;">Rating:</td>
@@ -72,7 +87,7 @@ export async function sendReviewEmailNotification(
 
         <div style="background-color: #f7f7f7; border-left: 4px solid #d4a373; padding: 16px; border-radius: 4px; margin-top: 10px;">
           <h4 style="margin: 0 0 8px 0; font-size: 13px; text-transform: uppercase; color: #555; letter-spacing: 0.5px;">Saran, Kritik, atau Ulasan:</h4>
-          <p style="margin: 0; font-size: 14px; white-space: pre-wrap; color: #222;">${review.description}</p>
+          <p style="margin: 0; font-size: 14px; white-space: pre-wrap; color: #222;">${escapeHtml(review.description)}</p>
         </div>
       </div>
       <div style="background-color: #fafafa; padding: 14px 24px; font-size: 11px; color: #888; border-top: 1px solid #eaeaea;">
@@ -106,20 +121,29 @@ export async function sendReviewEmailNotification(
       console.error("[reviews] Failed to send email via SMTP:", error);
     }
   } else {
+    // Audit SAV-015: the reviewer's email is private data - it never belongs
+    // in a server log, even the "SMTP isn't configured yet" fallback path.
     console.log(
       `[reviews] SMTP not configured. Prepared notification for ${TARGET_EMAIL}:\n` +
-      `Review from: ${review.author} <${review.email}> | Rating: ${review.rating}/5`
+      `Review from: ${review.author} | Rating: ${review.rating}/5 | id: ${review.id}`
     );
   }
 
   // 2. Forward to LEAD_WEBHOOK_URL if available
   const webhook = process.env.LEAD_WEBHOOK_URL;
   if (webhook) {
-    const result = await postToWebhook(webhook, {
-      type: "public_review",
-      ...review,
-      sentToEmail: TARGET_EMAIL,
-    });
+    const result = await postToWebhook(
+      webhook,
+      {
+        type: "public_review",
+        ...review,
+        sentToEmail: TARGET_EMAIL,
+      },
+      // The review already has a stable, unique id - reusing it as the
+      // idempotency key means a receiver naturally dedupes retries of the
+      // same review without us minting a second identifier for it.
+      `review-${review.id}`
+    );
     if (!result.ok) {
       // Logged, not thrown: a broken webhook must never turn a successfully
       // saved review into a failed submission for the visitor.

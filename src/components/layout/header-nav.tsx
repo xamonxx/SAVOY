@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown, MapPin } from "lucide-react";
 
 import { cn } from "@/lib/cn";
 import { navLinks } from "@/components/layout/nav-links";
@@ -130,7 +130,7 @@ export function HeaderNav({ inverse = false }: HeaderNavProps) {
         {marker ? (
           <span
             aria-hidden
-            className="pointer-events-none absolute bottom-1 h-0.5 rounded-full bg-primary-container transition-[transform,width] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
+            className="pointer-events-none absolute bottom-1 h-[3px] rounded-full bg-primary-container transition-[transform,width] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none"
             style={{ transform: `translateX(${marker.left}px)`, width: `${marker.width}px` }}
           />
         ) : null}
@@ -160,6 +160,7 @@ export function HeaderNav({ inverse = false }: HeaderNavProps) {
                   aria-haspopup="true"
                   className={cn(
                     "group relative inline-flex min-h-10 items-center gap-1.5 rounded-md px-space-sm text-label-lg [letter-spacing:0] transition-[color,background-color,translate] duration-200 active:translate-y-px",
+                    active && "font-semibold",
                     inverse
                       ? active
                         ? "text-inverse-on-surface"
@@ -194,62 +195,87 @@ export function HeaderNav({ inverse = false }: HeaderNavProps) {
                 {isOpen && (
                   <div
                     className={cn(
-                      "absolute left-0 top-full z-50 mt-1.5 w-64 origin-top-left rounded-lg border p-1.5 shadow-panel backdrop-blur-xl focus:outline-none",
+                      "animate-menu-in absolute left-0 top-full z-50 mt-2 w-72 origin-top-left overflow-hidden rounded-xl border p-2 shadow-panel backdrop-blur-xl focus:outline-none motion-reduce:animate-none",
                       inverse
-                        ? "border-border-hairline-dark bg-deep-black/95 text-inverse-on-surface"
-                        : "border-border-hairline bg-surface/98 text-on-surface"
+                        ? "border-border-hairline-dark bg-scrim-black/95 text-inverse-on-surface"
+                        : "border-border-hairline-bold bg-surface/98 text-on-surface"
                     )}
                     role="menu"
                     aria-orientation="vertical"
                   >
-                    <div className="px-2.5 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-gray">
+                    {/* Thin gold edge, echoing the active-link underline
+                        below it - the dropdown reads as this nav's own
+                        surface rather than a generic Radix-style popover. */}
+                    <div aria-hidden className="absolute inset-x-0 top-0 h-[3px] bg-primary-container" />
+                    <div className="px-2.5 pb-1.5 pt-1 text-[10px] font-semibold uppercase tracking-wider text-muted-gray">
                       {link.label === "Furniture Custom" ? "Kategori Custom" : "Wilayah Jangkauan"}
                     </div>
+
+                    {/* Featured "see all" row, set apart as its own tinted
+                        card rather than just the first list item with a
+                        rule under it - the one link every visitor to this
+                        menu should notice first. */}
+                    <Link
+                      href={link.href}
+                      role="menuitem"
+                      className={cn(
+                        "group mb-1.5 flex items-center justify-between gap-2 rounded-lg px-3 py-2.5 text-label-md font-semibold transition-colors duration-150",
+                        pathname === link.href
+                          ? inverse
+                            ? "bg-pure-white/15 text-inverse-on-surface"
+                            : "bg-primary-container/16 text-primary"
+                          : inverse
+                            ? "bg-pure-white/8 text-inverse-on-surface hover:bg-pure-white/14"
+                            : "bg-primary-container/10 text-on-surface hover:bg-primary-container/16"
+                      )}
+                      onClick={() => setOpenDropdown(null)}
+                    >
+                      <span>Semua {link.label}</span>
+                      <ArrowRight
+                        aria-hidden
+                        className="size-4 shrink-0 text-primary-container transition-transform duration-200 group-hover:translate-x-0.5"
+                      />
+                    </Link>
+
                     <ul className="space-y-0.5">
-                      <li role="none">
-                        <Link
-                          href={link.href}
-                          role="menuitem"
-                          className={cn(
-                            "flex items-center justify-between rounded-md px-2.5 py-2 text-label-md transition-colors duration-150 border-b border-border-hairline/60 mb-1 font-semibold",
-                            pathname === link.href
-                              ? inverse
-                                ? "bg-pure-white/15 text-inverse-on-surface"
-                                : "bg-surface-container-low text-primary"
-                              : inverse
-                                ? "text-inverse-on-surface/90 hover:bg-pure-white/10 hover:text-inverse-on-surface"
-                                : "text-on-surface hover:bg-surface-container-low hover:text-primary"
-                          )}
-                          onClick={() => setOpenDropdown(null)}
-                        >
-                          <span>Semua {link.label}</span>
-                          <span aria-hidden className="text-xs">→</span>
-                        </Link>
-                      </li>
                       {link.children.map((child) => {
                         const childActive = pathname === child.href;
+                        const Icon = child.icon ?? MapPin;
                         return (
                           <li key={child.href} role="none">
                             <Link
                               href={child.href}
                               role="menuitem"
                               className={cn(
-                                "flex items-center justify-between rounded-md px-2.5 py-2 text-label-md transition-colors duration-150",
+                                "group flex items-center gap-2.5 rounded-md px-2 py-2 text-label-md transition-[background-color,color,translate] duration-150",
                                 childActive
                                   ? inverse
                                     ? "bg-pure-white/15 font-semibold text-inverse-on-surface"
                                     : "bg-surface-container-low font-semibold text-primary"
                                   : inverse
-                                    ? "text-inverse-on-surface/80 hover:bg-pure-white/10 hover:text-inverse-on-surface"
-                                    : "text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
+                                    ? "text-inverse-on-surface/80 hover:translate-x-0.5 hover:bg-pure-white/10 hover:text-inverse-on-surface"
+                                    : "text-on-surface-variant hover:translate-x-0.5 hover:bg-surface-container-low hover:text-on-surface"
                               )}
                               onClick={() => setOpenDropdown(null)}
                             >
-                              <span>{child.label}</span>
+                              <span
+                                aria-hidden
+                                className={cn(
+                                  "flex size-8 shrink-0 items-center justify-center rounded-md transition-colors duration-150",
+                                  childActive
+                                    ? "bg-primary-container text-primary"
+                                    : inverse
+                                      ? "bg-pure-white/10 text-inverse-on-surface/70 group-hover:bg-pure-white/16"
+                                      : "bg-surface-container-low text-on-surface-variant group-hover:bg-primary-container/16 group-hover:text-primary"
+                                )}
+                              >
+                                <Icon aria-hidden className="size-4" strokeWidth={1.8} />
+                              </span>
+                              <span className="min-w-0 flex-1 truncate">{child.label}</span>
                               {childActive ? (
                                 <span
                                   aria-hidden
-                                  className="size-1.5 rounded-full bg-primary-container"
+                                  className="size-1.5 shrink-0 rounded-full bg-primary-container"
                                 />
                               ) : null}
                             </Link>
@@ -275,6 +301,7 @@ export function HeaderNav({ inverse = false }: HeaderNavProps) {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "group relative inline-flex min-h-10 items-center rounded-md px-space-sm text-label-lg [letter-spacing:0] transition-[color,background-color,translate] duration-200 active:translate-y-px",
+                  active && "font-semibold",
                   inverse
                     ? active
                       ? "text-inverse-on-surface"

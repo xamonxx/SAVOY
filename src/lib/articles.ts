@@ -9,21 +9,68 @@ export { parseRawTextToBlocks, estimateReadingMinutes } from "./article-utils";
 const DATA_FILE_PATH = path.join(process.cwd(), "src", "data", "custom-articles.json");
 
 /**
- * Reads dynamic custom articles stored on the filesystem.
+ * Raised when the stored article file cannot be trusted - corrupt JSON,
+ * wrong shape, or a filesystem error that isn't "the file doesn't exist
+ * yet" (audit SAV-002). Distinct from "no custom articles yet" on purpose: a
+ * caller about to write must not treat an unreadable file the same as an
+ * empty array, or the next save overwrites every existing article with just
+ * the one being saved.
  */
-async function readCustomArticles(): Promise<KnowledgeArticle[]> {
+class ArticlesUnreadableError extends Error {}
+
+/**
+ * Reads dynamic custom articles, throwing `ArticlesUnreadableError` for
+ * anything other than "file does not exist yet". Callers that are about to
+ * write must use this, not `readCustomArticlesForDisplay` below.
+ */
+async function readCustomArticlesOrThrow(): Promise<KnowledgeArticle[]> {
+  let data: string;
   try {
-    const data = await fs.readFile(DATA_FILE_PATH, "utf-8");
-    const parsed = JSON.parse(data);
-    return Array.isArray(parsed) ? parsed : [];
+    data = await fs.readFile(DATA_FILE_PATH, "utf-8");
   } catch (err: unknown) {
-    if (typeof err === "object" && err !== null && "code" in err && (err as { code: string }).code === "ENOENT") {
-      try {
-        await fs.writeFile(DATA_FILE_PATH, JSON.stringify([], null, 2), "utf-8");
-      } catch {
-        // ignore write error
-      }
+    const isEnoent =
+      typeof err === "object" &&
+      err !== null &&
+      "code" in err &&
+      (err as { code: string }).code === "ENOENT";
+
+    if (!isEnoent) {
+      throw new ArticlesUnreadableError("Failed to read custom articles file", { cause: err });
     }
+
+    try {
+      await fs.writeFile(DATA_FILE_PATH, JSON.stringify([], null, 2), "utf-8");
+    } catch {
+      // ignore write error - an empty in-memory array is still correct here
+    }
+    return [];
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(data);
+  } catch (err) {
+    throw new ArticlesUnreadableError("Custom articles file contains invalid JSON", { cause: err });
+  }
+
+  if (!Array.isArray(parsed)) {
+    throw new ArticlesUnreadableError("Custom articles file does not contain an array");
+  }
+
+  return parsed as KnowledgeArticle[];
+}
+
+/**
+ * Reads custom articles for display purposes only. Safe to treat a read
+ * failure as "nothing custom to show" here - unlike the mutators below,
+ * nothing gets written back afterward, so the worst case is briefly falling
+ * back to the baseline set rather than losing data.
+ */
+async function readCustomArticlesForDisplay(): Promise<KnowledgeArticle[]> {
+  try {
+    return await readCustomArticlesOrThrow();
+  } catch (error) {
+    console.error("[articles] Failed to read custom articles for display:", error);
     return [];
   }
 }
@@ -48,7 +95,7 @@ async function writeCustomArticles(articles: KnowledgeArticle[]): Promise<void> 
 export async function getAllArticles(options?: {
   includeInactive?: boolean;
 }): Promise<KnowledgeArticle[]> {
-  const custom = await readCustomArticles();
+  const custom = await readCustomArticlesForDisplay();
 
   // Create a map to allow custom articles to override baseline articles if same slug
   const map = new Map<string, KnowledgeArticle>();
@@ -93,7 +140,7 @@ export async function getArticleBySlug(
   slug: string,
   options?: { allowInactive?: boolean }
 ): Promise<KnowledgeArticle | undefined> {
-  const custom = await readCustomArticles();
+  const custom = await readCustomArticlesForDisplay();
   const foundCustom = custom.find((a) => a.slug === slug);
 
   const article =
@@ -117,7 +164,7 @@ export async function getArticleBySlug(
  * Checks if an article is stored in custom storage.
  */
 export async function isCustomArticle(slug: string): Promise<boolean> {
-  const custom = await readCustomArticles();
+  const custom = await readCustomArticlesForDisplay();
   return custom.some((a) => a.slug === slug);
 }
 
@@ -131,12 +178,22 @@ export async function saveArticle(
   // an autosave racing a manual save) can each read the same array and one
   // save silently disappears when the other writes on top of it.
   return withFileLock(DATA_FILE_PATH, async () => {
-    try {
-      if (!article.slug || !article.title || !article.summary) {
-        return { success: false, error: "Slug, Judul, dan Ringkasan wajib diisi." };
-      }
+    if (!article.slug || !article.title || !article.summary) {
+      return { success: false, error: "Slug, Judul, dan Ringkasan wajib diisi." };
+    }
 
-      const custom = await readCustomArticles();
+    let custom: KnowledgeArticle[];
+    try {
+      custom = await readCustomArticlesOrThrow();
+    } catch (error) {
+      console.error("[articles] Refusing to save - existing articles unreadable:", error);
+      return {
+        success: false,
+        error: "Gagal membaca data artikel yang ada. Artikel tidak disimpan untuk mencegah kehilangan data.",
+      };
+    }
+
+    try {
       const existingIndex = custom.findIndex((a) => a.slug === article.slug);
 
       const articleToSave: KnowledgeArticle = {
@@ -161,8 +218,8 @@ export async function saveArticle(
       await writeCustomArticles(custom);
       return { success: true };
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Gagal menyimpan artikel.";
-      return { success: false, error: message };
+      console.error("[articles] Failed to save article:", err);
+      return { success: false, error: "Gagal menyimpan artikel." };
     }
   });
 }
@@ -174,8 +231,15 @@ export async function toggleArticleStatus(
   slug: string
 ): Promise<{ success: boolean; newStatus?: "aktif" | "tidak_aktif"; error?: string }> {
   return withFileLock(DATA_FILE_PATH, async () => {
+    let custom: KnowledgeArticle[];
     try {
-      const custom = await readCustomArticles();
+      custom = await readCustomArticlesOrThrow();
+    } catch (error) {
+      console.error("[articles] Refusing to toggle status - existing articles unreadable:", error);
+      return { success: false, error: "Gagal membaca data artikel. Status tidak diubah." };
+    }
+
+    try {
       const existingIndex = custom.findIndex((a) => a.slug === slug);
 
       let targetArticle: KnowledgeArticle | undefined;
@@ -209,8 +273,8 @@ export async function toggleArticleStatus(
 
       return { success: false, error: "Artikel tidak ditemukan." };
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Gagal mengubah status artikel.";
-      return { success: false, error: message };
+      console.error("[articles] Failed to toggle article status:", err);
+      return { success: false, error: "Gagal mengubah status artikel." };
     }
   });
 }
@@ -222,23 +286,46 @@ export async function deleteArticle(
   slug: string
 ): Promise<{ success: boolean; error?: string }> {
   return withFileLock(DATA_FILE_PATH, async () => {
+    let custom: KnowledgeArticle[];
     try {
-      const custom = await readCustomArticles();
-      const isCustom = custom.some((a) => a.slug === slug);
+      custom = await readCustomArticlesOrThrow();
+    } catch (error) {
+      console.error("[articles] Refusing to delete - existing articles unreadable:", error);
+      return { success: false, error: "Gagal membaca data artikel. Artikel tidak dihapus." };
+    }
 
-      if (!isCustom) {
-        return {
-          success: false,
-          error: "Artikel bawaan sistem (baseline) tidak dapat dihapus permanen. Anda dapat mengubah statusnya menjadi 'Tidak Aktif' agar tidak muncul di publik.",
-        };
-      }
+    const isCustom = custom.some((a) => a.slug === slug);
 
+    if (!isCustom) {
+      return {
+        success: false,
+        error: "Artikel bawaan sistem (baseline) tidak dapat dihapus permanen. Anda dapat mengubah statusnya menjadi 'Tidak Aktif' agar tidak muncul di publik.",
+      };
+    }
+
+    // Audit SAV-009: a custom record can also be an *override* of a
+    // baseline slug (e.g. after toggling a baseline article's status, or
+    // editing its content). Deleting that override doesn't remove the
+    // article - `getArticleBySlug`/`getAllArticles` fall straight back to
+    // the still-present baseline entry, silently republishing content an
+    // operator just deleted. Only a slug with no baseline counterpart can
+    // ever be permanently removed.
+    const hasBaseline = baselineArticles.some((a) => a.slug === slug);
+    if (hasBaseline) {
+      return {
+        success: false,
+        error:
+          "Artikel ini adalah override dari artikel bawaan sistem. Menghapusnya akan membuat versi bawaan tampil kembali. Gunakan tombol 'Tidak Aktif' untuk menyembunyikannya dari publik.",
+      };
+    }
+
+    try {
       const filtered = custom.filter((a) => a.slug !== slug);
       await writeCustomArticles(filtered);
       return { success: true };
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Gagal menghapus artikel.";
-      return { success: false, error: message };
+      console.error("[articles] Failed to delete article:", err);
+      return { success: false, error: "Gagal menghapus artikel." };
     }
   });
 }

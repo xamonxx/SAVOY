@@ -270,7 +270,13 @@ export function ArticleEditor({ initialArticle, isEditing = false }: Props) {
     };
 
     startTransition(async () => {
-      const res = await saveArticleAction(payload);
+      // `originalSlug` only when editing - lets the action refuse a
+      // slug/originalSlug mismatch server-side too, in case the read-only
+      // input above is ever bypassed (audit SAV-008).
+      const res = await saveArticleAction(
+        payload,
+        isEditing ? initialArticle?.slug : undefined
+      );
       if (res.success) {
         setSuccessMessage("Artikel berhasil disimpan & langsung terbit secara real-time!");
         setTimeout(() => {
@@ -309,7 +315,7 @@ export function ArticleEditor({ initialArticle, isEditing = false }: Props) {
           <button
             type="submit"
             disabled={isPending}
-            className="inline-flex items-center gap-2 rounded-md bg-primary-container px-5 py-2 text-xs font-bold uppercase tracking-wider text-deep-black shadow-sm transition-all hover:opacity-95 disabled:opacity-50"
+            className="inline-flex items-center gap-2 rounded-md bg-primary-container px-5 py-2 text-xs font-bold uppercase tracking-wider text-pure-white shadow-sm transition-all hover:opacity-95 disabled:opacity-50"
           >
             {isPending ? (
               <>
@@ -391,13 +397,27 @@ export function ArticleEditor({ initialArticle, isEditing = false }: Props) {
             type="text"
             required
             value={slug}
+            readOnly={isEditing}
             onChange={(e) => {
+              if (isEditing) return;
               setSlug(e.target.value);
               setSlugCustomized(true);
             }}
             placeholder="plywood-vs-hmr"
-            className="w-full font-mono rounded-md border border-border-hairline bg-surface-container-low px-3.5 py-2 text-xs text-on-surface placeholder:text-muted-gray focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
+            title={
+              isEditing
+                ? "Slug tidak bisa diubah setelah artikel dibuat, untuk menghindari URL lama yang tertinggal aktif (audit SAV-008)."
+                : undefined
+            }
+            className={`w-full font-mono rounded-md border border-border-hairline px-3.5 py-2 text-xs text-on-surface placeholder:text-muted-gray focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary ${
+              isEditing ? "bg-surface-container-high cursor-not-allowed opacity-70" : "bg-surface-container-low"
+            }`}
           />
+          {isEditing ? (
+            <p className="text-[11px] text-muted-gray">
+              Slug terkunci saat mengedit artikel yang sudah ada, supaya URL publik tidak pernah bercabang.
+            </p>
+          ) : null}
         </div>
 
         {/* Reading Time */}
@@ -473,7 +493,7 @@ export function ArticleEditor({ initialArticle, isEditing = false }: Props) {
                     alt={coverImageAlt || "Pratinjau sampul"}
                     className="h-full w-full object-cover"
                   />
-                  <div className="absolute inset-0 flex items-center justify-center bg-deep-black/0 opacity-0 transition-all group-hover:bg-deep-black/40 group-hover:opacity-100">
+                  <div className="absolute inset-0 flex items-center justify-center bg-scrim-black/0 opacity-0 transition-all group-hover:bg-scrim-black/40 group-hover:opacity-100">
                     <span className="text-[11px] font-semibold text-pure-white">
                       Ganti gambar
                     </span>
@@ -485,7 +505,7 @@ export function ArticleEditor({ initialArticle, isEditing = false }: Props) {
                       setCoverImage("");
                       setCoverImageAlt("");
                     }}
-                    className="absolute right-1.5 top-1.5 rounded-full bg-deep-black/60 p-1 text-pure-white opacity-0 transition-opacity group-hover:opacity-100"
+                    className="absolute right-1.5 top-1.5 rounded-full bg-scrim-black/60 p-1 text-pure-white opacity-0 transition-opacity group-hover:opacity-100"
                     title="Hapus gambar sampul"
                   >
                     <X className="size-3.5" />

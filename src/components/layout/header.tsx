@@ -138,7 +138,7 @@ export function Header() {
         hidden && !focusWithin ? "-translate-y-full" : "translate-y-0",
         floating
           ? "border-transparent bg-transparent"
-          : "border-border-hairline bg-surface/90 shadow-[0_18px_60px_-48px_rgba(9,11,13,0.55)] backdrop-blur-xl"
+          : "border-border-hairline-bold bg-surface/90 shadow-[0_18px_60px_-48px_rgba(9,11,13,0.55)] backdrop-blur-xl"
       )}
     >
       <div className="container-editorial flex h-20 items-center justify-between gap-space-md lg:gap-gutter-desktop">
@@ -177,8 +177,8 @@ export function Header() {
             className={cn(
               "hidden min-h-10 rounded-md px-space-lg active:translate-y-px sm:inline-flex",
               floating
-                ? "shadow-[0_10px_30px_-18px_rgba(254,179,2,0.75)]"
-                : "shadow-hairline"
+                ? "shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)]"
+                : "shadow-panel"
             )}
           >
             Konsultasi

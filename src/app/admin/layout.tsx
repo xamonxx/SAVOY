@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ExternalLink, FileText, LogOut } from "lucide-react";
+import { ExternalLink, FileText, LogOut, MessageSquareText } from "lucide-react";
 
 import { isAdminAuthenticated } from "@/lib/auth";
 import { logoutAdminAction } from "@/app/actions/admin-auth";
@@ -29,7 +29,7 @@ export default async function AdminLayout({
                 href="/admin/articles"
                 className="flex items-center gap-2.5 font-bold tracking-tight text-on-surface"
               >
-                <span className="flex size-8 items-center justify-center rounded-lg bg-primary-container text-sm font-black text-deep-black shadow-hairline">
+                <span className="flex size-8 items-center justify-center rounded-lg bg-primary-container text-sm font-black text-pure-white shadow-hairline">
                   N
                 </span>
                 <span className="text-sm uppercase tracking-wider">
@@ -46,6 +46,13 @@ export default async function AdminLayout({
                 >
                   <FileText className="size-3.5 text-primary" />
                   Artikel Edukasi
+                </Link>
+                <Link
+                  href="/admin/reviews"
+                  className="inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 text-xs font-semibold text-on-surface transition-colors hover:bg-surface-container-high"
+                >
+                  <MessageSquareText className="size-3.5 text-primary" />
+                  Ulasan
                 </Link>
               </nav>
             </div>

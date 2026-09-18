@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+import { isValidCalendarDate } from "@/lib/date-utils";
+
 /**
  * Survey lead schema (pasal 8 & 27).
  *
@@ -192,6 +194,9 @@ export const surveySchema = z.object({
   surveyDate: z
     .string()
     .regex(/^\d{4}-\d{2}-\d{2}$/, "Pilih tanggal survey.")
+    .refine((value) => isValidCalendarDate(value), {
+      message: "Tanggal survey tidak valid.",
+    })
     .refine((value) => value >= jakartaToday(), {
       message: "Tanggal survey tidak boleh di masa lalu.",
     }),

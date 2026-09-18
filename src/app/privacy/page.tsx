@@ -52,7 +52,7 @@ const sections: Section[] = [
   {
     heading: "Data yang kami kumpulkan",
     body: [
-      "Satu-satunya data pribadi yang situs ini kumpulkan adalah data yang Anda isi sendiri pada formulir survey. Tidak ada pendaftaran akun, dan formulir tidak menerima unggahan berkas apa pun.",
+      "Situs ini mengumpulkan data pribadi dari dua formulir yang Anda isi sendiri: formulir survey, dan formulir ulasan publik (dijelaskan pada bagian tersendiri di bawah). Tidak ada pendaftaran akun, dan tidak ada formulir yang menerima unggahan berkas apa pun.",
     ],
     list: [
       "Nama dan nomor WhatsApp, serta nomor cadangan bila Anda mengisinya.",
@@ -79,6 +79,18 @@ const sections: Section[] = [
     heading: "Ke mana data dikirim",
     body: [
       "Isian formulir divalidasi di server kami, lalu diteruskan ke sistem pencatatan lead internal yang kami gunakan untuk mengatur antrean survey. Selain penyedia hosting situs dan sistem pencatatan tersebut, tidak ada pihak ketiga yang menerima data Anda.",
+    ],
+  },
+  {
+    heading: "Formulir ulasan publik",
+    body: [
+      "Bila Anda mengirim ulasan lewat formulir di halaman utama, sebagian isiannya ditampilkan secara publik dan sebagian lagi tetap privat.",
+    ],
+    list: [
+      "Ditampilkan publik setelah ditinjau tim kami: nama, wilayah/kota, rating bintang, dan isi ulasan.",
+      "Tetap privat, tidak pernah ditampilkan di halaman publik: alamat email Anda.",
+      "Setiap ulasan baru disimpan di server kami dengan status \"menunggu\" dan tidak langsung tayang - tim kami meninjaunya lebih dulu sebelum disetujui untuk publik.",
+      "Ulasan yang disetujui memicu notifikasi email ke tim internal kami, dan diteruskan ke sistem pencatatan lead yang sama bila terhubung.",
     ],
   },
   {
@@ -175,7 +187,8 @@ export default function PrivacyPage() {
                   </>
                 ) : null}
                 . Sebutkan nama dan nomor WhatsApp yang Anda pakai saat mengisi
-                formulir agar kami bisa menemukan datanya.
+                formulir survey, atau nama dan email yang Anda pakai saat mengirim
+                ulasan, agar kami bisa menemukan datanya.
               </p>
               <p className="text-body-sm text-muted-gray">
                 Kebijakan ini berlaku untuk {site.url} dan akan diperbarui bila

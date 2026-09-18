@@ -22,7 +22,7 @@ export default function OpenGraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          backgroundColor: "#F7F4EE",
+          backgroundColor: "#FFFFFF",
           padding: 72,
           fontFamily: "sans-serif",
         }}
@@ -33,7 +33,7 @@ export default function OpenGraphImage() {
               width: 20,
               height: 20,
               borderRadius: 999,
-              backgroundColor: "#D79D00",
+              backgroundColor: "#9AB279",
             }}
           />
           <div
@@ -42,7 +42,7 @@ export default function OpenGraphImage() {
               fontWeight: 700,
               letterSpacing: "0.12em",
               textTransform: "uppercase",
-              color: "#4F3B38",
+              color: "#0F3C2C",
             }}
           >
             {site.name}
@@ -63,12 +63,12 @@ export default function OpenGraphImage() {
               lineHeight: 1.08,
               fontWeight: 600,
               letterSpacing: "-0.03em",
-              color: "#1A1716",
+              color: "#333333",
             }}
           >
-            Ruang yang dirancang untuk cara Anda hidup.
+            Setiap sudut ruang, dirancang untuk cara Anda hidup.
           </div>
-          <div style={{ fontSize: 28, color: "#4F3B38" }}>
+          <div style={{ fontSize: 28, color: "#0F3C2C" }}>
             Interior &amp; custom furniture — dirancang, diproduksi, dan dipasang
             oleh satu tim.
           </div>
@@ -80,13 +80,13 @@ export default function OpenGraphImage() {
             alignItems: "center",
             gap: 20,
             fontSize: 22,
-            color: "#766B66",
+            color: "#767676",
           }}
         >
           <div
             style={{
-              backgroundColor: "#D79D00",
-              color: "#0B0A09",
+              backgroundColor: "#9AB279",
+              color: "#1A1A1A",
               padding: "10px 22px",
               borderRadius: 12,
               fontWeight: 700,

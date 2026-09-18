@@ -11,20 +11,52 @@ export type ButtonVariant =
   | "outline-inverse";
 export type ButtonSize = "sm" | "md";
 
+/*
+ * Every solid variant is a soft diagonal gradient between two stops of the
+ * same token family (never two unrelated hues), rendered at double size so
+ * `background-position` has room to travel - that property, unlike a
+ * gradient's own color stops, transitions smoothly, which is what makes the
+ * gradient itself appear to shift on hover instead of hard-cutting to a flat
+ * color. The lift (`-translate-y-px`) and the deepened shadow are the second
+ * half of the same hover animation, so the button reads as lifting toward
+ * the light, not just recoloring.
+ */
 const base =
   "inline-flex items-center justify-center gap-space-xs rounded-lg font-semibold " +
-  "transition-colors duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] " +
+  "bg-[length:200%_200%] bg-[position:0%_0%] hover:bg-[position:100%_100%] " +
+  "transition-[background-position,color,border-color,transform,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] " +
+  "hover:-translate-y-px active:translate-y-0 " +
   "disabled:pointer-events-none disabled:opacity-50";
 
 const variants: Record<ButtonVariant, string> = {
-  // Text on the brand yellow is always charcoal, never white (DESIGN.md).
+  // Dark ink, not white (audit SAV-012): measured contrast for white text
+  // against this gradient is 2.33:1 at the near stop and 2.90:1 at the far
+  // one, both under the 4.5:1 AA floor for normal-size text. Dark text holds
+  // comfortably over both stops without touching the sage fill itself, which
+  // is the brand accent used everywhere else.
   primary:
-    "bg-primary-container text-deep-black shadow-hairline hover:bg-primary-container-hover",
-  dark: "bg-deep-black text-pure-white hover:bg-inverse-surface",
+    "bg-[linear-gradient(135deg,var(--color-primary-container)_0%,var(--color-primary-container-hover)_100%)] " +
+    "text-on-surface shadow-hairline hover:shadow-panel",
+  dark:
+    "bg-[linear-gradient(135deg,var(--color-deep-black)_0%,var(--color-deep-black-hover)_100%)] " +
+    "text-pure-white shadow-hairline hover:shadow-panel",
+  /*
+   * `surface` and `outline` keep exactly one gradient definition each, used
+   * at rest and on hover alike - only its on-screen *position* moves (the
+   * shared rule in `base`). A gradient swapped for a differently-colored one
+   * on `:hover` cannot transition at all (`background-image` is not an
+   * animatable property; the browser cuts to it), which is what silently
+   * turned "animate hover" into a hard snap the first time this was written.
+   * The faint sage bled into each gradient's far stop via `color-mix` is
+   * what hover then reveals, sliding into view instead of cutting to it.
+   */
   surface:
-    "bg-surface-container-highest text-on-surface hover:bg-primary-container hover:text-deep-black",
+    "bg-[linear-gradient(135deg,var(--color-surface-container-high)_0%,color-mix(in_srgb,var(--color-surface-container-highest)_75%,var(--color-primary-container)_25%)_100%)] " +
+    "text-on-surface shadow-hairline hover:shadow-panel",
   outline:
-    "border border-border-hairline-strong text-on-surface hover:border-on-surface",
+    "border border-border-hairline-strong text-on-surface " +
+    "bg-[linear-gradient(135deg,transparent_0%,var(--color-surface-container-low)_100%)] " +
+    "hover:border-on-surface",
   /**
    * The same button standing on a photograph or any dark ground.
    *

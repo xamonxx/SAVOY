@@ -1,11 +1,15 @@
 "use server";
 
+import { randomUUID } from "node:crypto";
+import { headers } from "next/headers";
+import { extractClientIp } from "@/lib/auth";
 import {
   formatSurveyDate,
   formatSurveyTime,
   resolveProjectNeed,
   surveySchema,
 } from "@/lib/schemas/survey";
+import { checkSubmissionLimit, recordSubmission } from "@/lib/submission-limiter";
 import { postToWebhook } from "@/lib/webhook";
 
 export type SurveyActionResult =
@@ -26,6 +30,24 @@ export type SurveyActionResult =
 export async function submitSurvey(
   formData: FormData
 ): Promise<SurveyActionResult> {
+  // Honeypot: see the identical comment in submit-review.ts. A filled value
+  // gets the same success response a real lead gets, so a bot never learns
+  // which field gave it away.
+  if (String(formData.get("website") ?? "").trim()) {
+    return { status: "success" };
+  }
+
+  const headersList = await headers();
+  const clientIp = extractClientIp(headersList);
+  const limitStatus = checkSubmissionLimit("survey", clientIp);
+  if (!limitStatus.allowed) {
+    const minutes = Math.ceil(limitStatus.retryAfterSeconds / 60);
+    return {
+      status: "error",
+      message: `Terlalu banyak pengajuan dari jaringan Anda. Silakan coba lagi dalam ${minutes} menit, atau hubungi kami langsung via WhatsApp.`,
+    };
+  }
+
   const raw = {
     projectType: formData.get("projectType"),
     projectTypeOther: formData.get("projectTypeOther") ?? "",
@@ -65,14 +87,23 @@ export async function submitSurvey(
   const webhook = process.env.LEAD_WEBHOOK_URL;
 
   if (webhook) {
-    const result = await postToWebhook(webhook, {
-      ...parsed.data,
-      // Pre-resolved so a webhook consumer never has to re-implement the
-      // "Lainnya" fallback or the Indonesian date formatting.
-      need: resolveProjectNeed(parsed.data),
-      scheduleLabel: `${formatSurveyDate(parsed.data.surveyDate)}, ${formatSurveyTime(parsed.data.surveyTime)}`,
-      submittedAt: new Date().toISOString(),
-    });
+    // Generated once, before the retry loop, so every retry of this same
+    // submission carries the same idempotency key (audit SAV-018) - a lead
+    // that times out on our end but actually reached the receiver won't get
+    // double-booked when the retry lands too.
+    const eventId = randomUUID();
+    const result = await postToWebhook(
+      webhook,
+      {
+        ...parsed.data,
+        // Pre-resolved so a webhook consumer never has to re-implement the
+        // "Lainnya" fallback or the Indonesian date formatting.
+        need: resolveProjectNeed(parsed.data),
+        scheduleLabel: `${formatSurveyDate(parsed.data.surveyDate)}, ${formatSurveyTime(parsed.data.surveyTime)}`,
+        submittedAt: new Date().toISOString(),
+      },
+      eventId
+    );
 
     if (!result.ok) {
       console.error("[survey] Webhook delivery failed:", result.error);
@@ -84,5 +115,6 @@ export async function submitSurvey(
     }
   }
 
+  recordSubmission("survey", clientIp);
   return { status: "success" };
 }

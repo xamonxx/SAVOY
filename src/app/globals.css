@@ -9,79 +9,132 @@
 
 /* =====================================================================
    SAVOY - DESIGN TOKENS
-   Source of truth: BAHAN/DESIGN.md (frontmatter) + BAHAN/code.html config.
-   SAVOY / Quiet Spatial Luxury. Warm Ivory is the dominant surface, Espresso
-   and Obsidian carry structure, and Gold is only a 3-5% accent.
+   Four-color system: dark green (large blocks / footer), sage green
+   (buttons, icon fills, CTA), white (content surface), dark gray (body
+   text). Every token below keeps its original Material-3-flavoured name -
+   only the values changed - so no component file needed to change when the
+   palette moved off the earlier warm-ivory/espresso/gold system.
    ===================================================================== */
 
 @theme {
-  /* ---------- Surfaces (60%) ---------- */
-  --color-surface: #f7f4ee;
-  --color-surface-dim: #d8d0c8;
-  --color-surface-bright: #f7f4ee;
+  /* ---------- Surfaces (60%) - Base #FFFFFF ---------- */
+  --color-surface: #ffffff;
+  --color-surface-dim: #e0e0e0;
+  --color-surface-bright: #ffffff;
   --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f1ede6;
-  --color-surface-container: #ebe5dc;
-  --color-surface-container-high: #e2dbd2;
-  --color-surface-container-highest: #d8d0c8;
-  --color-surface-variant: #d8d0c8;
-  --color-surface-tint: #4f3b38;
-  --color-background: #f7f4ee;
+  --color-surface-container-low: #f7f7f7;
+  --color-surface-container: #f0f0f0;
+  --color-surface-container-high: #e8e8e8;
+  --color-surface-container-highest: #e0e0e0;
+  --color-surface-variant: #e0e0e0;
+  --color-surface-tint: #0f3c2c;
+  --color-background: #ffffff;
 
-  /* ---------- Grounded contrast (25%) ---------- */
-  --color-on-surface: #1a1716;
-  --color-on-surface-variant: #4f3b38;
-  --color-on-background: #1a1716;
-  --color-inverse-surface: #0b0a09;
-  --color-inverse-on-surface: #f7f4ee;
-  --color-deep-black: #0b0a09;
-  --color-charcoal: #1a1716;
+  /* ---------- Grounded contrast (25%) - Text #333333 ---------- */
+  --color-on-surface: #333333;
+  --color-on-surface-variant: #5c5c5c;
+  --color-on-background: #333333;
+  /*
+    Primary: "for large block backgrounds / footer" - every dark full-bleed
+    section (Process, the footer's CTA card, the homepage close) reads off
+    this one token now, deliberately a single dark tone rather than the two
+    the previous palette kept apart.
+  */
+  --color-inverse-surface: #0f3c2c;
+  --color-inverse-on-surface: #ffffff;
+  --color-deep-black: #0f3c2c;
+  --color-charcoal: #333333;
   --color-pure-white: #ffffff;
-  --color-muted-gray: #766b66;
+  --color-muted-gray: #767676;
+  /* Kept equal to --color-inverse-surface: one dark brand tone, not two. */
+  --color-espresso-deep: #0f3c2c;
+  /*
+    A second, lighter stop of the dark green - for the "dark" button
+    variant's own gradient and hover state. `--color-deep-black` and
+    `--color-inverse-surface` are deliberately the same value (see above), so
+    neither could pair with itself to make a gradient or a hover shift that
+    actually moves.
+  */
+  --color-deep-black-hover: #17553f;
+  /*
+    Plain, uncolored black - for photo scrims, gradient overlays, modal
+    backdrops and lightbox chrome, never for a brand surface. `--color-deep-
+    black` is the brand's dark green now, and a green-tinted overlay on top
+    of a photograph reads as a color-cast bug rather than a design choice -
+    darkening a photo for text legibility should never recolor it. This is a
+    separate token (not `--color-deep-black` at a lower opacity) specifically
+    so it keeps working at any Tailwind opacity modifier without pulling the
+    brand hue in with it.
+  */
+  --color-scrim-black: #000000;
 
-  /* ---------- Brand accent (5%) ---------- */
-  --color-primary: #4f3b38;
+  /* ---------- Brand accent - Accent #9AB279 (buttons, icon fills, CTA) ---------- */
+  /*
+    `--color-primary` is the ink role - links, small icons, hover states -
+    read directly against a white surface, so it uses the dark green rather
+    than the sage: sage at body-text size on white falls well short of
+    WCAG AA. Sage itself is reserved for `--color-primary-container` below,
+    where it is always a *fill* with dark text sitting on top of it, never
+    text color on its own.
+  */
+  --color-primary: #0f3c2c;
   --color-on-primary: #ffffff;
-  --color-primary-container: #d79d00;
-  --color-primary-container-hover: #c18b00;
-  --color-on-primary-container: #1a1716;
-  --color-inverse-primary: #d79d00;
-  --color-primary-fixed: #f2dcaa;
-  --color-primary-fixed-dim: #d79d00;
-  --color-on-primary-fixed: #1a1716;
-  --color-on-primary-fixed-variant: #4f3b38;
+  /*
+    The sage accent fill. White text on it (explicit direction, overriding
+    the strict-WCAG default) - reserve this fill for buttons/badges/icon
+    chips sized and weighted for it, not for long-form paragraph copy, where
+    the contrast gap would actually hurt reading.
+  */
+  --color-primary-container: #9ab279;
+  --color-primary-container-hover: #86a066;
+  --color-on-primary-container: #ffffff;
+  --color-inverse-primary: #9ab279;
+  --color-primary-fixed: #e4ebd9;
+  --color-primary-fixed-dim: #9ab279;
+  --color-on-primary-fixed: #1a1a1a;
+  --color-on-primary-fixed-variant: #0f3c2c;
 
   /* ---------- Secondary / tertiary ---------- */
-  --color-secondary: #4f3b38;
+  --color-secondary: #0f3c2c;
   --color-on-secondary: #ffffff;
-  --color-secondary-container: #d8d0c8;
-  --color-on-secondary-container: #4f3b38;
-  --color-secondary-fixed: #d8d0c8;
-  --color-secondary-fixed-dim: #c5bbb2;
-  --color-on-secondary-fixed: #1a1716;
-  --color-on-secondary-fixed-variant: #4f3b38;
-  --color-tertiary: #766b66;
+  --color-secondary-container: #e0e0e0;
+  --color-on-secondary-container: #333333;
+  --color-secondary-fixed: #e0e0e0;
+  --color-secondary-fixed-dim: #c7c7c7;
+  --color-on-secondary-fixed: #333333;
+  --color-on-secondary-fixed-variant: #333333;
+  --color-tertiary: #767676;
   --color-on-tertiary: #ffffff;
-  --color-tertiary-container: #d8d0c8;
-  --color-on-tertiary-container: #4f3b38;
-  --color-tertiary-fixed: #ebe5dc;
-  --color-tertiary-fixed-dim: #d8d0c8;
-  --color-on-tertiary-fixed: #1a1716;
-  --color-on-tertiary-fixed-variant: #4f3b38;
+  --color-tertiary-container: #e0e0e0;
+  --color-on-tertiary-container: #333333;
+  --color-tertiary-fixed: #f0f0f0;
+  --color-tertiary-fixed-dim: #e0e0e0;
+  --color-on-tertiary-fixed: #333333;
+  --color-on-tertiary-fixed-variant: #333333;
 
-  /* ---------- Feedback ---------- */
+  /* ---------- Article highlight marker (body ==text== only) ----------
+     Its own token rather than a reuse of `primary-container` (sage): a
+     highlighter mark inside article prose is a different context from the
+     brand's button/badge accent, and readers expect a literal yellow. */
+  --color-highlight-marker: #fde68a;
+  --color-on-highlight-marker: #1a1a1a;
+
+  /* ---------- Feedback (unchanged - standard error red, not a brand color) ---------- */
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
   --color-error-container: #ffdad6;
   --color-on-error-container: #93000a;
 
   /* ---------- Structure ---------- */
-  --color-outline: #8b7f78;
-  --color-outline-variant: #d8d0c8;
-  --color-border-hairline: rgba(26, 23, 22, 0.09);
-  --color-border-hairline-strong: rgba(26, 23, 22, 0.17);
-  --color-border-hairline-dark: rgba(247, 244, 238, 0.14);
-  --color-scrim: rgba(11, 10, 9, 0.38);
+  --color-outline: #767676;
+  --color-outline-variant: #e0e0e0;
+  --color-border-hairline: rgba(0, 0, 0, 0.09);
+  --color-border-hairline-strong: rgba(0, 0, 0, 0.17);
+  --color-border-hairline-bold: rgba(0, 0, 0, 0.24);
+  --color-border-hairline-dark: rgba(255, 255, 255, 0.14);
+  /* Neutral, not brand-tinted: this sits over photography, where a green
+     cast would fight the image instead of just darkening it for legibility. */
+  --color-scrim: rgba(0, 0, 0, 0.38);
 
   /* ---------- Typography ---------- */
   --text-display: 80px;
@@ -536,7 +589,19 @@
 }
 
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  /*
+   * `pointer: fine` here, not just `prefers-reduced-motion` - a `view()`
+   * timeline recomputes its `entry`/`cover` progress against the viewport's
+   * *current* height on every layout, and a touch browser's address bar
+   * collapsing or expanding right as a scroll gesture ends changes exactly
+   * that. The visible symptom is content that already finished revealing
+   * snapping backward or forward a moment after the finger lifts - the page
+   * looks like it is adjusting itself. Desktop pointers never trigger that
+   * dynamic-toolbar resize, so this only needs to stand down on touch.
+   * Falls through to the plain, immediately-visible markup `Reveal`'s own
+   * comment describes for browsers without `view()` support at all.
+   */
+  @media (prefers-reduced-motion: no-preference) and (pointer: fine) {
     .reveal,
     .reveal-image,
     .media-drift,

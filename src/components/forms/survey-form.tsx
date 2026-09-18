@@ -172,7 +172,14 @@ export function SurveyForm() {
     });
   }
 
-  const submitSurveyForm = handleSubmit((values) => {
+  const submitSurveyForm = handleSubmit((values, event) => {
+    // Read straight from the native form element via the submit event,
+    // rather than a ref: a ref read inside a render-defined closure like
+    // this one is a lint-flagged footgun (`react-hooks/refs`) even though
+    // this particular closure only ever runs from the submit handler.
+    const honeypotValue =
+      (event?.currentTarget.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "";
+
     // `useTransition` gives us the pending flag that blocks a second submit.
     startTransition(async () => {
       const payload = new FormData();
@@ -180,6 +187,10 @@ export function SurveyForm() {
         if (value === undefined || value === null) continue;
         payload.append(key, String(value));
       }
+      // Honeypot (audit SAV-001): outside RHF/Zod on purpose - a bot that
+      // fills every field it can find still fills this one even though the
+      // schema above never validates it.
+      payload.append("website", honeypotValue);
 
       const result = await submitSurvey(payload);
 
@@ -233,7 +244,7 @@ export function SurveyForm() {
 
     return (
       <div className="space-y-space-lg text-center" role="status">
-        <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary-container text-deep-black">
+        <span className="mx-auto flex size-14 items-center justify-center rounded-full bg-primary-container text-pure-white">
           <CircleCheck aria-hidden className="size-7" />
         </span>
         <div className="space-y-space-xs">
@@ -271,6 +282,18 @@ export function SurveyForm() {
       noValidate
       className="space-y-space-xl"
     >
+      {/* Honeypot - see the identical comment in review-form.tsx. */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-9999px", top: "auto", width: 1, height: 1, overflow: "hidden" }}>
+        <label htmlFor={`${formId}-website`}>Website</label>
+        <input
+          id={`${formId}-website`}
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       {/* Step indicator */}
       <ol className="flex items-center justify-center gap-space-xs text-center">
         {SURVEY_STEPS.map((item, index) => {
@@ -283,7 +306,7 @@ export function SurveyForm() {
                   className={cn(
                     "flex size-7 items-center justify-center rounded-full text-label-md font-bold",
                     active || done
-                      ? "bg-primary-container text-deep-black"
+                      ? "bg-primary-container text-pure-white"
                       : "bg-surface-container-high text-muted-gray"
                   )}
                   aria-current={active ? "step" : undefined}
@@ -365,6 +388,7 @@ export function SurveyForm() {
                         "hint",
                         projectTypeOtherError
                       )}
+                      maxLength={120}
                       {...register("projectTypeOther")}
                     />
                   </FieldShell>
@@ -426,6 +450,7 @@ export function SurveyForm() {
                   undefined,
                   cityError
                 )}
+                maxLength={80}
                 {...register("city")}
               />
             </FieldShell>
@@ -443,6 +468,7 @@ export function SurveyForm() {
               placeholder="Contoh: Antapani"
               className={controlClasses}
               aria-describedby={describedBy(`${formId}-district`, "hint")}
+              maxLength={80}
               {...register("district")}
             />
           </FieldShell>
@@ -465,6 +491,7 @@ export function SurveyForm() {
                 "hint",
                 addressError
               )}
+              maxLength={250}
               {...register("address")}
             />
           </FieldShell>
@@ -551,6 +578,7 @@ export function SurveyForm() {
               className={controlClasses}
               id={`${formId}-notes`}
               rows={4}
+              maxLength={1000}
               {...register("notes")}
             />
           </FieldShell>
@@ -581,6 +609,7 @@ export function SurveyForm() {
                   undefined,
                   nameError
                 )}
+                maxLength={80}
                 {...register("name")}
               />
             </FieldShell>
@@ -603,6 +632,7 @@ export function SurveyForm() {
                   undefined,
                   whatsappError
                 )}
+                maxLength={40}
                 {...register("whatsapp")}
               />
             </FieldShell>
@@ -626,6 +656,7 @@ export function SurveyForm() {
                 "hint",
                 emergencyPhoneError
               )}
+              maxLength={40}
               {...register("emergencyPhone")}
             />
           </FieldShell>

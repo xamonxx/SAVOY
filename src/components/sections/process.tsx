@@ -17,7 +17,7 @@ export function Process() {
         <div className="mb-space-2xl grid gap-space-lg lg:mb-space-3xl lg:grid-cols-12 lg:items-end">
           <div className="space-y-space-md lg:col-span-8">
             <Eyebrow tone="onDark" className="[letter-spacing:0]">Alur kerja terstruktur</Eyebrow>
-            <h2 id="process-title" className="max-w-3xl text-[32px] font-semibold leading-tight sm:text-[42px] lg:text-[48px]">
+            <h2 id="process-title" className="max-w-3xl text-balance text-[32px] font-semibold leading-tight sm:text-[42px] lg:text-[48px]">
               Dari percakapan pertama hingga ruang siap digunakan.
             </h2>
           </div>

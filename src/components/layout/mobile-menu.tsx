@@ -38,7 +38,7 @@ export function MobileMenu({ inverse = false }: { inverse?: boolean }) {
         className={cn(
           "inline-flex size-10 pointer-coarse:size-11 items-center justify-center rounded-md border shadow-hairline transition-[background-color,border-color,color,translate] duration-200 active:translate-y-px lg:hidden",
           inverse
-            ? "border-border-hairline-dark bg-deep-black/20 text-inverse-on-surface backdrop-blur-xl hover:bg-pure-white/10"
+            ? "border-border-hairline-dark bg-scrim-black/20 text-inverse-on-surface backdrop-blur-xl hover:bg-pure-white/10"
             : "border-border-hairline bg-surface-container-lowest/80 text-on-surface backdrop-blur-xl hover:bg-surface-container"
         )}
         aria-label="Buka menu navigasi"
@@ -47,7 +47,7 @@ export function MobileMenu({ inverse = false }: { inverse?: boolean }) {
       </Dialog.Trigger>
 
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-[60] bg-deep-black/40 backdrop-blur-sm data-[state=open]:animate-overlay-in data-[state=closed]:animate-overlay-out" />
+        <Dialog.Overlay className="fixed inset-0 z-[60] bg-scrim-black/40 backdrop-blur-sm data-[state=open]:animate-overlay-in data-[state=closed]:animate-overlay-out" />
         {/*
           The panel is capped and scrolls inside itself.
 
@@ -63,8 +63,13 @@ export function MobileMenu({ inverse = false }: { inverse?: boolean }) {
         */}
         <Dialog.Content
           data-lenis-prevent
-          className="fixed left-space-md right-space-md top-space-md z-[70] max-h-[calc(100dvh-2rem)] origin-top overflow-y-auto overscroll-contain rounded-lg border border-border-hairline bg-surface/95 p-space-lg shadow-panel backdrop-blur-xl data-[state=open]:animate-menu-in data-[state=closed]:animate-menu-out focus:outline-none"
+          className="fixed left-space-md right-space-md top-space-md z-[70] max-h-[calc(100dvh-2rem)] origin-top overflow-y-auto overscroll-contain rounded-lg border border-border-hairline-bold bg-surface/95 p-space-lg shadow-panel backdrop-blur-xl data-[state=open]:animate-menu-in data-[state=closed]:animate-menu-out focus:outline-none"
         >
+          {/* Gold top edge, echoing the desktop dropdown's own accent strip -
+              rounded to match the panel rather than relying on `overflow-hidden`
+              on `Dialog.Content`, which would fight its own internal scroll. */}
+          <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0 h-[3px] rounded-t-lg bg-primary-container" />
+
           <Dialog.Title className="sr-only">Menu navigasi</Dialog.Title>
           <Dialog.Description className="sr-only">
             Tautan ke seluruh halaman SAVOY.
@@ -99,10 +104,10 @@ export function MobileMenu({ inverse = false }: { inverse?: boolean }) {
                         }
                         aria-expanded={isExpanded}
                         className={cn(
-                          "flex w-full items-center justify-between rounded-md px-space-md py-space-sm text-label-lg transition-[background-color,color,translate] duration-200 active:translate-y-px",
+                          "flex w-full items-center justify-between rounded-md border-l-[3px] px-space-md py-space-sm text-label-lg transition-[background-color,color,border-color,translate] duration-200 active:translate-y-px",
                           active
-                            ? "bg-surface-container-lowest font-semibold text-on-surface shadow-hairline"
-                            : "text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
+                            ? "border-primary-container bg-surface-container-lowest font-semibold text-on-surface"
+                            : "border-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
                         )}
                       >
                         <span>{link.label}</span>
@@ -150,10 +155,10 @@ export function MobileMenu({ inverse = false }: { inverse?: boolean }) {
                                   aria-current={childActive ? "page" : undefined}
                                   onClick={() => setOpen(false)}
                                   className={cn(
-                                    "flex items-center justify-between rounded-md px-3 py-2 text-label-md transition-[background-color,color] duration-150",
+                                    "flex items-center justify-between rounded-md border-l-[3px] px-3 py-2 text-label-md transition-[background-color,color,border-color] duration-150",
                                     childActive
-                                      ? "bg-surface-container-lowest font-semibold text-primary shadow-hairline"
-                                      : "text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
+                                      ? "border-primary-container bg-surface-container-lowest font-semibold text-primary"
+                                      : "border-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
                                   )}
                                 >
                                   <span>{child.label}</span>
@@ -182,10 +187,10 @@ export function MobileMenu({ inverse = false }: { inverse?: boolean }) {
                       // open behind the page the visitor just asked for.
                       onClick={() => setOpen(false)}
                       className={cn(
-                        "flex items-center justify-between rounded-md px-space-md py-space-sm text-label-lg transition-[background-color,color,translate] duration-200 active:translate-y-px",
+                        "flex items-center justify-between rounded-md border-l-[3px] px-space-md py-space-sm text-label-lg transition-[background-color,color,border-color,translate] duration-200 active:translate-y-px",
                         active
-                          ? "bg-surface-container-lowest font-semibold text-on-surface shadow-hairline"
-                          : "text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
+                          ? "border-primary-container bg-surface-container-lowest font-semibold text-on-surface"
+                          : "border-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface"
                       )}
                     >
                       {link.label}
