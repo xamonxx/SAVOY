@@ -6,9 +6,10 @@ import { site } from "@/lib/site";
  * Web app manifest.
  *
  * Mostly for Android "add to home screen" and for the richer icon a browser
- * shows in tab groups and install prompts. The 512px tile carries the full
- * wordmark because at that size it is finally legible; everything smaller uses
- * the "n" monogram.
+ * shows in tab groups and install prompts. Both sizes use the same
+ * diamond-V mark as `icon.png`/`apple-icon.png` - these files are separate
+ * only because a manifest needs real static assets at fixed pixel sizes,
+ * not Next's dynamically-generated favicon route.
  */
 export default function manifest(): MetadataRoute.Manifest {
   return {
