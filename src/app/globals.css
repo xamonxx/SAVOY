@@ -253,8 +253,8 @@
      pulling in tailwindcss-animate for two keyframes. */
   --animate-overlay-in: overlay-in 200ms var(--ease-out-editorial);
   --animate-overlay-out: overlay-out 150ms var(--ease-out-editorial);
-  --animate-menu-in: menu-in 300ms var(--ease-out-editorial);
-  --animate-menu-out: menu-out 180ms var(--ease-out-editorial);
+  --animate-menu-in: menu-in 240ms var(--ease-out-soft);
+  --animate-menu-out: menu-out 160ms var(--ease-out-soft);
 
   @keyframes overlay-in {
     from {
@@ -277,22 +277,22 @@
   @keyframes menu-in {
     from {
       opacity: 0;
-      transform: translateY(-12px);
+      transform: scale(0.96) translateY(-6px);
     }
     to {
       opacity: 1;
-      transform: none;
+      transform: scale(1) translateY(0);
     }
   }
 
   @keyframes menu-out {
     from {
       opacity: 1;
-      transform: none;
+      transform: scale(1) translateY(0);
     }
     to {
       opacity: 0;
-      transform: translateY(-12px);
+      transform: scale(0.96) translateY(-6px);
     }
   }
 
@@ -710,6 +710,38 @@
 
   &:focus-visible {
     translate: 0 0;
+  }
+}
+
+/* =====================================================================
+   APPLE LIQUID GLASS (VisionOS / macOS Sonoma aesthetic)
+   ===================================================================== */
+
+@utility liquid-glass {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.07) 50%, rgba(255, 255, 255, 0.03) 100%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow:
+    0 24px 50px -12px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.45),
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+@utility liquid-glass-btn {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.11) 50%, rgba(255, 255, 255, 0.05) 100%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow:
+    0 8px 24px -8px rgba(0, 0, 0, 0.5),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 -1px 1px 0 rgba(255, 255, 255, 0.15);
+  transition: all 200ms var(--ease-out-soft);
+
+  &:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.16) 50%, rgba(255, 255, 255, 0.08) 100%);
+    border-color: rgba(255, 255, 255, 0.48);
   }
 }
 

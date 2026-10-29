@@ -201,12 +201,21 @@ export function SurveyForm() {
   }
 
   const submitSurveyForm = handleSubmit((values, event) => {
-    // Read straight from the native form element via the submit event,
-    // rather than a ref: a ref read inside a render-defined closure like
-    // this one is a lint-flagged footgun (`react-hooks/refs`) even though
-    // this particular closure only ever runs from the submit handler.
-    const honeypotValue =
-      (event?.currentTarget.elements.namedItem("website") as HTMLInputElement | null)?.value ?? "";
+    // Read straight from the native form element via the submit event or
+    // DOM id. React Hook Form's `handleSubmit` runs async validation before
+    // calling this callback, by which time `event.currentTarget` is null.
+    const form =
+      event?.target instanceof HTMLFormElement
+        ? event.target
+        : event?.currentTarget instanceof HTMLFormElement
+        ? event.currentTarget
+        : null;
+    const honeypotInput =
+      (form?.elements.namedItem("website") as HTMLInputElement | null) ??
+      (typeof document !== "undefined"
+        ? (document.getElementById(`${formId}-website`) as HTMLInputElement | null)
+        : null);
+    const honeypotValue = honeypotInput?.value ?? "";
 
     // `useTransition` gives us the pending flag that blocks a second submit.
     startTransition(async () => {

@@ -10,9 +10,10 @@ import { navLinks } from "@/components/layout/nav-links";
 import { SocialLinks } from "@/components/layout/social-links";
 import { WhatsAppCta } from "@/components/ui/whatsapp-cta";
 import { track } from "@/lib/analytics";
-import { formatAddress, site } from "@/lib/site";
+import { site } from "@/lib/site";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { servedLocations } from "@/data/projects";
+import { BRANCHES } from "@/data/branches";
 
 /**
  * A row in one of the footer lists.
@@ -62,7 +63,6 @@ export function Footer() {
   // with dead space under it.
   const hasSocial = Object.values(site.social).some(Boolean);
   const whatsappUrl = buildWhatsAppUrl({ source: "footer" });
-  const address = formatAddress();
 
   return (
     <footer className="relative overflow-hidden border-t border-border-hairline-bold bg-surface">
@@ -81,18 +81,18 @@ export function Footer() {
 
       <div className="container-editorial relative py-space-4xl">
         <div className="grid gap-space-2xl lg:grid-cols-12 lg:gap-gutter-desktop">
-          <div className="space-y-space-md lg:col-span-5 lg:pr-space-xl">
+          <div className="space-y-space-md lg:col-span-4 lg:pr-space-md">
             <BrandMark tone="dark" size="footer" />
             <p className="max-w-md text-body-sm leading-relaxed text-on-surface-variant">
               {site.description}
             </p>
             {site.foundedYear ? (
               <span className="block text-label-eyebrow uppercase text-muted-gray">
-                Berdiri sejak {site.foundedYear} • Studio Interior & Furniture Custom
+                Berdiri sejak {site.foundedYear} • SAVOY INTERIOR
               </span>
             ) : (
               <span className="block text-label-eyebrow uppercase text-muted-gray">
-                Studio Interior & Furniture Custom
+                SAVOY INTERIOR
               </span>
             )}
             {hasSocial ? (
@@ -120,7 +120,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className="space-y-space-md lg:col-span-2">
+          <div className="space-y-space-md lg:col-span-3">
             <ColumnHeading>Kontak Langsung</ColumnHeading>
             <ul className="space-y-space-xs text-body-sm text-on-surface-variant pointer-coarse:space-y-0">
               <li>
@@ -151,27 +151,27 @@ export function Footer() {
                   </a>
                 </li>
               ) : null}
-              {address ? (
-                <li>
-                  {site.mapsUrl ? (
-                    <a
-                      href={site.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => track("maps_click", { source: "footer" })}
-                      className={`${footerRowClasses} items-start pointer-coarse:items-start`}
-                    >
-                      <MapPin aria-hidden className="mt-0.5 size-3.5 shrink-0 text-primary-container" />
-                      <span>{address}</span>
-                    </a>
-                  ) : (
-                    <span className={`${footerRowClasses} items-start pointer-coarse:items-start`}>
-                      <MapPin aria-hidden className="mt-0.5 size-3.5 shrink-0 text-primary-container" />
-                      <span>{address}</span>
+              {BRANCHES.map((branch) => (
+                <li key={branch.id} className="pt-space-2xs">
+                  <a
+                    href={branch.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => track("maps_click", { source: "footer" })}
+                    className={`${footerRowClasses} items-start pointer-coarse:items-start`}
+                  >
+                    <span className="flex size-6 shrink-0 items-center justify-center rounded-lg bg-black/[0.04] text-primary mt-0.5 group-hover:bg-primary-container/20 transition-colors"><MapPin aria-hidden className="size-3.5" /></span>
+                    <span className="leading-snug">
+                      <strong className="block text-[13px] font-semibold text-on-surface">
+                        {branch.shortLabel}:
+                      </strong>
+                      <span className="text-[12.5px] text-on-surface-variant">
+                        {branch.address}
+                      </span>
                     </span>
-                  )}
+                  </a>
                 </li>
-              ) : null}
+              ))}
             </ul>
           </div>
 
@@ -180,27 +180,27 @@ export function Footer() {
               rather than a slightly-different card in an otherwise uniform
               gray band. A soft radial highlight behind the badge keeps that
               contrast from reading as a flat sticker pasted on top. */}
-          <div className="relative space-y-space-md overflow-hidden rounded-lg bg-espresso-deep p-space-lg shadow-panel lg:col-span-3">
+          <div className="relative space-y-space-md overflow-hidden rounded-3xl border border-white/[0.12] bg-[#0c1410] p-7 text-white shadow-[0_24px_50px_-12px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.15)] lg:col-span-3">
             <div
               aria-hidden
               className="pointer-events-none absolute -right-10 -top-16 size-48 rounded-full bg-primary-container/25 blur-3xl"
             />
-            <span className="relative inline-flex size-9 items-center justify-center rounded-full bg-pure-white/10 text-primary-fixed">
+            <span className="relative inline-flex size-10 items-center justify-center rounded-2xl border border-white/[0.08] bg-white/[0.08] text-primary-fixed shadow-sm">
               <MessageSquarePlus aria-hidden className="size-4" />
             </span>
             <div className="relative space-y-space-2xs">
-              <span className="block text-label-eyebrow uppercase text-primary-fixed">
+              <span className="block text-label-eyebrow uppercase tracking-wider text-primary-fixed/90">
                 Mulai Diskusi
               </span>
-              <h2 className="text-headline-sm font-semibold text-inverse-on-surface">
+              <h2 className="text-xl font-bold tracking-tight text-white">
                 Mulai Proyek Anda
               </h2>
             </div>
-            <p className="relative text-body-sm text-inverse-on-surface/75">
+            <p className="relative text-[13px] leading-relaxed text-white/75">
               Ceritakan ruang yang ingin Anda kerjakan. Konsultasi awal dan estimasi
               tidak dikenakan biaya.
             </p>
-            <WhatsAppCta source="footer" size="sm" className="relative w-full">
+            <WhatsAppCta source="footer" size="sm" className="relative w-full rounded-xl font-semibold shadow-sm active:scale-[0.97] transition-all duration-150">
               Reservasi Konsultasi
             </WhatsAppCta>
           </div>

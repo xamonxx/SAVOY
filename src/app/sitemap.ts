@@ -85,6 +85,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${site.url}/alamat`,
+      lastModified: staticDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${site.url}/contact`,
       lastModified: staticDate,
       changeFrequency: "yearly",

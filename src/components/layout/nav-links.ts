@@ -51,6 +51,7 @@ export const navLinks: readonly NavItem[] = [
   },
   { href: "/knowledge", label: "Panduan" },
   { href: "/about", label: "Tentang" },
+  { href: "/alamat", label: "Alamat" },
   { href: "/contact", label: "Kontak" },
 ] as const;
 

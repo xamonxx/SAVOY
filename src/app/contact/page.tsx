@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/layout/page-header";
 import { SocialLinks } from "@/components/layout/social-links";
 import { Reveal } from "@/components/motion/reveal";
 import { Faq } from "@/components/sections/faq";
+import { MapSection } from "@/components/sections/map-section";
 import { Survey } from "@/components/sections/survey";
 import { WhatsAppCta } from "@/components/ui/whatsapp-cta";
 import { servedLocations } from "@/data/projects";
@@ -143,7 +144,7 @@ export default function ContactPage() {
                   <MapPin aria-hidden className="size-6" />
                 </span>
                 <h2 className="text-headline-sm font-semibold text-on-surface">
-                  Alamat Kantor
+                  Kantor Pusat
                 </h2>
                 <p className="text-body-sm text-on-surface-variant">{address}</p>
                 {site.mapsUrl ? (
@@ -158,9 +159,34 @@ export default function ContactPage() {
                 ) : null}
               </Reveal>
             ) : null}
+
+            <Reveal
+              delay={3}
+              className="space-y-space-md rounded-md bg-surface-container-lowest p-space-xl shadow-hairline"
+            >
+              <span className="flex size-12 items-center justify-center rounded-md bg-surface-container text-primary">
+                <MapPin aria-hidden className="size-6" />
+              </span>
+              <h2 className="text-headline-sm font-semibold text-on-surface">
+                Kantor Cabang Depok
+              </h2>
+              <p className="text-body-sm text-on-surface-variant">
+                Jl. Grafika No.1, Tirtajaya, Kec. Sukmajaya, Kota Depok, Jawa Barat 16412
+              </p>
+              <a
+                href="https://maps.google.com/?q=Jl.+Grafika+No.1,+Tirtajaya,+Kec.+Sukmajaya,+Kota+Depok,+Jawa+Barat+16412"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block text-label-lg font-semibold text-on-surface underline decoration-primary-container decoration-2 underline-offset-4"
+              >
+                Lihat di Google Maps
+              </a>
+            </Reveal>
           </div>
         </div>
       </section>
+
+      <MapSection className="border-t border-border-hairline bg-surface" />
 
       <Survey />
       <Faq />

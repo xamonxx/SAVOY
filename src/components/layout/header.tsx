@@ -175,7 +175,7 @@ export function Header() {
             source="header"
             size="sm"
             className={cn(
-              "hidden min-h-10 rounded-md px-space-lg active:translate-y-px sm:inline-flex",
+              "hidden min-h-10 rounded-full px-5 py-2 text-label-md font-semibold transition-all duration-150 active:scale-[0.96] sm:inline-flex",
               floating
                 ? "shadow-[0_10px_30px_-18px_rgba(0,0,0,0.45)]"
                 : "shadow-panel"

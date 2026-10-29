@@ -7,6 +7,7 @@ import { Faq } from "@/components/sections/faq";
 import { Guarantees } from "@/components/sections/guarantees";
 import { Hero } from "@/components/sections/hero";
 import { KnowledgePreview } from "@/components/sections/knowledge-preview";
+import { MapSection } from "@/components/sections/map-section";
 import { Materials } from "@/components/sections/materials";
 import { PortfolioPreview } from "@/components/sections/portfolio-preview";
 import { Problems } from "@/components/sections/problems";
@@ -100,6 +101,7 @@ export default function HomePage() {
       <Faq />
       <CtaBanner reserveCurveSpace={true} />
       <BehindTheScenes />
+      <MapSection />
       <ClosingCta />
     </>
   );
